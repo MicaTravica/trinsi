@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'changePassword', component: ChangePasswordComponent,
      canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}
   },
-  { path: '', redirectTo: 'events', pathMatch: 'full' },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -2,20 +2,19 @@ package com.app.trinsi.controller;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.trinsi.dto.LoginDTO;
 import com.app.trinsi.dto.PasswordChangeDTO;
 import com.app.trinsi.dto.UserDTO;
-import com.app.trinsi.exception.exceptions.ResourceNotFoundException;
-import com.app.trinsi.exception.exceptions.UserNotFoundByUsernameException;
+import com.app.trinsi.exceptions.ResourceNotFoundException;
+import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
 import com.app.trinsi.mapper.UserMapper;
 import com.app.trinsi.model.User;
 import com.app.trinsi.security.TokenUtils;
@@ -38,7 +37,7 @@ import com.app.trinsi.service.UserService;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("trinsi")
-public class UserController {
+public class UserController extends BaseController {
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -58,11 +57,13 @@ public class UserController {
 	@PostMapping(value="/login",
 				 consumes = MediaType.APPLICATION_JSON_VALUE,
 				 produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) throws UserNotFoundByUsernameException {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword());
+	public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) throws UsernameNotFoundException {
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(),
+				loginDTO.getPassword());
 		authenticationManager.authenticate(token);
+		System.out.println("cao");
 		UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getUsername());
-		
+		System.out.println("cao");
 		return new ResponseEntity<>(tokenUtils.generateToken(userDetails), HttpStatus.OK);
 	}
 	

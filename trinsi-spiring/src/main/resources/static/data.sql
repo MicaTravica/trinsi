@@ -1,0 +1,1 @@
+INSERT INTO `trinsi`.`user` (`id`, `email`, `name`, `password`, `surname`, `user_role`, `username`, `verified`) VALUES ('1', 'mica97@email.com', 'Milica', '$2a$10$RQQwOzJdOMTNf0hMCE48eexojCSYDbfaBeZ3y1IOkYbd8Z6rHFn2i', 'Travica', 'ROLE_REGULAR', 'mica', b'1');

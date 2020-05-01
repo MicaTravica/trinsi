@@ -5,7 +5,6 @@ import { authHttpOptions, httpOptions } from '../../util/http-util';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth-service/auth.service';
 import { ChangePassword } from 'src/app/models/change-password-model/change.password.model';
-import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +40,6 @@ export class UserService {
     }
     return user;
   }
-
 
   public changePassword(changePassword: ChangePassword ) {
     return this.http.put(this.usersUrl + '/user/password', changePassword,

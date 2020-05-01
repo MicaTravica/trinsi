@@ -2,6 +2,13 @@
 
 @import '~ngx-toastr/toastr';
 
+#toast-container>.toast-success {
+    background-color: #E91E63 !important;
+}
+
+#toast-container>.toast-error {
+    background-color: #263238 !important;
+}
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
@@ -14,7 +21,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $front-trinsi-primary: mat-palette($mat-pink);
-$front-trinsi-accent:  mat-palette($mat-blue-gray, A200, A100, A400);
+$front-trinsi-accent:  mat-palette($mat-blue-gray, 100, 200, 400);
 
 // The warn palette is optional (defaults to red).
 $front-trinsi-warn:    mat-palette($mat-red);

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user-model/user.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -59,7 +58,7 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem('token', token);
         this.userService.me(token).subscribe(user => {
           localStorage.setItem('user', JSON.stringify(user));
-          this.toastr.success('successfully changed profile data');
+          this.toastr.success('Successfully changed profile data');
         });
       });
   }

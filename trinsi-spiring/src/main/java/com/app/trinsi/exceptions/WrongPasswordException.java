@@ -1,4 +1,4 @@
-package com.app.trinsi.exception.exceptions;
+package com.app.trinsi.exceptions;
 
 public class WrongPasswordException extends Exception {
 

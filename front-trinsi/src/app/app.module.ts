@@ -21,7 +21,7 @@ import { ProfileComponent } from './core/profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChangePasswordComponent } from './core/profile/change-password/change-password.component';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     ReactiveFormsModule
   ],
   providers: [

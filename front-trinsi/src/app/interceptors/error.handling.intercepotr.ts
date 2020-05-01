@@ -1,4 +1,3 @@
-
 import { Injectable} from '@angular/core';
 import {
     HttpInterceptor,
@@ -25,7 +24,6 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
         if (error.error instanceof ErrorEvent) {
             errorData = new ErrorDialogData('0', error.error.message);
         } else {
-        // server-side error
             switch (error.status) {
                 case 400:
                     ErrorDialogService.get(EventChannels.ERROR_MESSAGE).emit(error.error);
@@ -53,5 +51,4 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
             catchError(this.handleError)
         );
     }
-
 }

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login({ username: this.loginForm.value.username, password: this.loginForm.value.password }).subscribe(
+    this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
       result => {
         this.toastr.success('Successful login!');
         this.userService.me(result).subscribe(user => {

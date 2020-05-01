@@ -89,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET,  "/trinsi/user/verify/**").permitAll()
 				.antMatchers(HttpMethod.POST,   "/trinsi/login", "/trinsi/registration").permitAll()
 				.anyRequest().authenticated();
-		// Custom JWT based authentication/trinsi/login
+		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
 				UsernamePasswordAuthenticationFilter.class);
 		// CORS

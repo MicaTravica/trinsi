@@ -1,7 +1,6 @@
 package com.app.trinsi.service.impl;
 
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.trinsi.dto.PasswordChangeDTO;
-import com.app.trinsi.exception.exceptions.ResourceExistsException;
-import com.app.trinsi.exception.exceptions.ResourceNotFoundException;
-import com.app.trinsi.exception.exceptions.UserNotFoundByUsernameException;
-import com.app.trinsi.exception.exceptions.WrongPasswordException;
+import com.app.trinsi.exceptions.ResourceExistsException;
+import com.app.trinsi.exceptions.ResourceNotFoundException;
+import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
+import com.app.trinsi.exceptions.WrongPasswordException;
 import com.app.trinsi.model.User;
 import com.app.trinsi.model.VerificationToken;
 import com.app.trinsi.repository.UserRepository;
