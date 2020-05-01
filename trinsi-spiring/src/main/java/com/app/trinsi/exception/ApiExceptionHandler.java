@@ -1,8 +1,9 @@
 package com.app.trinsi.exception;
 
-import com.app.trinsi.dto.response.ErrorMessageDTO;
+import com.app.trinsi.dto.ErrorMessageDTO;
 import com.app.trinsi.exception.exceptions.ApiRequestException;
 import com.app.trinsi.exception.exceptions.ResourceNotFoundException;
+import com.app.trinsi.exception.exceptions.WrongPasswordException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,7 +15,7 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(value = {ApiRequestException.class})
+    @ExceptionHandler(value = {ApiRequestException.class)
     public ResponseEntity<ErrorMessageDTO> handleApiRequestException(ApiRequestException e) {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
         ErrorMessageDTO errorMessageDTO = new ErrorMessageDTO(e.getMessage(), badRequest, ZonedDateTime.now());
