@@ -16,6 +16,9 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <kie.version>7.35.0.Final</kie.version>
     </properties>
 
     <dependencies>
@@ -67,7 +70,42 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
 
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-ci</artifactId>
+            <version>${kie.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-spring</artifactId>
+            <version>${kie.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.app.trinsi</groupId>
+            <artifactId>trinsi-kjar</artifactId>
+            <type>jar</type>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>
+                C:/Users/travica/Documents/GitHub/trinsi/trinsi-kjar/target/trinsi-kjar-1.0.0-SNAPSHOT.jar
+            </systemPath>
+        </dependency>
     </dependencies>
 
     <build>

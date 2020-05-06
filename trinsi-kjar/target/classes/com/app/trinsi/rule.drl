@@ -1,0 +1,29 @@
+//created on: May 6, 2020
+package com.app.trinsi
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "Your First Rule"
+
+    when
+        //conditions
+    then
+        //actions
+
+end
+
+rule "Your Second Rule"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+    then
+        //actions
+
+end
