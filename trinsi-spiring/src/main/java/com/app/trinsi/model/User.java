@@ -1,12 +1,6 @@
 package com.app.trinsi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotBlank;
@@ -48,6 +42,14 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private UserRole userRole;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_health_id", referencedColumnName = "id")
+	private UserHealth userHealth;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_planner_id", referencedColumnName = "id")
+	private UserPlanner userPlanner;
 
 	public void update(User user) {
 		this.username = user.getUsername();
