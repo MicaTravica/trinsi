@@ -1,0 +1,5 @@
+export enum CATEGORY {
+    BEGINNER = 'BEGINNER',
+    MIDDLE = 'MIDDLE',
+    ADVANCED = 'ADVANCED'
+}

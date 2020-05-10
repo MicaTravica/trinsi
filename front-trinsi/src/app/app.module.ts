@@ -21,7 +21,10 @@ import { ProfileComponent } from './core/profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChangePasswordComponent } from './core/profile/change-password/change-password.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
+import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.component';
+import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     ProfileComponent,
     PageNotFoundComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddExerciseComponent,
+    ListExerciseComponent,
+    ViewExerciseComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     UserService,

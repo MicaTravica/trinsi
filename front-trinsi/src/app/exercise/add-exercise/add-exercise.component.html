@@ -1,0 +1,28 @@
+<form #addExercise="ngForm" (ngSubmit)="add()" novalidate>
+    <h1>Add exercise:</h1>
+    <mat-form-field>
+        <input matInput type="text" required #name='ngModel'
+        [(ngModel)]="exercise.name" name="name" placeholder="Name">
+    </mat-form-field>
+    <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Please enter exercise name</mat-error>
+    <mat-form-field>
+        <textarea matInput type="text" required #description='ngModel' 
+        [(ngModel)]="exercise.description" name="description" placeholder="Description"></textarea>
+        <mat-error *ngIf="description.invalid && (description.dirty || description.touched)">Description is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select #type='ngModel' [(ngModel)]="exercise.exerciseType" name="exerciseType" placeholder="Choose exercise type">
+            <mat-option *ngFor="let e of exerciseType" [value]="e">
+            {{e}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select #weight='ngModel' [(ngModel)]="exercise.exerciseWeight" name="exerciseWeight" placeholder="Choose exercise weight">
+            <mat-option *ngFor="let c of category" [value]="c">
+            {{c}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="addExercise.form.invalid">Add</button>
+</form>
