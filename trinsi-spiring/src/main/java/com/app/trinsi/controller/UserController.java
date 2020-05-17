@@ -61,9 +61,7 @@ public class UserController extends BaseController {
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(),
 				loginDTO.getPassword());
 		authenticationManager.authenticate(token);
-		System.out.println("cao");
 		UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getUsername());
-		System.out.println("cao");
 		return new ResponseEntity<>(tokenUtils.generateToken(userDetails), HttpStatus.OK);
 	}
 	

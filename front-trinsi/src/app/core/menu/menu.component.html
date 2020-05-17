@@ -1,4 +1,4 @@
 <mat-toolbar color="accent">
         <button mat-button routerLink="exercises" color="primary">Exercises</button>
-        <button mat-button routerLink="/add-exercise" color="primary">Add exercise</button>
+        <button mat-button *ngIf="role=='admin'" routerLink="/add-exercise" color="primary">Add exercise</button>
 </mat-toolbar>

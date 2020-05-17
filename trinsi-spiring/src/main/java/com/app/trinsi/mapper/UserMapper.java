@@ -6,10 +6,12 @@ import com.app.trinsi.model.User;
 public class UserMapper {
 
 	public static UserDTO toDTO(User user) {
-		return new UserDTO(user.getId(), user.getEmail(), user.getName(), user.getSurname(), user.getUsername(), null, user.getUserRole());
+		return new UserDTO(user.getId(), user.getEmail(), user.getName(), user.getSurname(), user.getUsername(),
+				null, user.getUserRole());
 	}
 	
 	public static User toUser(UserDTO userDto) {
-		return new User(userDto.getId(), userDto.getName(), userDto.getSurname(), userDto.getEmail(), false, userDto.getUsername(), userDto.getPassword(), userDto.getUserRole(), null, null);
+		return new User(userDto.getId(), userDto.getName(), userDto.getSurname(), userDto.getEmail(), false,
+				userDto.getUsername(), userDto.getPassword(), userDto.getUserRole(), null, null);
 	}
 }

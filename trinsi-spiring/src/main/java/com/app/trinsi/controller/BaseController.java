@@ -30,7 +30,8 @@ public abstract class BaseController {
 		return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler({ ResourceExistsException.class, WrongPasswordException.class })
+	@ExceptionHandler({ ResourceExistsException.class, WrongPasswordException.class,
+			org.springframework.dao.DataIntegrityViolationException.class })
 	public ResponseEntity<String> badRequest(Exception e) {
 		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}

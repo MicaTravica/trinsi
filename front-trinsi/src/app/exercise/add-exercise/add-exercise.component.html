@@ -3,8 +3,8 @@
     <mat-form-field>
         <input matInput type="text" required #name='ngModel'
         [(ngModel)]="exercise.name" name="name" placeholder="Name">
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Exercise name is required</mat-error>
     </mat-form-field>
-    <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">Please enter exercise name</mat-error>
     <mat-form-field>
         <textarea matInput type="text" required #description='ngModel' 
         [(ngModel)]="exercise.description" name="description" placeholder="Description"></textarea>

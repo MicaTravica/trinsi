@@ -1,0 +1,24 @@
+div {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+mat-form-field, .search {
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 5px;
+    width: 23%;
+}
+
+table {
+    width: 98%;
+    margin: 1%;
+}
+
+button:not(.search) {
+    float: right;
+}
+
+tr:not(.header):hover {
+    background: #EEEEEE;
+}

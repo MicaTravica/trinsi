@@ -1,1 +1,48 @@
-<p>list-exercise works!</p>
+<div>
+    <mat-form-field>
+        <input matInput [(ngModel)]="exerciseSearch.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select [(ngModel)]="exerciseSearch.exerciseType" placeholder="Type">
+            <mat-option *ngFor="let e of exerciseType" [value]="e">
+            {{e}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select [(ngModel)]="exerciseSearch.exerciseWeight" placeholder="Weight">
+            <mat-option *ngFor="let c of category" [value]="c">
+            {{c}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="search" (click)="search()">Search</button>
+
+    <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Exercise type </th>
+            <td mat-cell *matCellDef="let element"> {{element.exerciseType}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Exercise weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.exerciseWeight}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="primary" (click)="details(element.id)">Details</button>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+

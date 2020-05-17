@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'add-exercise', component: AddExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},
   { path: 'exercises', component: ListExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'exercise/:id', component: ViewExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '', redirectTo: 'exercises', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

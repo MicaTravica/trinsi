@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from 'src/app/models/exercise/exercise.model';
 import { EXERCISE_TYPE } from 'src/app/models/enums/exercise-type.enum';
 import { CATEGORY } from 'src/app/models/enums/category.enum';
 import { ToastrService } from 'ngx-toastr';
 import { ExerciseService } from 'src/app/services/exercise-service/exercise.service';
+import { Router } from '@angular/router';
+import { Exercise } from 'src/app/models/exercise/exercise.model';
 
 @Component({
   selector: 'app-add-exercise',
@@ -18,19 +19,19 @@ export class AddExerciseComponent implements OnInit {
 
   constructor(
     private exerciseService: ExerciseService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
   add() {
-    console.log(this.exercise);
-    // this.exerciseService.add(this.exercise).subscribe(
-    //   (data: any) => {
-    //     this.toastr.success('Successful add!');
-    //     this.exercise = data;
-    //   }
-    // );
+    this.exerciseService.add(this.exercise).subscribe(
+      (data: number) => {
+        this.toastr.success('Successful add!');
+        this.router.navigate(['/exercise/' + data ]);
+      }
+    );
   }
 }
