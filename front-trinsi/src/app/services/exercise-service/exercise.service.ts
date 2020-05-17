@@ -23,24 +23,21 @@ export class ExerciseService {
   get(id: number) {
     return this.http.get(this.exerciseUrl + '/' + id,
       {
-        headers: authHttpOptions(this.authService.getToken()),
-        responseType: 'json'
+        headers: authHttpOptions(this.authService.getToken())
       });
   }
 
   add(exercise: Exercise) {
     return this.http.post(this.exerciseUrl, exercise,
       {
-        headers: authHttpOptions(this.authService.getToken()),
-        responseType: 'json'
+        headers: authHttpOptions(this.authService.getToken())
       });
   }
 
   search(exerciseSearch: ExerciseSearch) {
     return this.http.post(this.exerciseUrl + '/search', exerciseSearch,
       {
-        headers: authHttpOptions(this.authService.getToken()),
-        responseType: 'json'
+        headers: authHttpOptions(this.authService.getToken())
       });
   }
 }

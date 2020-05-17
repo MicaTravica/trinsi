@@ -2,11 +2,8 @@ package com.app.trinsi.controller;
 
 import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.dto.SearchExercise;
-import com.app.trinsi.dto.UserDTO;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
-import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
 import com.app.trinsi.mapper.ExerciseMapper;
-import com.app.trinsi.mapper.UserMapper;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.Collection;
 import java.util.stream.Collectors;
 

@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.component';
 import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
+import { PlannerComponent } from './fitness/planner/planner.component';
+import { HealthComponent } from './fitness/health/health.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'add-exercise', component: AddExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},
   { path: 'exercises', component: ListExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'exercise/:id', component: ViewExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
+  { path: 'planner', component: PlannerComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
+  { path: 'health', component: HealthComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
   { path: '', redirectTo: 'exercises', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

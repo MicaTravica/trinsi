@@ -15,5 +15,5 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
     @Query("select e from Exercise e where e.name like concat('%', ?1, '%') and (e.exerciseType = ?2 or ?2 = null)" +
             "and  (e.exerciseWeight = ?3 or ?3 = null)")
     Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight);
-    
+
 }

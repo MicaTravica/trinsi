@@ -1,11 +1,16 @@
 package com.app.trinsi.dto;
 
+import com.app.trinsi.model.UserPlanner;
 import com.app.trinsi.model.UserRole;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter

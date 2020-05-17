@@ -1,0 +1,48 @@
+<form #addHealth="ngForm" (ngSubmit)="add()" novalidate>
+    <h1>Health:</h1>
+    <mat-form-field>
+        <mat-select #gender='ngModel' [(ngModel)]="health.gender" name="gender" placeholder="Choose gender">
+            <mat-option *ngFor="let gen of genders" [value]="gen">
+            {{gen}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput required #dateOfBirth='ngModel' name="dateOfBirth" [(ngModel)]="health.dateOfBirth" placeholder="Choose date of birth" [matDatepicker]="dateOfBirthPicker">
+        <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+        <mat-error *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">Date of birth is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #height='ngModel'
+        [(ngModel)]="health.height" name="height" placeholder="Height">
+        <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">Height is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #weight='ngModel'
+        [(ngModel)]="health.weight" name="weight" placeholder="Weight">
+        <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">Weight is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #upperBloodPressure='ngModel'
+        [(ngModel)]="health.upperBloodPressure" name="upperBloodPressure" placeholder="Upper blood pressure">
+        <mat-error *ngIf="upperBloodPressure.invalid && (upperBloodPressure.dirty || upperBloodPressure.touched)">Upper blood pressure is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #lowerBloodPressure='ngModel'
+        [(ngModel)]="health.lowerBloodPressure" name="lowerBloodPressure" placeholder="Lower blood pressure">
+        <mat-error *ngIf="lowerBloodPressure.invalid && (lowerBloodPressure.dirty || lowerBloodPressure.touched)">Lower blood pressure is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #pulse='ngModel'
+        [(ngModel)]="health.pulse" name="pulse" placeholder="Pulse">
+        <mat-error *ngIf="pulse.invalid && (pulse.dirty || pulse.touched)">Pulse is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" required #hoursOfExercise='ngModel'
+        [(ngModel)]="health.hoursOfExercise" name="hoursOfExercise" placeholder="Hours of exercise">
+        <mat-error *ngIf="hoursOfExercise.invalid && (hoursOfExercise.dirty || hoursOfExercise.touched)">Height is required</mat-error>
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" type="submit" [disabled]="addHealth.form.invalid">Add</button>
+</form>

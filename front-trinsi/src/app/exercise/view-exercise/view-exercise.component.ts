@@ -10,7 +10,7 @@ import { Exercise } from 'src/app/models/exercise/exercise.model';
 })
 export class ViewExerciseComponent implements OnInit {
 
-  exercise: Exercise;
+  exercise = new Exercise(null, null, null, null, null);
 
   constructor(
     private exerciseService: ExerciseService,

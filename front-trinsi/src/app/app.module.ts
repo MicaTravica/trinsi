@@ -25,6 +25,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.component';
 import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
+import { PlannerComponent } from './fitness/planner/planner.component';
+import { HealthComponent } from './fitness/health/health.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.co
     ChangePasswordComponent,
     AddExerciseComponent,
     ListExerciseComponent,
-    ViewExerciseComponent
+    ViewExerciseComponent,
+    HealthComponent,
+    PlannerComponent
   ],
   imports: [
     BrowserModule,

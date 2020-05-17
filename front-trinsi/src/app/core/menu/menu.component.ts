@@ -25,8 +25,4 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  trinsi() {
-    this.router.navigate(['/trinsi']);
-  }
-
 }
