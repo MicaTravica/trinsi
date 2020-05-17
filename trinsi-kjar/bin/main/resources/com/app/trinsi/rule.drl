@@ -11,7 +11,7 @@ import com.app.trinsi.model.UserHealt;
 rule "Your First Rule"
 
     when
-       $u: UserHealth(
+       $u: UserHealth()
     then
         
 end

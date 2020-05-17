@@ -20,8 +20,12 @@ import java.util.stream.Collectors;
 @RequestMapping("trinsi/exercise")
 public class ExerciseController extends BaseController {
 
+    private final ExerciseService exerciseService;
+
     @Autowired
-    private ExerciseService exerciseService;
+    public  ExerciseController(ExerciseService exerciseService) {
+        this.exerciseService = exerciseService;
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseDTO> getExercise(@PathVariable Long id) throws ResourceNotFoundException {

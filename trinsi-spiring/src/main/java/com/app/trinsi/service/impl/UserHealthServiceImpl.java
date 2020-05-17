@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserHealthServiceImpl implements UserHealthService {
 
-    @Autowired
-    private UserHealthRepository userHealthRepository;
+    private final UserHealthRepository userHealthRepository;
 
+    @Autowired
+    public UserHealthServiceImpl(UserHealthRepository userHealthRepository) {
+        this.userHealthRepository = userHealthRepository;
+    }
     @Override
     public UserHealth findByUsername(Long id) {
         return userHealthRepository.findByUsername(id).orElse(null);

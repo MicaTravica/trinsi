@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.hibernate.eclipse.console.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/rule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/rule.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/rule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/trinsi/rule.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1c2xEOk1SSl335edyCrpxCEFk6f" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.app.trinsi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\travica\Documents\GitHub\trinsi\trinsi-kjar\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="trinsi-kjar [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="" />
+      <created>1589740376117</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589740376117</updated>
+      <workItem from="1589740383625" duration="3418000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="22" key="#Project_Structure" timestamp="1589742229658">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1589742229658" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589740550697">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1589740550697" />
+    <state x="479" y="270" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1589742311964">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="479" y="270" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1366.728@0.0.1366.728" timestamp="1589742311964" />
+    <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1589742171420">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589742171420" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1589746670992">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1589746670992">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1589746670992">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1589746670992">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1589741653567">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1589741653567" />
+  </component>
+</project>

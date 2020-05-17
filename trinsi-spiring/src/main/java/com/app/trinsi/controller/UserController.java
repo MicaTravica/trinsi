@@ -53,7 +53,8 @@ public class UserController extends BaseController {
 	
 	@Autowired
 	ApplicationEventPublisher eventPubisher;
-	
+
+
 	@PostMapping(value="/login",
 				 consumes = MediaType.APPLICATION_JSON_VALUE,
 				 produces = MediaType.APPLICATION_JSON_VALUE)

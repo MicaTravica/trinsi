@@ -11,6 +11,7 @@ import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.User;
 import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.service.UserHealthService;
+import com.app.trinsi.service.UserPlannerService;
 import com.app.trinsi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,11 +26,16 @@ import java.security.Principal;
 @RequestMapping("trinsi/health")
 public class UserHealthController {
 
+    private final UserHealthService userHealthService;
+    private final UserService userService;
+    private final UserPlannerService userPlannerService;
     @Autowired
-    private UserHealthService userHealthService;
-
-    @Autowired
-    private UserService userService;
+    public UserHealthController(UserHealthService userHealthService, UserService userService,
+                                UserPlannerService userPlannerService){
+        this.userHealthService  = userHealthService;
+        this.userService = userService;
+        this.userPlannerService = userPlannerService;
+    }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserHealthDTO> getMyData(Principal principal) throws UserNotFoundByUsernameException {
@@ -43,6 +49,7 @@ public class UserHealthController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> addHealth(@RequestBody UserHealthDTO userHealthDTO) {
         UserHealth userHealth = userHealthService.addHealth(UserHealthMapper.toHealth(userHealthDTO));
+        userPlannerService.getUserPlanner(userHealth);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

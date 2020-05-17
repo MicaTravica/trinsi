@@ -2,9 +2,7 @@
 package com.app.trinsi
 
 //list any import classes here.
-
-
-
+import com.app.trinsi.model.UserHealt;
 //declare any global variables here
 
 
@@ -13,17 +11,7 @@ package com.app.trinsi
 rule "Your First Rule"
 
     when
-        //conditions
+       $u: UserHealth(
     then
-        //actions
-
-end
-
-rule "Your Second Rule"
-    //include attributes such as "salience" here...
-    when
-        //conditions
-    then
-        //actions
-
+        
 end

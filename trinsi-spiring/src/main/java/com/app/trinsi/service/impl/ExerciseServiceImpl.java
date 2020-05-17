@@ -14,8 +14,12 @@ import java.util.Collection;
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 
+    private final ExerciseRepository exerciseRepository;
+
     @Autowired
-    private ExerciseRepository exerciseRepository;
+    public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
+        this.exerciseRepository = exerciseRepository;
+    }
 
     @Override
     public Exercise findOneById(Long id) throws ResourceNotFoundException {
