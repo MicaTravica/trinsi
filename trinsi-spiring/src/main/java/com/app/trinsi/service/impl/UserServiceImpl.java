@@ -3,6 +3,8 @@ package com.app.trinsi.service.impl;
 import java.util.Calendar;
 import java.util.UUID;
 
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -91,4 +93,17 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUsername(name).orElseThrow(() ->  new UserNotFoundByUsernameException(name));
 	}
 
+	@Override
+	public User updateUserHealth(UserHealth userHealth, String username) throws ResourceNotFoundException {
+		User userToUpdate = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User"));
+		userToUpdate.setUserHealth(userHealth);
+		return userRepository.save(userToUpdate);
+	}
+
+	@Override
+	public User updateUserPlanner(UserPlanner userPlanner, String username) throws ResourceNotFoundException {
+		User userToUpdate = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User"));
+		userToUpdate.setUserPlanner(userPlanner);
+		return userRepository.save(userToUpdate);
+	}
 }

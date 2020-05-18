@@ -3,6 +3,7 @@ import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
 import { GENDER } from 'src/app/models/enums/gender.enum';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-health',
@@ -16,13 +17,14 @@ export class HealthComponent implements OnInit {
 
   constructor(
     private healthService: HealthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.healthService.get().subscribe(
-      data => {
-        console.log(data);
+      (data: UserHealth) => {
+        this.health = data;
       }
     );
   }
@@ -31,6 +33,7 @@ export class HealthComponent implements OnInit {
     this.healthService.add(this.health).subscribe(
       (data: number) => {
         this.toastr.success('Successful add!');
+        this.router.navigate(['/planner']);
       }
     );
   }

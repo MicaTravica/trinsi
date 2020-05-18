@@ -3,6 +3,7 @@ package com.app.trinsi.controller;
 import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.dto.UserDTO;
 import com.app.trinsi.dto.UserHealthDTO;
+import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
 import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.mapper.UserHealthMapper;
@@ -38,18 +39,17 @@ public class UserHealthController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserHealthDTO> getMyData(Principal principal) throws UserNotFoundByUsernameException {
+    public ResponseEntity<UserHealthDTO> getUserHealth(Principal principal) throws UserNotFoundByUsernameException {
         User user = userService.findOneByUsername(principal.getName());
         if (user.getUserHealth() == null)
             return new ResponseEntity<>(new UserHealthDTO(), HttpStatus.OK);
-        UserHealth userHealth = userHealthService.findByUsername(user.getId());
+        UserHealth userHealth = userHealthService.findById(user.getUserHealth().getId());
         return new ResponseEntity<>(UserHealthMapper.toDTO(userHealth), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addHealth(@RequestBody UserHealthDTO userHealthDTO) {
-        UserHealth userHealth = userHealthService.addHealth(UserHealthMapper.toHealth(userHealthDTO));
-        userPlannerService.getUserPlanner(userHealth);
+    public ResponseEntity<Long> addHealth(@RequestBody UserHealthDTO userHealthDTO, Principal principal) throws ResourceNotFoundException {
+        UserHealth userHealth = userHealthService.addHealth(UserHealthMapper.toHealth(userHealthDTO), principal.getName());
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

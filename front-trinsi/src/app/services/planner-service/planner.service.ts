@@ -3,33 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth-service/auth.service';
 import { environment } from 'src/environments/environment';
 import { authHttpOptions } from 'src/app/util/http-util';
-import { UserHealth } from 'src/app/models/user-health/user-health.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HealthService {
+export class PlannerService {
 
-  healthUrl: string;
+  plannerUrl: string;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) {
-    this.healthUrl = environment.restPath + '/health';
+    this.plannerUrl = environment.restPath + '/planner';
   }
 
   get() {
-    return this.http.get(this.healthUrl,
+    return this.http.get(this.plannerUrl,
       {
         headers: authHttpOptions(this.authService.getToken())
-      });
-  }
-
-  add(health: UserHealth) {
-    return this.http.post(this.healthUrl, health,
-      {
-        headers: authHttpOptions(this.authService.getToken()),
       });
   }
 
