@@ -1,0 +1,33 @@
+package com.app.trinsi
+
+//list any import classes here.
+import com.app.trinsi.model.CATEGORY;
+import com.app.trinsi.model.UserPlanner;
+//declare any global variables here
+
+rule "Repetition beginner"
+
+    when
+        $p: UserPlanner(category == CATEGORY.BEGINNER, $nc: numCategory)
+    then
+        modify($p){setRepetition($nc / 2 % 1 + 10);}
+
+end
+
+rule "Repetition middle"
+
+    when
+        $p: UserPlanner(category == CATEGORY.MIDDLE, $nc: numCategory)
+    then
+        modify($p){setRepetition(Math.min($nc + 10, 30));}
+
+end
+
+rule "Repetition advanced"
+
+    when
+        $p: UserPlanner(category == CATEGORY.ADVANCED, $nc: numCategory)
+    then
+        modify($p){setRepetition(Math.min($nc + 15, 50));}
+
+end

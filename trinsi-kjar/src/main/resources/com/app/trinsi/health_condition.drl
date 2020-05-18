@@ -1,0 +1,38 @@
+package com.app.trinsi
+
+//list any import classes here.
+import com.app.trinsi.model.HEALTH_CONDITION;
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+//declare any global variables here
+
+rule "Health conddition good"
+
+    when
+        $u: UserHealth(pulse < 70 && upperBloodPressure >= 105 && upperBloodPressure <= 135 &&
+        lowerBloodPressure >= 70 && lowerBloodPressure <= 90)
+        $p: UserPlanner()
+    then
+        modify($p){setHealthCondition(HEALTH_CONDITION.GOOD)}
+
+end
+
+rule "Health conddition bad"
+
+    when
+        $u: UserHealth(pulse > 80 || upperBloodPressure < 100  || upperBloodPressure > 140 ||
+        lowerBloodPressure < 65 && lowerBloodPressure > 95)
+        $p: UserPlanner()
+    then
+        modify($p){setHealthCondition(HEALTH_CONDITION.BAD)}
+
+end
+
+rule "Health conddition middle"
+
+    when
+        $p: UserPlanner(healthCondition == null)
+    then
+        modify($p){setHealthCondition(HEALTH_CONDITION.MIDDLE)}
+
+end

@@ -1,0 +1,15 @@
+package com.app.trinsi
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+//import com.app.trinsi.model.GENDER;
+//declare any global variables here
+//
+//rule "Physical characteristic skinny 1"
+//
+//    when
+//       $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight > 115)
+//    then
+//        System.out.println("skinny1");
+//
+//end

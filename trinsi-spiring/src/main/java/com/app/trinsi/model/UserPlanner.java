@@ -19,11 +19,12 @@ public class UserPlanner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private CATEGORY category;
+    private int numCategory;
     private PHYSICAL_CHARACTERISTICS physicalCharacteristics;
     private HEALTH_CONDITION healthCondition;
     private int numOfExercise;
     private int repetition;
-    private EXERCISE_TYPE exercise_type;
+    private EXERCISE_TYPE exerciseType;
 
     @ManyToMany
     @JoinTable(

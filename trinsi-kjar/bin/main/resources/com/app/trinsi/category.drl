@@ -1,17 +1,15 @@
-//created on: May 6, 2020
 package com.app.trinsi
 
 //list any import classes here.
 import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
-
-
-BEGINNER, MIDDLE, ADVANCED
 
 rule "Category beginner"
 
     when
        $u: UserHealth(hoursOfExercise < 1)
+       $p: 
     then
         System.out.println("beginner");
 
@@ -20,7 +18,7 @@ end
 rule "Category middle"
 
     when
-       $u: UserHealth(hoursOfExercise < 1)
+       $u: UserHealth(hoursOfExercise >= 1 && hoursOfExercise < 3)
     then
         System.out.println("middle");
 
@@ -29,7 +27,7 @@ end
 rule "Category adviced"
 
     when
-       $u: UserHealth(hoursOfExercise >= 1)
+       $u: UserHealth(hoursOfExercise >= 3)
     then
         System.out.println("adviced");
 

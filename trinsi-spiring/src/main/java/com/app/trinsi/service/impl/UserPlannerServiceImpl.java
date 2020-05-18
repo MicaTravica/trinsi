@@ -1,5 +1,6 @@
 package com.app.trinsi.service.impl;
 
+import com.app.trinsi.model.EXERCISE_TYPE;
 import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.model.UserPlanner;
 import com.app.trinsi.repository.UserPlannerRepository;
@@ -23,14 +24,12 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public UserPlanner getUserPlanner(UserHealth userHealth) {
+        UserPlanner userPlanner = new UserPlanner();
         KieSession kieSession = kieContainer.newKieSession();
         kieSession.insert(userHealth);
-//        userHealth
-        System.out.println(userHealth.getPulse());
-        int cao = kieSession.fireAllRules();
-        System.out.println(cao);
-        System.out.println(userHealth.getPulse());
+        kieSession.insert(userPlanner);
+        kieSession.fireAllRules();
         kieSession.dispose();
-        return null;
+        return userPlanner;
     }
 }
