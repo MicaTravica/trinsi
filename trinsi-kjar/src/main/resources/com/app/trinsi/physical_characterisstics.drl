@@ -1,0 +1,117 @@
+//created on: May 17, 2020
+package com.app.trinsi
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.GENDER;
+//declare any global variables here
+
+//    SKINNY, SATISFACTORY, FAT
+
+rule "Physical characteristic skinny 1"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight > 115)
+    then
+        System.out.println("skinny1");
+
+end
+
+rule "Physical characteristic skinny 2"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight > 120)
+    then
+        System.out.println("skinny2");
+
+end
+
+rule "Physical characteristic skinny 3"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight > 125)
+    then
+        System.out.println("skinny3");
+
+end
+
+rule "Physical characteristic skinny 4"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight > 130)
+    then
+        System.out.println("skinny4");
+
+end
+
+rule "Physical characteristic satisfactory 1"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight >= 105, height - weight <= 115)
+    then
+        System.out.println("satisfactory1");
+
+end
+
+rule "Physical characteristic satisfactory 2"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight >= 100, height - weight <= 120)
+    then
+        System.out.println("satisfactory2");
+
+end
+
+rule "Physical characteristic satisfactory 3"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight >= 115, height - weight <= 125)
+    then
+        System.out.println("satisfactory3");
+
+end
+
+rule "Physical characteristic satisfactory 4"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight >= 110, height - weight <= 130)
+    then
+        System.out.println("satisfactory4");
+
+end
+
+rule "Physical characteristic fat 1"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight < 105)
+    then
+        System.out.println("fat1");
+
+end
+
+rule "Physical characteristic fat 2"
+
+    when
+       $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight < 100)
+    then
+        System.out.println("fat2");
+
+end
+
+rule "Physical characteristic fat 3"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight < 115)
+    then
+        System.out.println("fat3");
+
+end
+
+rule "Physical characteristic fat 4"
+
+    when
+       $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight < 110)
+    then
+        System.out.println("fat4");
+
+end

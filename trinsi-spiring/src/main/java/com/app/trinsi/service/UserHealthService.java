@@ -6,5 +6,5 @@ public interface UserHealthService {
 
     UserHealth findByUsername(Long id);
 
-    UserHealth addHealth(Object toHealth);
+    UserHealth addHealth(UserHealth health);
 }

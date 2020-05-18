@@ -22,7 +22,7 @@ public class UserHealth {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private GENDER gender;
-    private Date dateOfBirth;
+    private int years;
     private double height;
     private double weight;
     private int upperBloodPressure;

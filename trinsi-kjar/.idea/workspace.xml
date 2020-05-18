@@ -2,20 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.hibernate.eclipse.console.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/rule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/rule.drl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/rule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/trinsi/rule.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/resources/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/rule.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/rule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/category.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/rule.drl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserHealthDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserHealthDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/UserHealthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/UserHealthMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserHealth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserHealth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/UserHealthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/UserHealthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589740376117</updated>
       <workItem from="1589740383625" duration="3418000" />
+      <workItem from="1589748087696" duration="3958000" />
     </task>
     <servers />
   </component>
@@ -112,25 +114,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589742171420" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1589746670992">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1589752090036">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1589746670992">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589752090036" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1589752090036">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1589746670992">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589752090036" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1589752090035">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1589746670992">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589752090035" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1589752090036">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589746670992" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589752090036" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1589741653567">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1589741653567" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1589748105856">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1589748105856" />
   </component>
 </project>

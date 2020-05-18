@@ -21,7 +21,7 @@ public class UserHealthServiceImpl implements UserHealthService {
     }
 
     @Override
-    public UserHealth addHealth(Object toHealth) {
-        return null;
+    public UserHealth addHealth(UserHealth health) {
+        return this.userHealthRepository.save(health);
     }
 }

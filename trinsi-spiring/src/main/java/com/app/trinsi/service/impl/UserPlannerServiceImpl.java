@@ -25,8 +25,11 @@ public class UserPlannerServiceImpl implements UserPlannerService {
     public UserPlanner getUserPlanner(UserHealth userHealth) {
         KieSession kieSession = kieContainer.newKieSession();
         kieSession.insert(userHealth);
+//        userHealth
+        System.out.println(userHealth.getPulse());
         int cao = kieSession.fireAllRules();
         System.out.println(cao);
+        System.out.println(userHealth.getPulse());
         kieSession.dispose();
         return null;
     }

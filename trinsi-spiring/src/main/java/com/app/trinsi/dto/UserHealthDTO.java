@@ -15,7 +15,7 @@ import java.util.Date;
 public class UserHealthDTO {
 
     private GENDER gender;
-    private Date dateOfBirth;
+    private int years;
     private double height;
     private double weight;
     private int upperBloodPressure;

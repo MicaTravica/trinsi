@@ -3,7 +3,7 @@ import { GENDER } from '../enums/gender.enum';
 export class UserHealth {
 
     public gender: GENDER;
-    public dateOfBirth: Date;
+    public years: number;
     public height: number;
     public weight: number;
     public upperBloodPressure: number;
@@ -11,10 +11,10 @@ export class UserHealth {
     public pulse: number;
     public hoursOfExercise: number;
 
-    constructor(gender: GENDER, dateOfBirth: Date, height: number, weight: number, upperBloodPressure: number,
+    constructor(gender: GENDER, years: number, height: number, weight: number, upperBloodPressure: number,
                 lowerBloodPressure: number, pulse: number, hoursOfExercise: number) {
         this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
+        this.years = years;
         this.height = height;
         this.weight = weight;
         this.upperBloodPressure = upperBloodPressure;

@@ -8,10 +8,9 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <input matInput required #dateOfBirth='ngModel' name="dateOfBirth" [(ngModel)]="health.dateOfBirth" placeholder="Choose date of birth" [matDatepicker]="dateOfBirthPicker">
-        <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
-        <mat-datepicker #dateOfBirthPicker></mat-datepicker>
-        <mat-error *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">Date of birth is required</mat-error>
+        <input matInput type="number" required #years='ngModel'
+        [(ngModel)]="health.years" name="years" placeholder="Years">
+        <mat-error *ngIf="years.invalid && (years.dirty || years.touched)">Years is required</mat-error>
     </mat-form-field>
     <mat-form-field>
         <input matInput type="number" required #height='ngModel'
