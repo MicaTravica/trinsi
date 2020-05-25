@@ -38,4 +38,10 @@ public class Exercise {
     @Enumerated(EnumType.STRING)
     private CATEGORY exerciseWeight;
 
+    public void update(Exercise updateExercise) {
+        this.name = updateExercise.getName();
+        this.description = updateExercise.getDescription();
+        this.exerciseType = updateExercise.getExerciseType();
+        this.exerciseWeight = updateExercise.getExerciseWeight();
+    }
 }

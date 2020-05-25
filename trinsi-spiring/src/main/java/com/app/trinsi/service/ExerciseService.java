@@ -13,5 +13,7 @@ public interface ExerciseService {
 
     Exercise addExercise(Exercise exercise);
 
+    Exercise updateExercise(Exercise updateExercise) throws ResourceNotFoundException;
+
     Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight);
 }

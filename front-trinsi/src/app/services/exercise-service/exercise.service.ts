@@ -34,6 +34,13 @@ export class ExerciseService {
       });
   }
 
+  update(exercise: Exercise) {
+    return this.http.put(this.exerciseUrl, exercise,
+      {
+        headers: authHttpOptions(this.authService.getToken())
+      });
+  }
+
   search(exerciseSearch: ExerciseSearch) {
     return this.http.post(this.exerciseUrl + '/search', exerciseSearch,
       {

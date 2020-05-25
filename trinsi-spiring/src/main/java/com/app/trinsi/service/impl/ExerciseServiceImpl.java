@@ -33,7 +33,16 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
+    public Exercise updateExercise(Exercise updateExercise) throws ResourceNotFoundException {
+        Exercise exercise = findOneById(updateExercise.getId());
+        exercise.update(updateExercise);
+        return exerciseRepository.save(exercise);
+    }
+
+    @Override
     public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
         return exerciseRepository.search(name, exerciseType, exerciseWeight);
     }
+
+
 }

@@ -1,6 +1,7 @@
-<div>
+<div mat-dialog-content>
     <h4>Name: {{exercise.name}}</h4>
     <h4>Exercise type: {{exercise.exerciseType}}</h4>
     <h4>Exercise weight: {{exercise.exerciseWeight}}</h4>
     <p>Description: <br>{{exercise.description}}</p>
+    <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
 </div>

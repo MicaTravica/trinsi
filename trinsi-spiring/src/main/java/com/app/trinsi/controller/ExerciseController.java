@@ -38,6 +38,12 @@ public class ExerciseController extends BaseController {
         return new ResponseEntity<>(exercise.getId(), HttpStatus.OK);
     }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Long> updateExercise(@RequestBody ExerciseDTO exerciseDTO) throws ResourceNotFoundException {
+        Exercise exercise = exerciseService.updateExercise(ExerciseMapper.toExercise(exerciseDTO));
+        return new ResponseEntity<>(exercise.getId(), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<ExerciseDTO>> search(@RequestBody SearchExercise params) {
         Collection<Exercise> result = exerciseService.search(params.getName(), params.getExerciseType(),
