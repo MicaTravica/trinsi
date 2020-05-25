@@ -27,6 +27,7 @@ import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.co
 import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
 import { PlannerComponent } from './fitness/planner/planner.component';
 import { HealthComponent } from './fitness/health/health.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HealthComponent } from './fitness/health/health.component';
     ListExerciseComponent,
     ViewExerciseComponent,
     HealthComponent,
-    PlannerComponent
+    PlannerComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

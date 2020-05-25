@@ -7,6 +7,8 @@ import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -45,10 +47,12 @@ public class ExerciseController extends BaseController {
     }
 
     @PostMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<ExerciseDTO>> search(@RequestBody SearchExercise params) {
-        Collection<Exercise> result = exerciseService.search(params.getName(), params.getExerciseType(),
-                params.getExerciseWeight());
-        Collection<ExerciseDTO> resultDTO = result.stream().map(ExerciseMapper::toDTO).collect(Collectors.toList());
+    public ResponseEntity<Page<ExerciseDTO>> search(@RequestBody SearchExercise params) {
+        Page<Exercise> result = exerciseService.search(params.getName(), params.getExerciseType(),
+                params.getExerciseWeight(), params.getPageNum());
+        Page<ExerciseDTO> resultDTO = new PageImpl<ExerciseDTO>(
+                result.get().map(ExerciseMapper::toDTO).collect(Collectors.toList()), result.getPageable(),
+                result.getTotalElements());
         return new ResponseEntity<>(resultDTO, HttpStatus.OK);
     }
 }

@@ -7,9 +7,11 @@ import com.app.trinsi.model.Exercise;
 import com.app.trinsi.repository.ExerciseRepository;
 import com.app.trinsi.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -40,8 +42,9 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
-        return exerciseRepository.search(name, exerciseType, exerciseWeight);
+    public Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum) {
+        Pageable pageable = PageRequest.of(pageNum, 30, Sort.by("name").ascending());
+        return exerciseRepository.search(name, exerciseType, exerciseWeight, pageable);
     }
 
 

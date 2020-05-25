@@ -6,10 +6,12 @@ export class ExerciseSearch {
     public name: string;
     public exerciseType: EXERCISE_TYPE;
     public exerciseWeight: CATEGORY;
+    public pageNum: number;
 
-    constructor(name: string, exerciseType: EXERCISE_TYPE, exerciseWeight: CATEGORY) {
+    constructor(name: string, exerciseType: EXERCISE_TYPE, exerciseWeight: CATEGORY, pageNum: number) {
         this.name = name;
         this.exerciseType = exerciseType;
         this.exerciseWeight = exerciseWeight;
+        this.pageNum = pageNum;
     }
 }
