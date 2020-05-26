@@ -31,4 +31,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  profile() {
+    this.router.navigate(['/profile']);
+  }
+
+  password() {
+    this.router.navigate(['/change-password']);
+  }
+
 }

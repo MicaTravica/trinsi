@@ -1,9 +1,13 @@
 <mat-toolbar color="primary" class="navbar">
     <div class="name">Trinsi</div>
     <div>
-        <a *ngIf="!user" routerLink="/login" routerLinkActive="active" mat-button color="accent" id="loginlink">Sign in</a>
-        <a *ngIf="!user" routerLink="/register" routerLinkActive="active" mat-button color="accent" id="registerlink">Register</a>
-        <a *ngIf="user" routerLink="/profile" routerLinkActive="active" mat-button color="accent" id="profillink">My profile</a>
+        <a *ngIf="!user" routerLink="/login" routerLinkActive="active" mat-button color="accent">Sign in</a>
+        <a *ngIf="!user" routerLink="/register" routerLinkActive="active" mat-button color="accent">Register</a>
+        <button *ngIf="user" mat-button [matMenuTriggerFor]="menu" color="accent">My profile</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="profile()">Change profile</button>
+            <button mat-menu-item (click)="password()">Change password</button>
+        </mat-menu>
         <a *ngIf="user" (click)="logout()" mat-button color="accent">Sign out</a>
     </div>
 </mat-toolbar>
