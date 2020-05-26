@@ -42,8 +42,8 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, 30, Sort.by("name").ascending());
+    public Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum, int size) {
+        Pageable pageable = PageRequest.of(pageNum, size, Sort.by("name").ascending());
         return exerciseRepository.search(name, exerciseType, exerciseWeight, pageable);
     }
 

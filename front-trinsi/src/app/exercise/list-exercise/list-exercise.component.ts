@@ -19,11 +19,10 @@ export class ListExerciseComponent implements OnInit {
 
   exercises: Exercise[];
   displayedColumns: string[] = ['name', 'type', 'weight', 'details'];
-  exerciseSearch = new ExerciseSearch('', null, null, 0);
+  exerciseSearch = new ExerciseSearch('', null, null, 0, 10);
   exerciseType = [null, EXERCISE_TYPE.STRETCHES, EXERCISE_TYPE.STRENGTHS, EXERCISE_TYPE.CARDIO, EXERCISE_TYPE.WEIGHT_LOSS];
   category = [null, CATEGORY.BEGINNER, CATEGORY.MIDDLE, CATEGORY.ADVANCED];
   totalElements = 0;
-  size = 30;
 
   constructor(
     private exerciseService: ExerciseService,

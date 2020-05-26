@@ -14,5 +14,5 @@ public interface ExerciseService {
 
     Exercise updateExercise(Exercise updateExercise) throws ResourceNotFoundException;
 
-    Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum);
+    Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum, int size);
 }

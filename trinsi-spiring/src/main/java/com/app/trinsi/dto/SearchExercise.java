@@ -17,5 +17,6 @@ public class SearchExercise {
     private EXERCISE_TYPE exerciseType;
     private CATEGORY exerciseWeight;
     private int pageNum;
-
+    private int size;
+    
 }
