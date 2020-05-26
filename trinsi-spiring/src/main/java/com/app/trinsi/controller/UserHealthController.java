@@ -30,6 +30,7 @@ public class UserHealthController {
     private final UserHealthService userHealthService;
     private final UserService userService;
     private final UserPlannerService userPlannerService;
+
     @Autowired
     public UserHealthController(UserHealthService userHealthService, UserService userService,
                                 UserPlannerService userPlannerService){

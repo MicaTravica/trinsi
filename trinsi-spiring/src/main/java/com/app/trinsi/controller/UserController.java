@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,21 +40,21 @@ import com.app.trinsi.service.UserService;
 @RequestMapping("trinsi")
 public class UserController extends BaseController {
 
-	@Autowired
-	AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
+	private final UserDetailsService userDetailsService;
+	private final TokenUtils tokenUtils;
+	private final UserService userService;
+	private final ApplicationEventPublisher eventPublisher;
 
 	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	@Autowired
-	TokenUtils tokenUtils;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	ApplicationEventPublisher eventPubisher;
-
+	public UserController(AuthenticationManager authenticationManager, @Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService,
+						  TokenUtils tokenUtils, UserService userService, ApplicationEventPublisher eventPublisher) {
+		this.authenticationManager = authenticationManager;
+		this.userDetailsService = userDetailsService;
+		this.tokenUtils = tokenUtils;
+		this.userService = userService;
+		this.eventPublisher = eventPublisher;
+	}
 
 	@PostMapping(value="/login",
 				 consumes = MediaType.APPLICATION_JSON_VALUE,

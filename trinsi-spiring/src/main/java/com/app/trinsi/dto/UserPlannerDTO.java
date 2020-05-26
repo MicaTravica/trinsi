@@ -15,6 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserPlannerDTO {
 
+    private Long id;
     private CATEGORY category;
     private int numCategory;
     private PHYSICAL_CHARACTERISTICS physicalCharacteristics;

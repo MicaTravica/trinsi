@@ -1,7 +1,5 @@
 package com.app.trinsi.service.impl;
 
-import java.util.ArrayList;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -16,8 +14,12 @@ import com.app.trinsi.service.MailService;
 @Service
 public class MailServiceImpl implements MailService {
 
+	private final JavaMailSender mailSender;
+
 	@Autowired
-	private JavaMailSender mailSender;
+	public MailServiceImpl(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
 	@Async
 	@Override

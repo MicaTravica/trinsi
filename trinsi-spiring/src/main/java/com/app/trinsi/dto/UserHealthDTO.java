@@ -14,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserHealthDTO {
 
+    private Long id;
     private GENDER gender;
     private int years;
     private double height;

@@ -1,4 +1,8 @@
-<div>
+<div *ngIf='planner.id==null'>
+    <h2>Please enter your data and we will give you planner: </h2>
+    <button mat-raised-button color="primary" (click)="addHealth()">Add</button>
+</div>
+<div *ngIf='planner.id!=null'>
     <h4>Category: {{planner.category}}</h4>
     <h4>Days in category: {{planner.numCategory}}</h4>
     <h4>Physical characteristics: {{planner.physicalCharacteristics}}</h4>

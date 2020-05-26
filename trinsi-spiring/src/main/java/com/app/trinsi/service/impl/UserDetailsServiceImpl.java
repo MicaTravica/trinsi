@@ -19,13 +19,17 @@ import com.app.trinsi.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
+	private final UserRepository userRepository;
+
 	@Autowired
-	private UserRepository userRepositoy;
-	
+	public UserDetailsServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepositoy.findByUsername(username)
+		User user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException(String.format("No user found with username '%s'", username)));
 		if(!user.isVerified()) {
 			throw new UsernameNotFoundException("You need to verify your email.");

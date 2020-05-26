@@ -28,6 +28,7 @@ public class UserHealthServiceImpl implements UserHealthService {
 
     @Override
     public UserHealth addHealth(UserHealth health, String username) throws ResourceNotFoundException {
+        health.setId(null);
         UserHealth userHealth = userHealthRepository.save(health);
         userService.updateUserHealth(userHealth, username);
         return userHealth;

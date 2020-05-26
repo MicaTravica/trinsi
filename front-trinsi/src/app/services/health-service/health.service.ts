@@ -33,4 +33,11 @@ export class HealthService {
       });
   }
 
+  update(health: UserHealth) {
+    return this.http.put(this.healthUrl, health,
+      {
+        headers: authHttpOptions(this.authService.getToken()),
+      });
+  }
+
 }

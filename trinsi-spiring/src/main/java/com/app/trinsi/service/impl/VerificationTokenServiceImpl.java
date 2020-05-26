@@ -12,17 +12,21 @@ import com.app.trinsi.service.VerificationTokenService;
 @Service
 public class VerificationTokenServiceImpl implements VerificationTokenService {
 
+	private final VerificationTokenRepository verificationTokenRepository;
+
 	@Autowired
-	private VerificationTokenRepository verificationTokenRepostory;
-	
+    public VerificationTokenServiceImpl(VerificationTokenRepository verificationTokenRepository) {
+	    this.verificationTokenRepository = verificationTokenRepository;
+    }
+
 	@Override
     public VerificationToken getVerificationToken(String verificationToken) throws ResourceNotFoundException{
-        return verificationTokenRepostory.findByToken(verificationToken).orElseThrow(() -> new ResourceNotFoundException("Token"));
+        return verificationTokenRepository.findByToken(verificationToken).orElseThrow(() -> new ResourceNotFoundException("Token"));
     }
      
     @Override
     public void create(User user, String token) {
         VerificationToken myToken = new VerificationToken(user, token);
-        verificationTokenRepostory.save(myToken);
+        verificationTokenRepository.save(myToken);
     }
 }

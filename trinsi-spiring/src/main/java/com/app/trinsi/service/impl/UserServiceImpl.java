@@ -24,15 +24,18 @@ import com.app.trinsi.service.VerificationTokenService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired 
-	private VerificationTokenService verificationTokenService;
+	private final UserRepository userRepository;
+	private final VerificationTokenService verificationTokenService;
+	private final MailService mailService;
 
 	@Autowired
-	private MailService mailService;
-	
+	public UserServiceImpl(UserRepository userRepository, VerificationTokenService verificationTokenService,
+						   MailService mailService) {
+		this.userRepository = userRepository;
+		this.verificationTokenService = verificationTokenService;
+		this.mailService = mailService;
+	}
+
 	@Override
 	public User registration(User user) throws Exception {
 		if(userRepository.findByUsername(user.getUsername()).isPresent()) {

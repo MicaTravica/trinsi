@@ -22,6 +22,7 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
 	@Autowired
 	private TokenUtils tokenUtils;
 
+	@Qualifier("userDetailsServiceImpl")
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
