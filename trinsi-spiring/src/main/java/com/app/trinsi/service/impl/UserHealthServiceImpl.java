@@ -8,7 +8,6 @@ import com.app.trinsi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class UserHealthServiceImpl implements UserHealthService {
 
@@ -32,6 +31,14 @@ public class UserHealthServiceImpl implements UserHealthService {
         UserHealth userHealth = userHealthRepository.save(health);
         userService.updateUserHealth(userHealth, username);
         return userHealth;
+    }
+
+    @Override
+    public UserHealth updateHealth(UserHealth updateHealth) throws ResourceNotFoundException {
+        UserHealth health = userHealthRepository.findById(updateHealth.getId())
+                .orElseThrow(() -> new  ResourceNotFoundException("Health"));
+        health.update(updateHealth);
+        return userHealthRepository.save(health);
     }
 
 }

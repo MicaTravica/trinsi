@@ -20,11 +20,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'change-password', component: ChangePasswordComponent, canActivate: [RoleGuard],
    data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
-  { path: 'add-exercise', component: AddExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},
   { path: 'exercises', component: ListExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
-  { path: 'exercise/:id', component: ViewExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'planner', component: PlannerComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
-  { path: 'health', component: HealthComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
   { path: '', redirectTo: 'exercises', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

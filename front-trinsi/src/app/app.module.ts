@@ -28,6 +28,7 @@ import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.co
 import { PlannerComponent } from './fitness/planner/planner.component';
 import { HealthComponent } from './fitness/health/health.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PlannerExerciseComponent } from './fitness/planner-exercise/planner-exercise.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     ViewExerciseComponent,
     HealthComponent,
     PlannerComponent,
-    PaginationComponent
+    PaginationComponent,
+    PlannerExerciseComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,11 @@ import { PaginationComponent } from './pagination/pagination.component';
     }),
     ReactiveFormsModule,
     FormsModule
+  ],
+  entryComponents: [
+    ViewExerciseComponent,
+    AddExerciseComponent,
+    HealthComponent
   ],
   providers: [
     UserService,

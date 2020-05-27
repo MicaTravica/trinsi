@@ -1,5 +1,6 @@
 package com.app.trinsi.controller;
 
+import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
 import com.app.trinsi.mapper.UserPlannerMapper;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -34,11 +37,18 @@ public class UserPlannerController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserPlannerDTO> getUserPlanner(Principal principal) throws UserNotFoundByUsernameException, ResourceNotFoundException {
+    public ResponseEntity<UserPlannerDTO> getUserPlanner(Principal principal) throws UserNotFoundByUsernameException,
+            ResourceNotFoundException {
         User user = userService.findOneByUsername(principal.getName());
         if (user.getUserHealth() == null && user.getUserPlanner() == null)
             return new ResponseEntity<>(new UserPlannerDTO(), HttpStatus.OK);
         UserPlanner userPlanner = userPlannerService.findByUser(user);
         return new ResponseEntity<>(UserPlannerMapper.toDTO(userPlanner), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/exercises", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<ExerciseDTO>> getUserPlannerExercises(Principal principal) throws UserNotFoundByUsernameException, ResourceNotFoundException {
+        Collection<ExerciseDTO> exercises = new ArrayList<>();
+        return new ResponseEntity<>(exercises, HttpStatus.OK);
     }
 }

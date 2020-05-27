@@ -3,7 +3,6 @@ import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
 import { GENDER } from 'src/app/models/enums/gender.enum';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
@@ -20,12 +19,10 @@ export class HealthComponent implements OnInit {
   constructor(
     private healthService: HealthService,
     private toastr: ToastrService,
-    private router: Router,
     private dialogRef: MatDialogRef<HealthComponent>,
     @Inject(MAT_DIALOG_DATA) private data: UserHealth
   ) {
     if (data != null) {
-      this.health = data;
       this.action = 'Change';
     }
    }
@@ -56,7 +53,6 @@ export class HealthComponent implements OnInit {
   }
 
   update() {
-    // treba prilagoditi
     this.healthService.update(this.health).subscribe(
       (data: number) => {
         this.toastr.success('Successful changed!');

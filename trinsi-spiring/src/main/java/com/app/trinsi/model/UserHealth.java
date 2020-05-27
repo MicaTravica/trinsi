@@ -29,4 +29,14 @@ public class UserHealth {
     private int lowerBloodPressure;
     private int pulse;
     private int hoursOfExercise;
+
+    public void update(UserHealth updateHealth) {
+        this.gender = updateHealth.getGender();
+        this.years = updateHealth.getYears();
+        this.height = updateHealth.getHeight();
+        this.weight = updateHealth.getWeight();
+        this.upperBloodPressure = updateHealth.getUpperBloodPressure();
+        this.lowerBloodPressure = updateHealth.getLowerBloodPressure();
+        this.pulse = updateHealth.getPulse();
+    }
 }

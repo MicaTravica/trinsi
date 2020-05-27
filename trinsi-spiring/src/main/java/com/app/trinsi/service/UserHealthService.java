@@ -9,4 +9,5 @@ public interface UserHealthService {
 
     UserHealth addHealth(UserHealth health, String username) throws ResourceNotFoundException;
 
+    UserHealth updateHealth(UserHealth updateHealth) throws ResourceNotFoundException;
 }

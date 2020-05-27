@@ -1,13 +1,18 @@
-<div *ngIf='planner.id==null'>
+<div *ngIf='planner!=null && planner.id==null' class="center">
     <h2>Please enter your data and we will give you planner: </h2>
     <button mat-raised-button color="primary" (click)="addHealth()">Add</button>
 </div>
-<div *ngIf='planner.id!=null'>
-    <h4>Category: {{planner.category}}</h4>
-    <h4>Days in category: {{planner.numCategory}}</h4>
-    <h4>Physical characteristics: {{planner.physicalCharacteristics}}</h4>
-    <h4>Health condition: {{planner.healthCondition}}</h4>
-    <h4>Num of exercise: {{planner.numOfExercise}}</h4>
-    <h4>Repetition: {{planner.repetition}}</h4>
-    <h4>Exercise type: {{planner.exerciseType}}</h4>
+<div *ngIf='planner!=null && planner.id!=null'>
+    <table>
+        <tr>
+            <td><h4>Category: {{planner.category}}</h4></td>
+            <td><h4>Days in category: {{planner.numCategory}}</h4></td>
+        </tr>
+        <tr>
+            <td><h4>Physical characteristics: {{planner.physicalCharacteristics}}</h4></td>
+            <td><h4>Health condition: {{planner.healthCondition}}</h4></td>
+        </tr>
+    </table>
+    <button mat-raised-button color="primary" (click)="changeHealth()">Change</button>
+    <app-planner-exercise repetition="{{planner.repetition}}"></app-planner-exercise>
 </div>

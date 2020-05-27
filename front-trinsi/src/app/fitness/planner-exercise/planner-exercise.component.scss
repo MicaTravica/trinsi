@@ -1,0 +1,12 @@
+table {
+    width: 98%;
+    margin: 1%;
+}
+
+button {
+    float: right;
+}
+
+tr:not(.header):hover {
+    background: #EEEEEE;
+}

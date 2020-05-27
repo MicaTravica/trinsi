@@ -38,7 +38,7 @@
             [(ngModel)]="health.pulse" name="pulse" placeholder="Pulse">
             <mat-error *ngIf="pulse.invalid && (pulse.dirty || pulse.touched)">Pulse is required</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="health.id==null">
             <input matInput type="number" required #hoursOfExercise='ngModel'
             [(ngModel)]="health.hoursOfExercise" name="hoursOfExercise" placeholder="Hours of exercise">
             <mat-error *ngIf="hoursOfExercise.invalid && (hoursOfExercise.dirty || hoursOfExercise.touched)">Height is required</mat-error>

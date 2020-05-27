@@ -51,6 +51,12 @@ public class UserHealthController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> addHealth(@RequestBody UserHealthDTO userHealthDTO, Principal principal) throws ResourceNotFoundException {
         UserHealth userHealth = userHealthService.addHealth(UserHealthMapper.toHealth(userHealthDTO), principal.getName());
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(userHealth.getId(), HttpStatus.OK);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Long> updateHealth(@RequestBody UserHealthDTO userHealthDTO) throws ResourceNotFoundException {
+        UserHealth userHealth = userHealthService.updateHealth(UserHealthMapper.toHealth(userHealthDTO));
+        return new ResponseEntity<>(userHealth.getId(), HttpStatus.OK);
     }
 }
