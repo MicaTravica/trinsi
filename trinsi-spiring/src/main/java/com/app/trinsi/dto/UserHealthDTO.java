@@ -23,4 +23,5 @@ public class UserHealthDTO {
     private int lowerBloodPressure;
     private int pulse;
     private int hoursOfExercise;
+    private Date lastChanged;
 }

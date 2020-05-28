@@ -11,9 +11,10 @@ export class UserHealth {
     public lowerBloodPressure: number;
     public pulse: number;
     public hoursOfExercise: number;
+    public lastChanged: Date;
 
     constructor(id: number, gender: GENDER, years: number, height: number, weight: number, upperBloodPressure: number,
-                lowerBloodPressure: number, pulse: number, hoursOfExercise: number) {
+                lowerBloodPressure: number, pulse: number, hoursOfExercise: number, lastChanged: Date) {
         this.id = id;
         this.gender = gender;
         this.years = years;
@@ -23,5 +24,6 @@ export class UserHealth {
         this.lowerBloodPressure = lowerBloodPressure;
         this.pulse = pulse;
         this.hoursOfExercise = hoursOfExercise;
+        this.lastChanged = lastChanged;
     }
 }

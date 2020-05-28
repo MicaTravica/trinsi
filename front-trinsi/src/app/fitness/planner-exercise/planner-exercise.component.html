@@ -1,26 +1,36 @@
-<table mat-table [dataSource]="exercises" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> Exercise type </th>
-        <td mat-cell *matCellDef="let element"> {{element.exerciseType}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Repetition </th>
-        <td mat-cell *matCellDef="let element"> {{repetition}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-flat-button color="primary" (click)="details(element)">Details</button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div *ngIf='exercises==null'>
+    <h2>Get your planner for today: 
+        <button mat-raised-button color="primary" (click)="getExercises()">Get</button>
+    </h2>
+</div>
+<div *ngIf="exercises!=null">
+    <h2>Enter the time it took you to do the exercises: 
+        <button mat-raised-button color="primary" (click)="addTime()">Add time</button>
+    </h2>
+    <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Exercise type </th>
+            <td mat-cell *matCellDef="let element"> {{element.exerciseType}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Repetition </th>
+            <td mat-cell *matCellDef="let element"> {{repetition}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="primary" class="details" (click)="details(element)">Details</button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

@@ -10,9 +10,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
   templateUrl: './health.component.html',
   styleUrls: ['./health.component.scss']
 })
-export class HealthComponent implements OnInit {
+export class HealthComponent {
 
-  health = new UserHealth(null, null, null, null, null, null, null, null, null);
+  health: UserHealth;
   genders = [ GENDER.MALE, GENDER.FEMALE ];
   action = 'Add';
 
@@ -22,17 +22,10 @@ export class HealthComponent implements OnInit {
     private dialogRef: MatDialogRef<HealthComponent>,
     @Inject(MAT_DIALOG_DATA) private data: UserHealth
   ) {
-    if (data != null) {
+    this.health = data;
+    if (this.health.id != null) {
       this.action = 'Change';
     }
-   }
-
-  ngOnInit() {
-    this.healthService.get().subscribe(
-      (data: UserHealth) => {
-        this.health = data;
-      }
-    );
   }
 
   onSubmit() {

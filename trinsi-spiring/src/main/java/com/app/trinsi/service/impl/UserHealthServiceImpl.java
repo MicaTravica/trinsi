@@ -8,6 +8,8 @@ import com.app.trinsi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class UserHealthServiceImpl implements UserHealthService {
 
@@ -28,6 +30,7 @@ public class UserHealthServiceImpl implements UserHealthService {
     @Override
     public UserHealth addHealth(UserHealth health, String username) throws ResourceNotFoundException {
         health.setId(null);
+        health.setLastChanged(new Date());
         UserHealth userHealth = userHealthRepository.save(health);
         userService.updateUserHealth(userHealth, username);
         return userHealth;

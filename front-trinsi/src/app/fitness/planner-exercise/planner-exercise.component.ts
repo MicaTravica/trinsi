@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { ViewExerciseComponent } from 'src/app/exercise/view-exercise/view-exercise.component';
 import { EXERCISE_TYPE } from 'src/app/models/enums/exercise-type.enum';
 import { CATEGORY } from 'src/app/models/enums/category.enum';
+import { PlannerTimeComponent } from '../planner-time/planner-time.component';
 
 @Component({
   selector: 'app-planner-exercise',
@@ -24,6 +25,9 @@ export class PlannerExerciseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  getExercises() {
     this.plannerService.getExercises().subscribe(
       (exercises: Exercise[]) => {
         this.exercises = exercises;
@@ -31,6 +35,20 @@ export class PlannerExerciseComponent implements OnInit {
       }
     );
   }
+
+  addTime() {
+    const dialogRef = this.dialog.open(PlannerTimeComponent, {
+      width: '33%',
+      // data: this.health
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result !== undefined) {
+      }
+    });
+  }
+
 
   details(exercise: Exercise) {
     const dialogRef = this.dialog.open(ViewExerciseComponent, {

@@ -1,6 +1,11 @@
-<div *ngIf='planner!=null && planner.id==null' class="center">
+<div *ngIf='health!=null && health.id==null' class="center">
     <h2>Please enter your data and we will give you planner: </h2>
-    <button mat-raised-button color="primary" (click)="addHealth()">Add</button>
+    <button mat-raised-button color="primary" (click)="openHealth()">Add</button>
+</div>
+<div *ngIf='sevenDays()'>
+    <h2>Please update your data and we will give you planner:
+        <button mat-raised-button color="primary" (click)="openHealth()">Change</button>
+    </h2>
 </div>
 <div *ngIf='planner!=null && planner.id!=null'>
     <table>
@@ -13,6 +18,5 @@
             <td><h4>Health condition: {{planner.healthCondition}}</h4></td>
         </tr>
     </table>
-    <button mat-raised-button color="primary" (click)="changeHealth()">Change</button>
     <app-planner-exercise repetition="{{planner.repetition}}"></app-planner-exercise>
 </div>

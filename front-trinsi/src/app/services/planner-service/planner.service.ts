@@ -32,4 +32,11 @@ export class PlannerService {
       });
   }
 
+  addTime(time: any) {
+    return this.http.put(this.plannerUrl + '/time', time,
+      {
+        headers: authHttpOptions(this.authService.getToken())
+      });
+  }
+
 }

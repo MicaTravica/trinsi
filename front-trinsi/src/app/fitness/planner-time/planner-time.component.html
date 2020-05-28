@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+    <form #timeForm="ngForm" (ngSubmit)="addTime()" novalidate>
+        <h1>Enter the time it took you to do the exercises:</h1>
+        <mat-form-field>
+            <input matInput type="number" required #timei='ngModel'
+            [(ngModel)]="time" name="timei" placeholder="Time">
+            <mat-error *ngIf="timei.invalid && (timei.dirty || timei.touched)">Time is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="timeForm.form.invalid">Save</button>
+        <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+    </form>
+</div>
