@@ -32,6 +32,7 @@ public class UserHealthServiceImpl implements UserHealthService {
     public UserHealth addHealth(UserHealth health, String username) throws ResourceNotFoundException {
         health.setId(null);
         health.setLastChanged(new Date());
+        health.setPlannerTaken(false);
         UserHealth userHealth = userHealthRepository.save(health);
         userService.updateUserHealth(userHealth, username);
         return userHealth;
@@ -55,6 +56,12 @@ public class UserHealthServiceImpl implements UserHealthService {
         } else {
             throw new ResourceCantUpdateException("Time");
         }
+    }
+
+    @Override
+    public void setPlannerIsTaken(UserHealth userHealth) {
+        userHealth.setPlannerTaken(true);
+        userHealthRepository.save(userHealth);
     }
 
 }

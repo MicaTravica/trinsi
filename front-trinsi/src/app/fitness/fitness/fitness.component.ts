@@ -48,10 +48,10 @@ export class FitnessComponent implements OnInit {
       const today = new Date();
       const seven = new Date(this.health.lastChanged);
       seven.setDate(seven.getDate() + 7);
-      if (today.getDate() >= seven.getDate() && today.getMonth() >= seven.getMonth() && today.getFullYear() >= seven.getFullYear()) {
-        return true;
-      }
-      return false;
+      seven.setHours(0);
+      seven.setMinutes(0);
+      seven.setSeconds(0);
+      return seven <= today;
     }
     return false;
   }

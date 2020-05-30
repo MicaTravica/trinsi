@@ -1,6 +1,7 @@
 package com.app.trinsi.controller;
 
 import com.app.trinsi.dto.ExerciseDTO;
+import com.app.trinsi.exceptions.MustUpdateHealthException;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
 import com.app.trinsi.mapper.UserPlannerMapper;
@@ -35,16 +36,12 @@ public class UserPlannerController extends BaseController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserPlannerDTO> getUserPlanner(Principal principal) throws UserNotFoundByUsernameException,
-            ResourceNotFoundException {
+            ResourceNotFoundException, MustUpdateHealthException {
         User user = userService.findOneByUsername(principal.getName());
         if (user.getUserHealth() == null && user.getUserPlanner() == null)
             return new ResponseEntity<>(new UserPlannerDTO(), HttpStatus.OK);
         UserPlanner userPlanner = userPlannerService.findByUser(user);
         return new ResponseEntity<>(UserPlannerMapper.toDTO(userPlanner), HttpStatus.OK);
     }
-
-    //    plannner taken health
-    //    dodati exception ukoliko je proslo sedam dana a korisnik zeli da doda sate ili da dobije vezbe
-    //    korisnik ne moze da dobije vezbe ako je uzeo vezbe i ako nije uneo koliko sati je vezbao te vezbe
 
 }

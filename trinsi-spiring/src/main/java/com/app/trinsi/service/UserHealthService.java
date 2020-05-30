@@ -13,4 +13,6 @@ public interface UserHealthService {
     UserHealth updateHealth(UserHealth updateHealth) throws ResourceNotFoundException;
 
     void addTime(Long id, int minutes) throws ResourceNotFoundException, ResourceCantUpdateException;
+
+    void setPlannerIsTaken(UserHealth userHealth);
 }

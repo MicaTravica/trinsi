@@ -3,7 +3,7 @@
         <button mat-raised-button color="primary" (click)="getPlanner()">Get</button>
     </h2>
 </div>
-<div *ngIf='planner!=null && planner.id!=null'>
+<div *ngIf='taken && planner!=null && planner.id!=null'>
     <table class="datatable">
         <tr class="data">
             <td><h4>Category: {{planner.category}}</h4></td>

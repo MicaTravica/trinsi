@@ -28,12 +28,15 @@ export class PlannerExerciseComponent implements OnChanges {
   ngOnChanges() {
     if (this.taken) {
       this.getPlanner();
+    } else {
+      this.planner = null;
     }
   }
 
   getPlanner() {
     this.plannerService.get().subscribe(
       (data: UserPlanner) => {
+        this.refreshHealth.emit();
         this.planner = data;
         this.planner.exercises.push(new Exercise(1, 'ime', 'opis', EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
       }
@@ -46,7 +49,6 @@ export class PlannerExerciseComponent implements OnChanges {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
         this.refreshHealth.emit();
       }
