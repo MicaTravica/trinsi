@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { PlannerService } from 'src/app/services/planner-service/planner.service';
+import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PlannerExerciseComponent } from '../planner-exercise/planner-exercise.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
+import { HealthService } from 'src/app/services/health-service/health.service';
 
 @Component({
   selector: 'app-planner-time',
@@ -12,23 +12,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class PlannerTimeComponent {
 
   time: number;
-  id;
 
   constructor(
-    private plannerService: PlannerService,
+    private healthService: HealthService,
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<PlannerExerciseComponent>
-    // @Inject(MAT_DIALOG_DATA) private data: UserHealth
   ) {
 
   }
 
 
   addTime() {
-    this.plannerService.addTime(this.time).subscribe(
-      (data: number) => {
+    this.healthService.addTime(this.time).subscribe(
+      () => {
         this.toastr.success('Successful add!');
-        this.dialogRef.close(data);
+        this.dialogRef.close(true);
       }
     );
   }

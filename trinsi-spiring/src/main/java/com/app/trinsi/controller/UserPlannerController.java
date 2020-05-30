@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ import java.util.Collection;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("trinsi/planner")
-public class UserPlannerController {
+public class UserPlannerController extends BaseController {
 
     private final UserPlannerService userPlannerService;
     private final UserService userService;
@@ -46,9 +43,8 @@ public class UserPlannerController {
         return new ResponseEntity<>(UserPlannerMapper.toDTO(userPlanner), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/exercises", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<ExerciseDTO>> getUserPlannerExercises(Principal principal) throws UserNotFoundByUsernameException, ResourceNotFoundException {
-        Collection<ExerciseDTO> exercises = new ArrayList<>();
-        return new ResponseEntity<>(exercises, HttpStatus.OK);
-    }
+    //    plannner taken health
+    //    dodati exception ukoliko je proslo sedam dana a korisnik zeli da doda sate ili da dobije vezbe
+    //    korisnik ne moze da dobije vezbe ako je uzeo vezbe i ako nije uneo koliko sati je vezbao te vezbe
+
 }

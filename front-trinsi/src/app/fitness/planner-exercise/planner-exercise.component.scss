@@ -1,4 +1,4 @@
-table {
+table:not(.datatable) {
     width: 98%;
     margin: 1%;
 }
@@ -7,6 +7,10 @@ table {
     float: right;
 }
 
-tr:not(.header):hover {
+tr:not(.header):not(.data):hover {
     background: #EEEEEE;
+}
+
+.datatable {
+    width: 100%;
 }

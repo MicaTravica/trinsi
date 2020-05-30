@@ -1,0 +1,25 @@
+<div *ngIf='health!=null && health.id==null' class="center">
+    <h2>Please enter your data and we will give you planner: </h2>
+    <button mat-raised-button color="primary" (click)="openHealth()">Add</button>
+</div>
+<div *ngIf='sevenDays()'>
+    <h2>Please update your data and we will give you planner:
+        <button mat-raised-button color="primary" (click)="openHealth()">Change</button>
+    </h2>
+</div>
+<div *ngIf="!sevenDays()">
+    <table *ngIf='health!=null && health.id!=null'>
+        <tr>
+            <td><h4>Gender: {{health.gender}}</h4></td>
+            <td><h4>Years: {{health.years}}</h4></td>
+            <td><h4>Height: {{health.height}}</h4></td>
+            <td><h4>Weight: {{health.weight}}</h4></td>
+        </tr>
+        <tr>
+            <td><h4>Blood pressure: {{health.upperBloodPressure}} / {{health.lowerBloodPressure}}</h4></td>
+            <td><h4>Pulse: {{health.pulse}}</h4></td>
+            <td colspan="2"><h4>Hours of exercise in week: {{health.hoursOfExercise | number:'.2'}}</h4></td>
+        </tr>
+    </table>
+    <app-planner-exercise [taken]="taken()" (refreshHealth)="getHealth()"></app-planner-exercise>
+</div>

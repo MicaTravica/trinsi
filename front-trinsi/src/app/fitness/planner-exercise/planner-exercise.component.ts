@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { UserPlanner } from 'src/app/models/user-planner/user-planner.model';
 import { Exercise } from 'src/app/models/exercise/exercise.model';
 import { PlannerService } from 'src/app/services/planner-service/planner.service';
@@ -13,10 +13,11 @@ import { PlannerTimeComponent } from '../planner-time/planner-time.component';
   templateUrl: './planner-exercise.component.html',
   styleUrls: ['./planner-exercise.component.scss']
 })
-export class PlannerExerciseComponent implements OnInit {
+export class PlannerExerciseComponent implements OnChanges {
 
-  @Input() repetition: number;
-  exercises: Exercise[];
+  @Input() taken: boolean;
+  @Output() refreshHealth = new EventEmitter();
+  planner: UserPlanner = null;
   displayedColumns: string[] = ['name', 'type', 'weight', 'details'];
 
   constructor(
@@ -24,14 +25,17 @@ export class PlannerExerciseComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    if (this.taken) {
+      this.getPlanner();
+    }
   }
 
-  getExercises() {
-    this.plannerService.getExercises().subscribe(
-      (exercises: Exercise[]) => {
-        this.exercises = exercises;
-        this.exercises.push(new Exercise(1, 'ime', 'opis', EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
+  getPlanner() {
+    this.plannerService.get().subscribe(
+      (data: UserPlanner) => {
+        this.planner = data;
+        this.planner.exercises.push(new Exercise(1, 'ime', 'opis', EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
       }
     );
   }
@@ -39,16 +43,15 @@ export class PlannerExerciseComponent implements OnInit {
   addTime() {
     const dialogRef = this.dialog.open(PlannerTimeComponent, {
       width: '33%',
-      // data: this.health
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if (result !== undefined) {
+      if (result) {
+        this.refreshHealth.emit();
       }
     });
   }
-
 
   details(exercise: Exercise) {
     const dialogRef = this.dialog.open(ViewExerciseComponent, {

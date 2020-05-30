@@ -3,7 +3,7 @@
         <h1>Enter the time it took you to do the exercises:</h1>
         <mat-form-field>
             <input matInput type="number" required #timei='ngModel'
-            [(ngModel)]="time" name="timei" placeholder="Time">
+            [(ngModel)]="time" name="timei" placeholder="Time in minutes">
             <mat-error *ngIf="timei.invalid && (timei.dirty || timei.touched)">Time is required</mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="timeForm.form.invalid">Save</button>

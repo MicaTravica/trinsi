@@ -1,18 +1,13 @@
 package com.app.trinsi.controller;
 
-import com.app.trinsi.dto.ExerciseDTO;
-import com.app.trinsi.dto.UserDTO;
 import com.app.trinsi.dto.UserHealthDTO;
+import com.app.trinsi.exceptions.ResourceCantUpdateException;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.exceptions.UserNotFoundByUsernameException;
-import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.mapper.UserHealthMapper;
-import com.app.trinsi.mapper.UserMapper;
-import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.User;
 import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.service.UserHealthService;
-import com.app.trinsi.service.UserPlannerService;
 import com.app.trinsi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,18 +20,15 @@ import java.security.Principal;
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("trinsi/health")
-public class UserHealthController {
+public class UserHealthController extends BaseController {
 
     private final UserHealthService userHealthService;
     private final UserService userService;
-    private final UserPlannerService userPlannerService;
 
     @Autowired
-    public UserHealthController(UserHealthService userHealthService, UserService userService,
-                                UserPlannerService userPlannerService){
+    public UserHealthController(UserHealthService userHealthService, UserService userService){
         this.userHealthService  = userHealthService;
         this.userService = userService;
-        this.userPlannerService = userPlannerService;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,5 +50,14 @@ public class UserHealthController {
     public ResponseEntity<Long> updateHealth(@RequestBody UserHealthDTO userHealthDTO) throws ResourceNotFoundException {
         UserHealth userHealth = userHealthService.updateHealth(UserHealthMapper.toHealth(userHealthDTO));
         return new ResponseEntity<>(userHealth.getId(), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/time/{minutes}")
+    public ResponseEntity addTime(Principal principal, @PathVariable int minutes) throws ResourceNotFoundException, ResourceCantUpdateException, UserNotFoundByUsernameException {
+        User user = userService.findOneByUsername(principal.getName());
+        if ( user.getUserHealth() == null && user.getUserPlanner() == null)
+            throw new ResourceNotFoundException("Planner");
+        userHealthService.addTime(user.getUserHealth().getId(), minutes);
+        return ResponseEntity.ok().build();
     }
 }

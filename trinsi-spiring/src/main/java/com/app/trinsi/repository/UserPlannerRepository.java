@@ -10,6 +10,4 @@ import java.util.Optional;
 @Repository
 public interface UserPlannerRepository extends JpaRepository<UserPlanner, Long> {
 
-    @Query("select up from UserPlanner up join User u where u.id = ?1")
-    Optional<UserPlanner> findByUserId(Long id);
 }

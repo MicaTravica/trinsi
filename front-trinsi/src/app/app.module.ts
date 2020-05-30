@@ -25,7 +25,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.component';
 import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
-import { PlannerComponent } from './fitness/planner/planner.component';
+import { FitnessComponent } from './fitness/fitness/fitness.component';
 import { HealthComponent } from './fitness/health/health.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PlannerExerciseComponent } from './fitness/planner-exercise/planner-exercise.component';
@@ -45,7 +45,7 @@ import { PlannerTimeComponent } from './fitness/planner-time/planner-time.compon
     ListExerciseComponent,
     ViewExerciseComponent,
     HealthComponent,
-    PlannerComponent,
+    FitnessComponent,
     PaginationComponent,
     PlannerExerciseComponent,
     PlannerTimeComponent

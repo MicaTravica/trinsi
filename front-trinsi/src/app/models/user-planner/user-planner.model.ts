@@ -15,6 +15,7 @@ export class UserPlanner {
     public numOfExercise: number;
     public repetition: number;
     public exerciseType: EXERCISE_TYPE;
+    public exercises: Exercise[];
 
     constructor(id: number, category: CATEGORY, numCategory: number, physicalCharacteristics: PHYSICAL_CHARACTERISTICS,
                 healthCondition: HEALTH_CONDITION, numOfExercise: number, repetition: number, exerciseType: EXERCISE_TYPE) {

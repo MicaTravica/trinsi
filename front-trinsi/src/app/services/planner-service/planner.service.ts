@@ -25,18 +25,4 @@ export class PlannerService {
       });
   }
 
-  getExercises() {
-    return this.http.get(this.plannerUrl + '/exercises',
-      {
-        headers: authHttpOptions(this.authService.getToken())
-      });
-  }
-
-  addTime(time: any) {
-    return this.http.put(this.plannerUrl + '/time', time,
-      {
-        headers: authHttpOptions(this.authService.getToken())
-      });
-  }
-
 }

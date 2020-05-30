@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +26,6 @@ public class UserPlannerDTO {
     private int numOfExercise;
     private int repetition;
     private EXERCISE_TYPE exerciseType;
+    private Collection<ExerciseDTO> exercises;
 
 }

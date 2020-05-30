@@ -1,13 +1,23 @@
-<div *ngIf='exercises==null'>
-    <h2>Get your planner for today: 
-        <button mat-raised-button color="primary" (click)="getExercises()">Get</button>
+<div *ngIf='!taken && planner==null'>
+    <h2>Get your planner: 
+        <button mat-raised-button color="primary" (click)="getPlanner()">Get</button>
     </h2>
 </div>
-<div *ngIf="exercises!=null">
+<div *ngIf='planner!=null && planner.id!=null'>
+    <table class="datatable">
+        <tr class="data">
+            <td><h4>Category: {{planner.category}}</h4></td>
+            <td><h4>Days in category: {{planner.numCategory}}</h4></td>
+        </tr>
+        <tr class="data">
+            <td><h4>Physical characteristics: {{planner.physicalCharacteristics}}</h4></td>
+            <td><h4>Health condition: {{planner.healthCondition}}</h4></td>
+        </tr>
+    </table>
     <h2>Enter the time it took you to do the exercises: 
         <button mat-raised-button color="primary" (click)="addTime()">Add time</button>
     </h2>
-    <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
+    <table mat-table [dataSource]="planner.exercises" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -20,7 +30,7 @@
     
         <ng-container matColumnDef="weight">
             <th mat-header-cell *matHeaderCellDef> Repetition </th>
-            <td mat-cell *matCellDef="let element"> {{repetition}} </td>
+            <td mat-cell *matCellDef="let element"> {{planner.repetition}} </td>
         </ng-container>
     
         <ng-container matColumnDef="details">

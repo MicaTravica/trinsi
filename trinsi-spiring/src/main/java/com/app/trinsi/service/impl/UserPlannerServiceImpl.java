@@ -12,6 +12,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 @Service
 public class UserPlannerServiceImpl implements UserPlannerService {
@@ -53,7 +54,6 @@ public class UserPlannerServiceImpl implements UserPlannerService {
         userService.updateUserPlanner(userPlanner, user.getUsername());
         return userPlanner;
     }
-
 
 
 }

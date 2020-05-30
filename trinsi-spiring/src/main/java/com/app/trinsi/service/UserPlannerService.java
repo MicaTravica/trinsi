@@ -10,5 +10,4 @@ public interface UserPlannerService {
     UserPlanner getUserPlanner(UserPlanner userPlanner, UserHealth userHealth);
 
     UserPlanner findByUser(User user) throws ResourceNotFoundException;
-
 }

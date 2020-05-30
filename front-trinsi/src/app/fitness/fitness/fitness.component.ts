@@ -1,46 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { UserPlanner } from 'src/app/models/user-planner/user-planner.model';
-import { PlannerService } from 'src/app/services/planner-service/planner.service';
 import { MatDialog } from '@angular/material';
 import { HealthComponent } from '../health/health.component';
 import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
 
 @Component({
-  selector: 'app-planner',
-  templateUrl: './planner.component.html',
-  styleUrls: ['./planner.component.scss']
+  selector: 'app-fitness',
+  templateUrl: './fitness.component.html',
+  styleUrls: ['./fitness.component.scss']
 })
-export class PlannerComponent implements OnInit {
+export class FitnessComponent implements OnInit {
 
-  planner: UserPlanner = null;
   health: UserHealth = null;
 
   constructor(
-    private plannerService: PlannerService,
     private healthService: HealthService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.getHealthAndPlanner();
+    this.getHealth();
   }
 
-  getHealthAndPlanner() {
+  getHealth() {
     this.healthService.get().subscribe(
       (data: UserHealth) => {
         this.health = data;
-        if (!this.sevenDays()) {
-          this.getPlanner();
-        }
-      }
-    );
-  }
-
-  getPlanner() {
-    this.plannerService.get().subscribe(
-      (data: UserPlanner) => {
-        this.planner = data;
       }
     );
   }
@@ -53,13 +38,13 @@ export class PlannerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.getHealthAndPlanner();
+        this.getHealth();
       }
     });
   }
 
   sevenDays() {
-    if (this.health != null && this.health.id != null) {
+    if (this.health != null && this.health.id != null && !this.health.plannerTaken) {
       const today = new Date();
       const seven = new Date(this.health.lastChanged);
       seven.setDate(seven.getDate() + 7);
@@ -67,6 +52,13 @@ export class PlannerComponent implements OnInit {
         return true;
       }
       return false;
+    }
+    return false;
+  }
+
+  taken() {
+    if (this.health != null && this.health.id != null) {
+      return this.health.plannerTaken;
     }
     return false;
   }

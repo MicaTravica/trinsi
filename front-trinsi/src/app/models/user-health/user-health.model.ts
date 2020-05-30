@@ -12,6 +12,7 @@ export class UserHealth {
     public pulse: number;
     public hoursOfExercise: number;
     public lastChanged: Date;
+    public plannerTaken: boolean;
 
     constructor(id: number, gender: GENDER, years: number, height: number, weight: number, upperBloodPressure: number,
                 lowerBloodPressure: number, pulse: number, hoursOfExercise: number, lastChanged: Date) {

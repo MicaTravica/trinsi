@@ -1,5 +1,6 @@
 package com.app.trinsi.service.impl;
 
+import com.app.trinsi.exceptions.ResourceCantUpdateException;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.repository.UserHealthRepository;
@@ -42,6 +43,18 @@ public class UserHealthServiceImpl implements UserHealthService {
                 .orElseThrow(() -> new  ResourceNotFoundException("Health"));
         health.update(updateHealth);
         return userHealthRepository.save(health);
+    }
+
+    @Override
+    public void addTime(Long id, int minutes) throws ResourceNotFoundException, ResourceCantUpdateException {
+        UserHealth userHealth = userHealthRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Health"));
+        if (userHealth.isPlannerTaken()) {
+            userHealth.setHoursOfExercise(userHealth.getHoursOfExercise() + minutes / 60.0);
+            userHealth.setPlannerTaken(false);
+            userHealthRepository.save(userHealth);
+        } else {
+            throw new ResourceCantUpdateException("Time");
+        }
     }
 
 }

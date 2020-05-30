@@ -40,4 +40,11 @@ export class HealthService {
       });
   }
 
+  addTime(time: any) {
+    return this.http.put(this.healthUrl + '/time/' + time, null,
+      {
+        headers: authHttpOptions(this.authService.getToken())
+      });
+  }
+
 }
