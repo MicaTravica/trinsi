@@ -19,10 +19,9 @@ export class ListExerciseComponent implements OnInit {
 
   exercises: Exercise[];
   displayedColumns: string[] = ['name', 'type', 'weight', 'details'];
-  exerciseSearch = new ExerciseSearch('', null, null, 0, 10);
+  exerciseSearch = new ExerciseSearch('', null, null);
   exerciseType = [null, EXERCISE_TYPE.STRETCHES, EXERCISE_TYPE.STRENGTHS, EXERCISE_TYPE.CARDIO, EXERCISE_TYPE.WEIGHT_LOSS];
   category = [null, CATEGORY.BEGINNER, CATEGORY.MIDDLE, CATEGORY.ADVANCED];
-  totalElements = 0;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -45,21 +44,10 @@ export class ListExerciseComponent implements OnInit {
 
   search() {
     this.exerciseService.search(this.exerciseSearch).subscribe(
-      (data: any) => {
-        this.exercises = data.content;
-        this.totalElements = data.totalElements;
+      (data: Exercise[]) => {
+        this.exercises = data;
       }
     );
-  }
-
-  onSearch() {
-    this.exerciseSearch.pageNum = 0;
-    this.search();
-  }
-
-  pageChanged(num: number) {
-    this.exerciseSearch.pageNum = num - 1;
-    this.search();
   }
 
   add() {

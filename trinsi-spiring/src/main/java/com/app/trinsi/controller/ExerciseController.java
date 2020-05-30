@@ -47,12 +47,10 @@ public class ExerciseController extends BaseController {
     }
 
     @PostMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<ExerciseDTO>> search(@RequestBody SearchExercise params) {
-        Page<Exercise> result = exerciseService.search(params.getName(), params.getExerciseType(),
-                params.getExerciseWeight(), params.getPageNum(), params.getSize());
-        Page<ExerciseDTO> resultDTO = new PageImpl<>(
-                result.get().map(ExerciseMapper::toDTO).collect(Collectors.toList()), result.getPageable(),
-                result.getTotalElements());
+    public ResponseEntity<Collection<ExerciseDTO>> search(@RequestBody SearchExercise params) {
+        Collection<Exercise> result = exerciseService.search(params.getName(), params.getExerciseType(),
+                params.getExerciseWeight());
+        Collection<ExerciseDTO> resultDTO = result.stream().map(ExerciseMapper::toDTO).collect(Collectors.toList());
         return new ResponseEntity<>(resultDTO, HttpStatus.OK);
     }
 }

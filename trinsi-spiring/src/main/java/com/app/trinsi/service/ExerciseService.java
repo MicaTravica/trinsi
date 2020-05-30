@@ -6,6 +6,8 @@ import com.app.trinsi.model.EXERCISE_TYPE;
 import com.app.trinsi.model.Exercise;
 import org.springframework.data.domain.Page;
 
+import java.util.Collection;
+
 public interface ExerciseService {
 
     Exercise findOneById(Long id) throws ResourceNotFoundException;
@@ -14,5 +16,5 @@ public interface ExerciseService {
 
     Exercise updateExercise(Exercise updateExercise) throws ResourceNotFoundException;
 
-    Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum, int size);
+    Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight);
 }

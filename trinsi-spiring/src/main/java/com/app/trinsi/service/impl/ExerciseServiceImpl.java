@@ -6,21 +6,25 @@ import com.app.trinsi.model.EXERCISE_TYPE;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.repository.ExerciseRepository;
 import com.app.trinsi.service.ExerciseService;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
 
     private final ExerciseRepository exerciseRepository;
+    private final KieContainer kieContainer;
 
     @Autowired
-    public ExerciseServiceImpl(ExerciseRepository exerciseRepository) {
+    public ExerciseServiceImpl(ExerciseRepository exerciseRepository, KieContainer kieContainer) {
         this.exerciseRepository = exerciseRepository;
+        this.kieContainer = kieContainer;
     }
 
     @Override
@@ -42,10 +46,21 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Page<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight, int pageNum, int size) {
-        Pageable pageable = PageRequest.of(pageNum, size, Sort.by("name").ascending());
-        return exerciseRepository.search(name, exerciseType, exerciseWeight, pageable);
+    public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
+        List<Exercise> exercises = exerciseRepository.findAll();
+        KieSession kieSession = kieContainer.newKieSession();
+        for (Exercise exercise: exercises) {
+            kieSession.insert(exercise);
+        }
+        kieSession.getAgenda().getAgendaGroup("search-exercises").setFocus();
+        kieSession.setGlobal("gName", name);
+        kieSession.setGlobal("gExerciseType", exerciseType);
+        kieSession.setGlobal("gExerciseWeight", exerciseWeight);
+        kieSession.setGlobal("exercises", new ArrayList<Exercise>());
+        kieSession.fireAllRules();
+        ArrayList<Exercise> result = (ArrayList<Exercise>) kieSession.getGlobal("exercises");
+        kieSession.dispose();
+        return result;
     }
-
 
 }

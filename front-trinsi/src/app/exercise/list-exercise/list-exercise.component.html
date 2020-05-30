@@ -16,15 +16,7 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" class="search" (click)="onSearch()">Search</button>
-
-    <mat-form-field class="size">
-        <mat-select [(ngModel)]="exerciseSearch.size" placeholder="Size" (selectionChange)='onSearch()'>
-            <mat-option *ngFor="let e of [10,30,50]" [value]="e">
-            {{e}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <button mat-raised-button color="primary" class="search" (click)="search()">Search</button>
 
     <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
@@ -59,5 +51,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <app-pagination *ngIf="totalElements > 0" [totalItems]='totalElements' [pageSize]='exerciseSearch.size' (pageSelected)='pageChanged($event)'></app-pagination>
 </div>
