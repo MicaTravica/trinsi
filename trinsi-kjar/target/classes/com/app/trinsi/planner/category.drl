@@ -1,4 +1,4 @@
-package com.app.trinsi
+package com.app.trinsi.planner
 
 //list any import classes here.
 import com.app.trinsi.model.CATEGORY;
@@ -19,7 +19,7 @@ end
 rule "Category middle 1"
 
     when
-       $u: UserHealth(hoursOfExercise > 1 && hoursOfExercise <= 3)
+       $u: UserHealth(hoursOfExercise > 1, hoursOfExercise <= 3)
        $p: UserPlanner(category == null || category == CATEGORY.ADVANCED)
     then
         modify($p){setCategory(CATEGORY.MIDDLE);}

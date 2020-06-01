@@ -1,4 +1,4 @@
-package com.app.trinsi
+package com.app.trinsi.planner
 
 //list any import classes here.
 import com.app.trinsi.model.CATEGORY;

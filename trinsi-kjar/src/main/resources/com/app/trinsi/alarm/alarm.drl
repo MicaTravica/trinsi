@@ -1,0 +1,95 @@
+package com.app.trinsi.alarm
+
+//list any import classes here.
+import com.app.trinsi.model.HEALTH_CONDITION;
+import com.app.trinsi.model.HeartBeatTracking;
+import com.app.trinsi.model.Alarm;
+//declare any global variables here
+
+// staviti da se racuna kad pravi planner
+//: puls korisnika u stanju mirovanja oduzme se od maksimalnog pulsa (220 – godine korisnika), a zatim zavisno od kategorije se pomnoži sa koeficijentom:
+//0.6 - početnik
+//0,7 - srednja
+//0,85 - napredna.
+//Zatim se puls u stanju mirovanja doda dobijenom broju i rezultat je ciljni puls tokom vežbanja.
+//((220 - health.years) - health.pulse) * 0.6 + health.pulse
+
+rule "Breathe deeply"
+    salience 1
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        $n: Number(intValue == 0) from accumulate(
+            $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse + 5 >= currentPulse,
+            this before[0m, 10m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Breathe deeply"));
+end
+
+rule "Take a break of 2 minutes, walk"
+    salience 10
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        $n: Number(intValue == 0) from accumulate(
+            $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse + 10 >= currentPulse,
+            this before[0m, 5m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 2 minutes, walk"));
+end
+
+rule "Take a break of 5 minutes, walk"
+    salience 100
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse,
+                            healthCondition == HEALTH_CONDITION.BAD || healthCondition == HEALTH_CONDITION.MIDDLE)
+        $n: Number(intValue == 0) from accumulate(
+            $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse + 20 >= currentPulse,
+            this before[0m, 1m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 5 minutes, walk"));
+end
+
+rule "Stop exercising"
+    salience 1000
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 30 < currentPulse )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Stop exercising"));
+end
+
+rule "Speed up"
+    salience -10
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse - 30 > currentPulse )
+        $n: Number(intValue == 0) from accumulate(
+        $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse - 30 <= currentPulse,
+            this before[0m, 10m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Speed up"));
+end
+
+

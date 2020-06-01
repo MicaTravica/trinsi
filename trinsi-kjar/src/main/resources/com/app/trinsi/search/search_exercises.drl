@@ -1,0 +1,39 @@
+package com.app.trinsi.search
+
+//list any import classes here.
+import com.app.trinsi.model.CATEGORY;
+import com.app.trinsi.model.Exercise;
+import com.app.trinsi.model.EXERCISE_TYPE;
+import java.util.ArrayList;
+//declare any global variables here
+global String gName;
+global EXERCISE_TYPE gExerciseType;
+global CATEGORY gExerciseWeight;
+global ArrayList exercises;
+
+rule "Search exercises"
+    agenda-group "search-exercises"
+    when
+        $e: Exercise( $id: id )
+        exerciseName( $id; )
+        exerciseType( $id; )
+        exerciseWeight( $id; )
+    then
+        exercises.add($e);
+
+
+end
+
+query exerciseName(Long eId)
+    Exercise(id == eId && name.contains(gName))
+end
+
+query exerciseType(Long eId)
+    Exercise(id == eId && exerciseType == gExerciseType ) or
+    Exercise(id == eId && gExerciseType == null)
+end
+
+query exerciseWeight(Long eId)
+    Exercise(id == eId && exerciseWeight == gExerciseWeight ) or
+    Exercise(id == eId && gExerciseWeight == null)
+end

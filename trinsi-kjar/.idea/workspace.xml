@@ -2,23 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/pagination/pagination.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/pagination/pagination.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/pagination/pagination.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/pagination/pagination.component.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.app.trinsi/trinsi-kjar/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.app.trinsi/trinsi-kjar/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/resources/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/category.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/exercise_type.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/health_condition.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/num_of_exercise.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/physical_characterisstics.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/resources/com/app/trinsi/repetition.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/category.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/category.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/exercise_type.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/exercise_type.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/health_condition.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/health_condition.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/num_of_exercise.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/num_of_exercise.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/physical_characterisstics.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/physical_characterisstics.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/repetition.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/planner/repetition.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/search_exercises.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/search/search_exercises.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/category.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/exercise_type.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/health_condition.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/num_of_exercise.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/physical_characterisstics.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/repetition.drl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/search_exercises.drl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/SearchExercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/SearchExercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/ExerciseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/ExerciseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/ExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/ExerciseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +59,11 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\travica\Documents\GitHub\trinsi\trinsi-kjar\src\main\resources\com\app\trinsi\alarm" />
+      <recent name="C:\Users\travica\Documents\GitHub\trinsi\trinsi-kjar\src\main\resources\com\app\trinsi\search" />
+      <recent name="C:\Users\travica\Documents\GitHub\trinsi\trinsi-kjar\src\main\resources\com\app\trinsi\planner" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.app.trinsi" />
     </key>
@@ -96,7 +112,7 @@
       <workItem from="1589740383625" duration="3418000" />
       <workItem from="1589748087696" duration="13593000" />
       <workItem from="1590346946754" duration="707000" />
-      <workItem from="1590585226861" duration="7282000" />
+      <workItem from="1590585226861" duration="31326000" />
     </task>
     <servers />
   </component>
@@ -124,22 +140,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590347055145" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590878237979">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1591013130704">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590878237979" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590878237979">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591013130704" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1591013130704">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590878237979" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590878237979">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591013130704" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1591013130704">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590878237979" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590878237979">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591013130704" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1591013130704">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590878237979" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591013130704" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1589741653567">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

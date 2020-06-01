@@ -39,7 +39,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public UserPlanner getUserPlanner(UserPlanner userPlanner, UserHealth userHealth) {
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("ksession-planner");
         kieSession.insert(userPlanner);
         kieSession.insert(userHealth);
         kieSession.fireAllRules();
@@ -47,8 +47,6 @@ public class UserPlannerServiceImpl implements UserPlannerService {
         return userPlanner;
     }
 
-
-    //    dodati exception ukoliko je proslo sedam dana a korisnik zeli da dobije vezbe
     @Override
     public UserPlanner findByUser(User user) throws ResourceNotFoundException, MustUpdateHealthException {
         UserPlanner userPlanner;
