@@ -6,10 +6,19 @@ import com.app.trinsi.model.HeartBeatTracking;
 import com.app.trinsi.model.Alarm;
 //declare any global variables here
 
-rule "Breathe deeply"
+rule "Breathe deeply, health condition bad"
     salience 1
     when
         $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Breathe deeply"));
+end
+
+rule "Breathe deeply, health condition not bad"
+    salience 1
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
@@ -23,10 +32,19 @@ rule "Breathe deeply"
         insert(new Alarm($id, "Breathe deeply"));
 end
 
-rule "Take a break of 2 minutes, walk"
+rule "Take a break of 2 minutes, walk, health condition bad"
     salience 10
     when
         $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 2 minutes, walk"));
+end
+
+rule "Take a break of 2 minutes, walk, health condition not bad"
+    salience 10
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
@@ -40,11 +58,20 @@ rule "Take a break of 2 minutes, walk"
         insert(new Alarm($id, "Take a break of 2 minutes, walk"));
 end
 
-rule "Take a break of 5 minutes, walk"
+rule "Take a break of 5 minutes, walk, health condition bad or middle"
     salience 100
     when
         $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse,
                             healthCondition == HEALTH_CONDITION.BAD || healthCondition == HEALTH_CONDITION.MIDDLE)
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 5 minutes, walk"));
+end
+
+rule "Take a break of 5 minutes, walk, health condition good"
+    salience 100
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse, healthCondition == HEALTH_CONDITION.GOOD)
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,

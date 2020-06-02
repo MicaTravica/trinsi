@@ -12,7 +12,6 @@ global CATEGORY gExerciseWeight;
 global ArrayList exercises;
 
 rule "Search exercises"
-    agenda-group "search-exercises"
     when
         $e: Exercise( $id: id )
         exerciseName( $id; )

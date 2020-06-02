@@ -8,22 +8,9 @@ import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
-//Na osnovu vrsta vežbi, kategorije i vežbi koje je prethodno radio (ako koristi već duže vreme sistem)
-//dodeljuju se vežbe korisniku. Vodi se računa ako su neke vežbe bile u njegovom planu već 5 puta
-//za redom da budu zamenjene novim.
-
-//private CATEGORY category; ovo
-//private int numCategory;
-//private PHYSICAL_CHARACTERISTICS physicalCharacteristics;
-//private HEALTH_CONDITION healthCondition;
-//private int numOfExercise; ovo
-//private int repetition;
-//private EXERCISE_TYPE exerciseType; ovo
-//private int targetPulse;
-
 rule "Add exercises"
     when
-        $p: UserPlanner(exercises.size() < 1,$exercises: exercises, $category: category,
+        $p: UserPlanner(exercises.size() < numOfExercise,$exercises: exercises, $category: category,
                         $exerciseType: exerciseType)
         $e: Exercise(!(this memberOf $exercises), exerciseWeight == $category, exerciseType == $exerciseType)
     then

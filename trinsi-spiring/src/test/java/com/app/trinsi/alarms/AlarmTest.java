@@ -27,7 +27,7 @@ public class AlarmTest {
 
         Collection<Alarm> alarms = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -35,7 +35,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 10; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 106, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 106, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -43,7 +43,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 10; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 106, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 106, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(1, ruleCount);
@@ -66,7 +66,7 @@ public class AlarmTest {
 
         Collection<Alarm> alarms = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -74,7 +74,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 5; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 111, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 111, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -82,7 +82,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 5; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 111, 100, HEALTH_CONDITION.BAD));
+            kieSession.insert(new HeartBeatTracking(1L, 111, 100, HEALTH_CONDITION.MIDDLE));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(1, ruleCount);
@@ -104,7 +104,7 @@ public class AlarmTest {
 
         Collection<Alarm> alarms = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.MIDDLE));
+            kieSession.insert(new HeartBeatTracking(1L, 95, 100, HEALTH_CONDITION.GOOD));
             clock.advanceTime(30, TimeUnit.SECONDS);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -112,7 +112,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 2; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 121, 100, HEALTH_CONDITION.MIDDLE));
+            kieSession.insert(new HeartBeatTracking(1L, 121, 100, HEALTH_CONDITION.GOOD));
             clock.advanceTime(30, TimeUnit.SECONDS);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(0, ruleCount);
@@ -120,7 +120,7 @@ public class AlarmTest {
         }
 
         for (int i = 0; i < 4; i++) {
-            kieSession.insert(new HeartBeatTracking(1L, 121, 100, HEALTH_CONDITION.MIDDLE));
+            kieSession.insert(new HeartBeatTracking(1L, 121, 100, HEALTH_CONDITION.GOOD));
             clock.advanceTime(30, TimeUnit.SECONDS);
             int ruleCount = kieSession.fireAllRules();
             assertEquals(1, ruleCount);

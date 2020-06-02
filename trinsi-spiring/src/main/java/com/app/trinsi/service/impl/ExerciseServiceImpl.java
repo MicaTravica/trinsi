@@ -52,7 +52,6 @@ public class ExerciseServiceImpl implements ExerciseService {
         for (Exercise exercise: exercises) {
             kieSession.insert(exercise);
         }
-        kieSession.getAgenda().getAgendaGroup("search-exercises").setFocus();
         kieSession.setGlobal("gName", name);
         kieSession.setGlobal("gExerciseType", exerciseType);
         kieSession.setGlobal("gExerciseWeight", exerciseWeight);
