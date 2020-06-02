@@ -58,6 +58,7 @@ public class UserHealthServiceImpl implements UserHealthService {
         }
     }
 
+    // dodati negede da se sati postavljaju na 0 kad kad unese health
     @Override
     public void setPlannerIsTaken(UserHealth userHealth) {
         userHealth.setPlannerTaken(true);

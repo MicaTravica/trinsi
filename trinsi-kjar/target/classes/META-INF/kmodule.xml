@@ -6,6 +6,9 @@
 	<kbase name="search" packages="com.app.trinsi.search">
 		<ksession name="ksession-search"/>
 	</kbase>
+	<kbase name="reports" packages="com.app.trinsi.reports">
+		<ksession name="ksession-reports"/>
+	</kbase>
 	<kbase name="alarm" eventProcessingMode="stream" packages="com.app.trinsi.alarm">
 		<ksession name="alarmPseudoClock" clockType="pseudo"/>
 		<ksession name="alarmRealtimeClock" clockType="realtime"/>

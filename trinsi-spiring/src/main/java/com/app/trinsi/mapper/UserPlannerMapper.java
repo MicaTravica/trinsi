@@ -11,6 +11,7 @@ public class UserPlannerMapper {
         return new UserPlannerDTO(userPlanner.getId(), userPlanner.getCategory(), userPlanner.getNumCategory(),
                 userPlanner.getPhysicalCharacteristics(), userPlanner.getHealthCondition(),
                 userPlanner.getNumOfExercise(), userPlanner.getRepetition(), userPlanner.getExerciseType(),
+                userPlanner.getTargetPulse(),
                 userPlanner.getExercises().stream().map(ExerciseMapper::toDTO).collect(Collectors.toList()));
     }
 }

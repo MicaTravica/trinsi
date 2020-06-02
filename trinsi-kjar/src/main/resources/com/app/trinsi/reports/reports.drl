@@ -1,0 +1,40 @@
+package com.app.trinsi.reports
+
+//list any import classes here.
+import com.app.trinsi.model.CATEGORY;
+import com.app.trinsi.model.EXERCISE_TYPE;
+import com.app.trinsi.model.Exercise;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.MissingExercises;
+import java.util.ArrayList;
+//declare any global variables here
+global ArrayList categories;
+global ArrayList exerciseTypes;
+global ArrayList numbers;
+
+rule "Report missing exercises"
+    when
+        $category: CATEGORY()
+        $exerciseType: EXERCISE_TYPE()
+        not (MissingExercises($exerciseType == exerciseType, $category == category))
+        $n: Integer() from accumulate(
+            $e : Exercise(
+            $category == exerciseWeight,
+            $exerciseType == exerciseType),
+            init (int count = 0;),
+            action (count += 1;),
+            result (count)
+        )
+        $m: Integer() from accumulate(
+            $p : UserPlanner(
+            $category == category,
+            $exerciseType == exerciseType,
+            $nof: numOfExercise),
+            init (int max = 0;),
+            action (max = Math.max(max, $nof);),
+            result (max)
+        )
+    then
+        insert(new MissingExercises($exerciseType, $category, Math.max(0, $m - $n)));
+end
+

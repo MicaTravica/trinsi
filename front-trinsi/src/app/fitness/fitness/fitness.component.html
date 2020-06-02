@@ -7,8 +7,8 @@
         <button mat-raised-button color="primary" (click)="openHealth()">Change</button>
     </h2>
 </div>
-<div *ngIf="!sevenDays()">
-    <table *ngIf='health!=null && health.id!=null'>
+<div *ngIf="health!=null && health.id!=null && !sevenDays()">
+    <table>
         <tr>
             <td><h4>Gender: {{health.gender}}</h4></td>
             <td><h4>Years: {{health.years}}</h4></td>

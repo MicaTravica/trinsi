@@ -20,8 +20,8 @@ end
 rule "Num of exercise 7"
 
     when
-       $p: UserPlanner(category == CATEGORY.ADVANCED && physicalCharacteristics == PHYSICAL_CHARACTERISTICS.SATISFACTORY
-       && healthCondition == HEALTH_CONDITION.GOOD)
+       $p: UserPlanner(category == CATEGORY.ADVANCED, physicalCharacteristics == PHYSICAL_CHARACTERISTICS.SATISFACTORY,
+       healthCondition == HEALTH_CONDITION.GOOD)
     then
          modify($p){setNumOfExercise(7);}
 

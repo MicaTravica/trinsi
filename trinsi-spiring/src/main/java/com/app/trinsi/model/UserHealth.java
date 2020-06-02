@@ -41,5 +41,6 @@ public class UserHealth {
         this.lowerBloodPressure = updateHealth.getLowerBloodPressure();
         this.pulse = updateHealth.getPulse();
         this.lastChanged = new Date();
+        this.plannerTaken = false;
     }
 }

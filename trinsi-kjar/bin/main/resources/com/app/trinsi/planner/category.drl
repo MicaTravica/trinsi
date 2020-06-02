@@ -30,7 +30,7 @@ rule "Category middle 2"
 
     when
        $u: UserHealth(hoursOfExercise > 1)
-       $p: UserPlanner(category == CATEGORY.BEGINNER && numCategory > 7)
+       $p: UserPlanner(category == CATEGORY.BEGINNER, numCategory > 7)
     then
         modify($p){setCategory(CATEGORY.MIDDLE);}
 
@@ -42,7 +42,7 @@ rule "Category advanced"
 
     when
        $u: UserHealth(hoursOfExercise > 3)
-       $p: UserPlanner(category == null || (category == CATEGORY.ADVANCED && numCategory > 14))
+       $p: UserPlanner(category == null || (category == CATEGORY.ADVANCED, numCategory > 14))
     then
         modify($p){setCategory(CATEGORY.ADVANCED);}
 

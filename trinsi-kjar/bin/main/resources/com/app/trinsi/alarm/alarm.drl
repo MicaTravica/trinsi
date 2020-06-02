@@ -3,93 +3,85 @@ package com.app.trinsi.alarm
 //list any import classes here.
 import com.app.trinsi.model.HEALTH_CONDITION;
 import com.app.trinsi.model.HeartBeatTracking;
+import com.app.trinsi.model.Alarm;
 //declare any global variables here
 
-
-// staviti da se racuna kad pravi planner
-//: puls korisnika u stanju mirovanja oduzme se od maksimalnog pulsa (220 – godine korisnika), a zatim zavisno od kategorije se pomnoži sa koeficijentom:
-//0.6 - početnik
-//0,7 - srednja
-//0,85 - napredna.
-//Zatim se puls u stanju mirovanja doda dobijenom broju i rezultat je ciljni puls tokom vežbanja.
-//((220 - health.years) - health.pulse) * 0.6 + health.pulse
-
-//Dišite duboko
-//Odstupanje od ciljnog pulsa veće za 5 do 10 otkucaja
-//Traje duže od 10 minuta
-//Zdravstveno stanje je loše
-
-//    private Long userId;
-//    private int currentPulse;
-//    private int targetPulse;
-//    private HEALTH_CONDITION healthCondition;
 rule "Breathe deeply"
-//    agenda-group "alarms"
-//    lock-on-active false
+    salience 1
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, currentPulse <= targetPulse + 10,
-                            healthCondition == HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $id,
-            targetPulse + 5 > currentPulse,
+            targetPulse + 5 >= currentPulse,
             this before[0m, 10m] $hb1),
             count($hb2)
         )
+        not (Alarm(userId == $id))
     then
-        System.out.println($n);
-        System.out.println("Disite dubokko");
+        insert(new Alarm($id, "Breathe deeply"));
 end
 
-//rule "Breathe deeply"
-//    agenda-group "alarms"
-//    when
-//        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, currentPulse <= targetPulse + 10,
-//                            healthCondition == HEALTH_CONDITION.BAD )
-// not(
-//               HeartBeatEvent()
-//               over window:time(5s)
-//           )
-//       then
-//           insert(new HeartAttackEvent());
-//           drools.halt();
-//    then
-//        System.out.println("jbg");
-//
-//end
-//rule "No heart beat in the last 5 seconds!"
-//    when
-//        not(
-//            HeartBeatEvent()
-//            over window:time(5s)
-//        )
-//    then
-//        insert(new HeartAttackEvent());
-//        drools.halt();
-//end
-//rule "More than 10 transactions in an hour from one client"
-//    when
-//        $t1: TransactionEvent($cId: customerId)
-//        Number(intValue >= 10) from accumulate(
-//            $t2: TransactionEvent(
-//                this != $t1,
-//                customerId == $cId,
-//                this meets[1h] $t1
-//            ),
-//            count($t2)
-//        )
-//        not (SuspiciousCustomerEvent(customerId == $cId, reason == "Many transactions"))
-//    then
-//        insert(new SuspiciousCustomerEvent($cId, "Many transactions"));
-//end
-
-declare SuspiciousCustomerEvent
-    @role(event)
-    customerId: Long
-    reason: String
+rule "Take a break of 2 minutes, walk"
+    salience 10
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        $n: Number(intValue == 0) from accumulate(
+            $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse + 10 >= currentPulse,
+            this before[0m, 5m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 2 minutes, walk"));
 end
 
-declare AlarmTriggered
-    customerId: Long
+rule "Take a break of 5 minutes, walk"
+    salience 100
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse,
+                            healthCondition == HEALTH_CONDITION.BAD || healthCondition == HEALTH_CONDITION.MIDDLE)
+        $n: Number(intValue == 0) from accumulate(
+            $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse + 20 >= currentPulse,
+            this before[0m, 1m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Take a break of 5 minutes, walk"));
 end
+
+rule "Stop exercising"
+    salience 1000
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse + 30 < currentPulse )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Stop exercising"));
+end
+
+rule "Speed up"
+    salience -10
+    when
+        $hb1: HeartBeatTracking( $id: userId, targetPulse - 30 > currentPulse )
+        $n: Number(intValue == 0) from accumulate(
+        $hb2 : HeartBeatTracking(
+            this != $hb1,
+            userId == $id,
+            targetPulse - 30 <= currentPulse,
+            this before[0m, 10m] $hb1),
+            count($hb2)
+        )
+        not (Alarm(userId == $id))
+    then
+        insert(new Alarm($id, "Speed up"));
+end
+
+

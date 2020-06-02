@@ -26,6 +26,7 @@ public class UserPlannerDTO {
     private int numOfExercise;
     private int repetition;
     private EXERCISE_TYPE exerciseType;
+    private int targetPulse;
     private Collection<ExerciseDTO> exercises;
 
 }

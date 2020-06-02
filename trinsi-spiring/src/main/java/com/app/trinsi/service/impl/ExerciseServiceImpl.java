@@ -47,7 +47,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
-        List<Exercise> exercises = exerciseRepository.findAll();
+        Collection<Exercise> exercises = findAll();
         KieSession kieSession = kieContainer.newKieSession("ksession-search");
         for (Exercise exercise: exercises) {
             kieSession.insert(exercise);
@@ -61,6 +61,11 @@ public class ExerciseServiceImpl implements ExerciseService {
         ArrayList<Exercise> result = (ArrayList<Exercise>) kieSession.getGlobal("exercises");
         kieSession.dispose();
         return result;
+    }
+
+    @Override
+    public Collection<Exercise> findAll() {
+        return exerciseRepository.findAll();
     }
 
 }

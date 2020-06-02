@@ -9,8 +9,8 @@ import com.app.trinsi.model.UserPlanner;
 rule "Health conddition good"
 
     when
-        $u: UserHealth(pulse < 70 && upperBloodPressure >= 105 && upperBloodPressure <= 135 &&
-        lowerBloodPressure >= 70 && lowerBloodPressure <= 90)
+        $u: UserHealth(pulse < 70, upperBloodPressure >= 105, upperBloodPressure <= 135,
+        lowerBloodPressure >= 70, lowerBloodPressure <= 90)
         $p: UserPlanner()
     then
         modify($p){setHealthCondition(HEALTH_CONDITION.GOOD)}
@@ -21,7 +21,7 @@ rule "Health conddition bad"
 
     when
         $u: UserHealth(pulse > 80 || upperBloodPressure < 100  || upperBloodPressure > 140 ||
-        lowerBloodPressure < 65 && lowerBloodPressure > 95)
+        lowerBloodPressure < 65 || lowerBloodPressure > 95)
         $p: UserPlanner()
     then
         modify($p){setHealthCondition(HEALTH_CONDITION.BAD)}
