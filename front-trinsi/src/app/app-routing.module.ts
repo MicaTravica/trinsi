@@ -7,12 +7,9 @@ import { ProfileComponent } from './core/profile/profile.component';
 import { RoleGuard } from './guards/role.service';
 import { ChangePasswordComponent } from './core/profile/change-password/change-password.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { ListExerciseComponent } from './exercise/list-exercise/list-exercise.component';
-import { ViewExerciseComponent } from './exercise/view-exercise/view-exercise.component';
 import { FitnessComponent } from './fitness/fitness/fitness.component';
-import { HealthComponent } from './fitness/health/health.component';
-
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -22,6 +19,7 @@ const routes: Routes = [
    data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'exercises', component: ListExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'planner', component: FitnessComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
+  { path: 'reports', component: ReportsComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},
   { path: '', redirectTo: 'exercises', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -39,7 +39,7 @@ public class ReportTest {
         Collection<MissingExercises> missingExercises =
                 (Collection<MissingExercises>) kieSession.getObjects(new ClassObjectFilter(MissingExercises.class));
         for (MissingExercises me:missingExercises) {
-            System.out.println(me.getCategory() + " " + me.getExerciseType() + " " + me.getNumber());
+            System.out.println(me.getCategory() + " " + me.getExerciseType() + " " + me.getNum());
         }
     }
 }

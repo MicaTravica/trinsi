@@ -2,26 +2,19 @@ package com.app.trinsi.service.impl;
 
 import com.app.trinsi.exceptions.MustUpdateHealthException;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
-import com.app.trinsi.model.Exercise;
-import com.app.trinsi.model.User;
-import com.app.trinsi.model.UserHealth;
-import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.*;
 import com.app.trinsi.repository.UserPlannerRepository;
 import com.app.trinsi.service.ExerciseService;
 import com.app.trinsi.service.UserHealthService;
 import com.app.trinsi.service.UserPlannerService;
 import com.app.trinsi.service.UserService;
+import org.drools.core.ClassObjectFilter;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.*;
 
 @Service
 public class UserPlannerServiceImpl implements UserPlannerService {
@@ -78,7 +71,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
         if (!today.before(seven)) {
             throw new MustUpdateHealthException();
         }
-        userPlanner.setExercises(new HashSet<>());
+        userPlanner.setExercises(new ArrayList<>());
         userPlanner = getUserPlanner(userPlanner, userHealth);
         userPlanner = userPlannerRepository.save(userPlanner);
         if (user.getUserPlanner() == null)
@@ -87,5 +80,55 @@ public class UserPlannerServiceImpl implements UserPlannerService {
         return userPlanner;
     }
 
+    @Override
+    public Collection<UserPlanner> findAll() {
+        return userPlannerRepository.findAll();
+    }
+
+    @Override
+    public Collection<MissingExercises> reports(HashSet<CATEGORY> categories, HashSet<EXERCISE_TYPE> exerciseTypes) {
+        System.out.println("cao");
+        KieSession kieSession = kieContainer.newKieSession("ksession-reports");
+        System.out.println("cao");
+        if (categories.size() == 0) {
+            kieSession.insert(CATEGORY.BEGINNER);
+            kieSession.insert(CATEGORY.MIDDLE);
+            kieSession.insert(CATEGORY.ADVANCED);
+        }
+        else {
+            for (CATEGORY category: categories) {
+                kieSession.insert(category);
+            }
+        }
+        System.out.println("cao");
+        System.out.println("");
+        if (exerciseTypes.size() == 0) {
+            kieSession.insert(EXERCISE_TYPE.STRETCHES);
+            kieSession.insert(EXERCISE_TYPE.STRENGTHS);
+            kieSession.insert(EXERCISE_TYPE.CARDIO);
+            kieSession.insert(EXERCISE_TYPE.WEIGHT_LOSS);
+        }
+        else {
+            for (EXERCISE_TYPE exerciseType: exerciseTypes) {
+                kieSession.insert(exerciseType);
+            }
+        }
+        System.out.println("cao");
+        Collection<Exercise> exercises = exerciseService.findAll();
+        for (Exercise exercise: exercises) {
+            kieSession.insert(exercise);
+        }
+        System.out.println("cao");
+        Collection<UserPlanner> userPlanners = findAll();
+        for (UserPlanner userPlanner: userPlanners) {
+            kieSession.insert(userPlanner);
+        }
+        System.out.println("cao");
+        kieSession.fireAllRules();
+        Collection<MissingExercises> missingExercises =
+                (Collection<MissingExercises>) kieSession.getObjects(new ClassObjectFilter(MissingExercises.class));
+        System.out.println("cao");
+        return  missingExercises;
+    }
 
 }

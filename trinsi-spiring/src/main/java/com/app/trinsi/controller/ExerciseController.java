@@ -1,10 +1,12 @@
 package com.app.trinsi.controller;
 
 import com.app.trinsi.dto.ExerciseDTO;
+import com.app.trinsi.dto.ReportDTO;
 import com.app.trinsi.dto.SearchExercise;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.model.Exercise;
+import com.app.trinsi.model.MissingExercises;
 import com.app.trinsi.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,4 +55,5 @@ public class ExerciseController extends BaseController {
         Collection<ExerciseDTO> resultDTO = result.stream().map(ExerciseMapper::toDTO).collect(Collectors.toList());
         return new ResponseEntity<>(resultDTO, HttpStatus.OK);
     }
+
 }

@@ -13,6 +13,6 @@ public class MissingExercises {
 
     private EXERCISE_TYPE exerciseType;
     private CATEGORY category;
-    private int number;
+    private int num;
 
 }

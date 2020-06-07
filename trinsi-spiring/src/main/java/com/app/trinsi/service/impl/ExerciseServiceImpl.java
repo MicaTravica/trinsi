@@ -1,11 +1,10 @@
 package com.app.trinsi.service.impl;
 
 import com.app.trinsi.exceptions.ResourceNotFoundException;
-import com.app.trinsi.model.CATEGORY;
-import com.app.trinsi.model.EXERCISE_TYPE;
-import com.app.trinsi.model.Exercise;
+import com.app.trinsi.model.*;
 import com.app.trinsi.repository.ExerciseRepository;
 import com.app.trinsi.service.ExerciseService;
+import com.app.trinsi.service.UserPlannerService;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -47,8 +45,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
-        Collection<Exercise> exercises = findAll();
         KieSession kieSession = kieContainer.newKieSession("ksession-search");
+        Collection<Exercise> exercises = findAll();
         for (Exercise exercise: exercises) {
             kieSession.insert(exercise);
         }
@@ -66,5 +64,6 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Collection<Exercise> findAll() {
         return exerciseRepository.findAll();
     }
+
 
 }

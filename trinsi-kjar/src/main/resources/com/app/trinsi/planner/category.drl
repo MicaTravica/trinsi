@@ -42,7 +42,7 @@ rule "Category advanced"
 
     when
        $u: UserHealth(hoursOfExercise > 3)
-       $p: UserPlanner(category == null || (category == CATEGORY.ADVANCED, numCategory > 14))
+       $p: UserPlanner(category == null || (category == CATEGORY.ADVANCED && numCategory > 14))
     then
         modify($p){setCategory(CATEGORY.ADVANCED);}
 

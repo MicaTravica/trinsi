@@ -1,0 +1,16 @@
+<div>
+    <section class="section">
+        Category:
+        <mat-checkbox [(ngModel)]="checkedCategories[0]">BEGINNER</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkedCategories[1]">MIDDLE</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkedCategories[2]">ADVANCED</mat-checkbox>
+    </section>
+    <section class="section">
+        Exercise type:
+        <mat-checkbox [(ngModel)]="checkedExerciseType[0]">STRETCHES</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkedExerciseType[1]">STRENGTHS</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkedExerciseType[2]">CARDIO</mat-checkbox>
+        <mat-checkbox [(ngModel)]="checkedExerciseType[3]">WEIGHT LOSS</mat-checkbox>
+        <button  mat-flat-button color="primary" (click)="getReport()">Get report</button>
+    </section>
+</div>

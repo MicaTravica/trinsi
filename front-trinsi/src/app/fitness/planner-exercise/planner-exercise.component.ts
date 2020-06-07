@@ -38,7 +38,6 @@ export class PlannerExerciseComponent implements OnChanges {
       (data: UserPlanner) => {
         this.refreshHealth.emit();
         this.planner = data;
-        this.planner.exercises.push(new Exercise(1, 'ime', 'opis', EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
       }
     );
   }

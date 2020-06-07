@@ -4,9 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,7 +37,8 @@ public class UserPlanner {
             name = "exercises",
             joinColumns = @JoinColumn(name = "user_planner_id"),
             inverseJoinColumns = @JoinColumn(name = "excercise_id"))
-    private Collection<Exercise> exercises;
+    @CollectionId(columns = @Column(name = "id"), type = @Type(type = "long"), generator = "sequence")
+    private List<Exercise> exercises;
 
     public void addExercise(Exercise e) {
         this.exercises.add(e);
