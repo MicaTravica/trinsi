@@ -14,6 +14,8 @@ export class ReportsComponent implements OnInit {
 
   checkedCategories = [false, false, false];
   checkedExerciseType = [false, false, false, false];
+  missingExercises: MissingExercises[] = [];
+  displayedColumns = ['category', 'exerciseType', 'num'];
 
   constructor(
     private plannerService: PlannerService
@@ -40,7 +42,7 @@ export class ReportsComponent implements OnInit {
     }
     this.plannerService.reports(new Report(categoriesReport, exerciseTypeReport)).subscribe(
       (data: MissingExercises[]) => {
-        console.log(data);
+        this.missingExercises = data;
       }
     );
   }

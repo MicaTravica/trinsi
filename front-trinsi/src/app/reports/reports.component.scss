@@ -10,6 +10,15 @@ div {
     margin: 10px;
 }
   
-.mat-checkbox {
+.mat-checkbox,  h1 {
     margin: 0 10px;
+}
+
+table {
+    width: 98%;
+    margin: 1%;
+}
+
+tr:not(.header):hover {
+    background: #EEEEEE;
 }
