@@ -8,7 +8,7 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Exercise type stretches"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(healthCondition == HEALTH_CONDITION.BAD)
     then
@@ -17,7 +17,7 @@ rule "Exercise type stretches"
 end
 
 rule "Exercise type strengths"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(healthCondition != HEALTH_CONDITION.BAD,
         physicalCharacteristics == PHYSICAL_CHARACTERISTICS.SKINNY)
@@ -25,9 +25,9 @@ rule "Exercise type strengths"
         modify($p){setExerciseType(EXERCISE_TYPE.STRENGTHS);}
 
 end
-
+// ovo 4 puta
 rule "Exercise type cardio"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(healthCondition != HEALTH_CONDITION.BAD,
         physicalCharacteristics == PHYSICAL_CHARACTERISTICS.SATISFACTORY)
@@ -37,7 +37,7 @@ rule "Exercise type cardio"
 end
 
 rule "Exercise type weight loss"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(healthCondition != HEALTH_CONDITION.BAD,
         physicalCharacteristics == PHYSICAL_CHARACTERISTICS.FAT)

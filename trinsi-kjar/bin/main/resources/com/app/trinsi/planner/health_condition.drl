@@ -7,7 +7,7 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Health conddition good"
-
+    agenda-group "planner"
     when
         $u: UserHealth(pulse < 70, upperBloodPressure >= 105, upperBloodPressure <= 135,
         lowerBloodPressure >= 70, lowerBloodPressure <= 90)
@@ -18,7 +18,7 @@ rule "Health conddition good"
 end
 
 rule "Health conddition bad"
-
+    agenda-group "planner"
     when
         $u: UserHealth(pulse > 80 || upperBloodPressure < 100  || upperBloodPressure > 140 ||
         lowerBloodPressure < 65 || lowerBloodPressure > 95)
@@ -29,9 +29,11 @@ rule "Health conddition bad"
 end
 
 rule "Health conddition middle"
-
+    agenda-group "planner"
+    lock-on-active
+    salience 1
     when
-        $p: UserPlanner(healthCondition == null)
+        $p: UserPlanner()
     then
         modify($p){setHealthCondition(HEALTH_CONDITION.MIDDLE)}
 

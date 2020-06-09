@@ -9,6 +9,7 @@ import { NavigationEnd, Router, Event} from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 import { ViewExerciseComponent } from '../view-exercise/view-exercise.component';
+import { RulesService } from 'src/app/services/rules-service/rules.service';
 
 @Component({
   selector: 'app-list-exercise',

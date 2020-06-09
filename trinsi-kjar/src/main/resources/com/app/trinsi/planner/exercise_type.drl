@@ -25,7 +25,7 @@ rule "Exercise type strengths"
         modify($p){setExerciseType(EXERCISE_TYPE.STRENGTHS);}
 
 end
-// ovo 4 puta
+
 rule "Exercise type cardio"
     agenda-group "planner"
     when

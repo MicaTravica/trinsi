@@ -30,6 +30,7 @@ import { HealthComponent } from './fitness/health/health.component';
 import { PlannerExerciseComponent } from './fitness/planner-exercise/planner-exercise.component';
 import { PlannerTimeComponent } from './fitness/planner-time/planner-time.component';
 import { ReportsComponent } from './reports/reports.component';
+import { AddRulesComponent } from './add-rules/add-rules.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ReportsComponent } from './reports/reports.component';
     FitnessComponent,
     PlannerExerciseComponent,
     PlannerTimeComponent,
-    ReportsComponent
+    ReportsComponent,
+    AddRulesComponent
   ],
   imports: [
     BrowserModule,

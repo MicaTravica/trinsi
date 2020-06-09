@@ -8,11 +8,9 @@ import com.app.trinsi.model.UserPlanner;
 import com.app.trinsi.model.MissingExercises;
 import java.util.ArrayList;
 //declare any global variables here
-global ArrayList categories;
-global ArrayList exerciseTypes;
-global ArrayList numbers;
 
 rule "Report missing exercises"
+    agenda-group "reports"
     when
         $category: CATEGORY()
         $exerciseType: EXERCISE_TYPE()

@@ -15,13 +15,4 @@ public class TrinsiApplication {
         SpringApplication.run(TrinsiApplication.class, args);
     }
 
-    @Bean
-    public KieContainer kieContainer() {
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kContainer = ks
-                .newKieContainer(ks.newReleaseId("com.app.trinsi", "trinsi-kjar", "1.0.0-SNAPSHOT"));
-        KieScanner kScanner = ks.newKieScanner(kContainer);
-        kScanner.start(10_000);
-        return kContainer;
-    }
 }

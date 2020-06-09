@@ -6,15 +6,8 @@ import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
-
-// staviti da se racuna kad pravi planner
-//: puls korisnika u stanju mirovanja oduzme se od maksimalnog pulsa (220 – godine korisnika), a zatim zavisno od kategorije se pomnoži sa koeficijentom:
-//0.6 - početnik
-//0,7 - srednja
-//0,85 - napredna.
-//Zatim se puls u stanju mirovanja doda dobijenom broju i rezultat je ciljni puls tokom vežbanja.
-//((220 - health.years) - health.pulse) * 0.6 + health.pulse
 rule "Target pulse begginer"
+    agenda-group "planner"
     when
         $u: UserHealth($pulse: pulse, $years: years)
         $p: UserPlanner(category == CATEGORY.BEGINNER)
@@ -23,6 +16,7 @@ rule "Target pulse begginer"
 end
 
 rule "Target pulse middle"
+    agenda-group "planner"
     when
         $u: UserHealth($pulse: pulse, $years: years)
         $p: UserPlanner(category == CATEGORY.MIDDLE)
@@ -31,6 +25,7 @@ rule "Target pulse middle"
 end
 
 rule "Target pulse advanced"
+    agenda-group "planner"
     when
         $u: UserHealth($pulse: pulse, $years: years)
         $p: UserPlanner(category == CATEGORY.ADVANCED)

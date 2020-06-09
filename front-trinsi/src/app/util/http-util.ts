@@ -12,3 +12,10 @@ export const authHttpOptions = (token: string): HttpHeaders => {
         .append('Accept', 'application/json')
         .append('Authorization', 'Bearer ' + token);
 };
+
+export const authHttpOptionsText = (token: string): HttpHeaders => {
+    return new HttpHeaders()
+        .append('Content-Type', 'text/plain')
+        .append('Accept', 'application/json')
+        .append('Authorization', 'Bearer ' + token);
+};
