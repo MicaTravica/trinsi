@@ -1,16 +1,4 @@
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<kbase name="planner" packages="com.app.trinsi.planner">
-		<ksession name="ksession-planner"/>
-	</kbase>
-	<kbase name="search" packages="com.app.trinsi.search">
-		<ksession name="ksession-search"/>
-	</kbase>
-	<kbase name="reports" packages="com.app.trinsi.reports">
-		<ksession name="ksession-reports"/>
-	</kbase>
-	<kbase name="alarm" eventProcessingMode="stream" packages="com.app.trinsi.alarm">
-		<ksession name="alarmPseudoClock" clockType="pseudo"/>
-		<ksession name="alarmRealtimeClock" clockType="realtime"/>
-	</kbase>
+
 </kmodule>

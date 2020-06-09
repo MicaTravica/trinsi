@@ -8,7 +8,7 @@ import com.app.trinsi.model.GENDER;
 //declare any global variables here
 
 rule "Physical characteristic skinny 1"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight > 115)
         $p: UserPlanner()
@@ -18,7 +18,7 @@ rule "Physical characteristic skinny 1"
 end
 
 rule "Physical characteristic skinny 2"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight > 120)
         $p: UserPlanner()
@@ -28,7 +28,7 @@ rule "Physical characteristic skinny 2"
 end
 
 rule "Physical characteristic skinny 3"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight > 105)
         $p: UserPlanner()
@@ -38,7 +38,7 @@ rule "Physical characteristic skinny 3"
 end
 
 rule "Physical characteristic skinny 4"
-
+    agenda-group "planner"
     when
        $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight > 110)
         $p: UserPlanner()
@@ -48,7 +48,7 @@ rule "Physical characteristic skinny 4"
 end
 
 rule "Physical characteristic satisfactory 1"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight >= 105, height - weight <= 115)
         $p: UserPlanner()
@@ -58,7 +58,7 @@ rule "Physical characteristic satisfactory 1"
 end
 
 rule "Physical characteristic satisfactory 2"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight >= 100, height - weight <= 120)
         $p: UserPlanner()
@@ -68,7 +68,7 @@ rule "Physical characteristic satisfactory 2"
 end
 
 rule "Physical characteristic satisfactory 3"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight >= 95, height - weight <= 105)
         $p: UserPlanner()
@@ -79,7 +79,7 @@ rule "Physical characteristic satisfactory 3"
 end
 
 rule "Physical characteristic satisfactory 4"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight >= 90, height - weight <= 110)
         $p: UserPlanner()
@@ -90,45 +90,41 @@ rule "Physical characteristic satisfactory 4"
 end
 
 rule "Physical characteristic fat 1"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years > 15, height - weight < 105)
         $p: UserPlanner()
     then
         modify($p){setPhysicalCharacteristics(PHYSICAL_CHARACTERISTICS.FAT);}
 
-
 end
 
 rule "Physical characteristic fat 2"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.FEMALE, years <= 15, height - weight < 100)
         $p: UserPlanner()
     then
         modify($p){setPhysicalCharacteristics(PHYSICAL_CHARACTERISTICS.FAT);}
 
-
 end
 
 rule "Physical characteristic fat 3"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.MALE, years > 15, height - weight < 95)
         $p: UserPlanner()
     then
         modify($p){setPhysicalCharacteristics(PHYSICAL_CHARACTERISTICS.FAT);}
 
-
 end
 
 rule "Physical characteristic fat 4"
-
+    agenda-group "planner"
     when
         $u: UserHealth(gender == GENDER.MALE, years <= 15, height - weight < 90)
         $p: UserPlanner()
     then
         modify($p){setPhysicalCharacteristics(PHYSICAL_CHARACTERISTICS.FAT);}
-
 
 end

@@ -8,31 +8,33 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Num of exercise 3"
-
+    agenda-group "planner"
     when
        $p: UserPlanner(category == CATEGORY.BEGINNER || physicalCharacteristics == PHYSICAL_CHARACTERISTICS.FAT ||
        healthCondition == HEALTH_CONDITION.BAD)
     then
-         modify($p){setNumOfExercise(3);}
+        modify($p){setNumOfExercise(3);}
 
 end
 
 rule "Num of exercise 7"
-
+    agenda-group "planner"
     when
        $p: UserPlanner(category == CATEGORY.ADVANCED, physicalCharacteristics == PHYSICAL_CHARACTERISTICS.SATISFACTORY,
        healthCondition == HEALTH_CONDITION.GOOD)
     then
-         modify($p){setNumOfExercise(7);}
+        modify($p){setNumOfExercise(7);}
 
 end
 
 rule "Num of exercise 5"
-
+    agenda-group "planner"
+    lock-on-active
+    salience 1
     when
-       $p: UserPlanner(numOfExercise == 0)
+       $p: UserPlanner()
     then
-         modify($p){setNumOfExercise(5);}
+        modify($p){setNumOfExercise(5);}
 
 end
 

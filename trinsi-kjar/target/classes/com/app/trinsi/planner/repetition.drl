@@ -6,7 +6,7 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Repetition beginner"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(category == CATEGORY.BEGINNER, $nc: numCategory)
     then
@@ -15,7 +15,7 @@ rule "Repetition beginner"
 end
 
 rule "Repetition middle"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(category == CATEGORY.MIDDLE, $nc: numCategory)
     then
@@ -24,7 +24,7 @@ rule "Repetition middle"
 end
 
 rule "Repetition advanced"
-
+    agenda-group "planner"
     when
         $p: UserPlanner(category == CATEGORY.ADVANCED, $nc: numCategory)
     then

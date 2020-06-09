@@ -45,7 +45,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
-        KieSession kieSession = kieContainer.newKieSession("ksession-search");
+        KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("search").setFocus();
         Collection<Exercise> exercises = findAll();
         for (Exercise exercise: exercises) {
             kieSession.insert(exercise);

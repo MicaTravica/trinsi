@@ -12,27 +12,26 @@ global CATEGORY gExerciseWeight;
 global ArrayList exercises;
 
 rule "Search exercises"
+    agenda-group "search"
     when
         $e: Exercise( $id: id )
-        exerciseName( $id; )
-        exerciseType( $id; )
-        exerciseWeight( $id; )
+        exerciseName( $id, gName; )
+        exerciseType( $id, gExerciseType; )
+        exerciseWeight( $id, gExerciseWeight; )
     then
         exercises.add($e);
-
-
 end
 
-query exerciseName(Long eId)
-    Exercise(id == eId && name.contains(gName))
+query exerciseName(Long eId, String cName)
+    Exercise(id == eId && name.contains(cName))
 end
 
-query exerciseType(Long eId)
-    Exercise(id == eId && exerciseType == gExerciseType ) or
-    Exercise(id == eId && gExerciseType == null)
+query exerciseType(Long eId, EXERCISE_TYPE cExerciseType)
+    Exercise(id == eId && exerciseType == cExerciseType ) or
+    Exercise(id == eId && cExerciseType == null)
 end
 
-query exerciseWeight(Long eId)
-    Exercise(id == eId && exerciseWeight == gExerciseWeight ) or
-    Exercise(id == eId && gExerciseWeight == null)
+query exerciseWeight(Long eId, CATEGORY cExerciseWeight)
+    Exercise(id == eId && exerciseWeight == cExerciseWeight ) or
+    Exercise(id == eId && cExerciseWeight == null)
 end

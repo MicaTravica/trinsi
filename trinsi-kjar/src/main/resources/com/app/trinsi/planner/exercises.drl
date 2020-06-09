@@ -9,6 +9,8 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Add exercises"
+    agenda-group "planner"
+    salience -10
     when
         $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises, $category: category,
                         $exerciseType: exerciseType)
@@ -19,6 +21,7 @@ rule "Add exercises"
 end
 
 rule "Add exercises, fill"
+    agenda-group "planner"
     salience -100
     when
         $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises)

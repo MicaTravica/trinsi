@@ -9,6 +9,8 @@ import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
 rule "Add exercises"
+    agenda-group "planner"
+    salience -10
     when
         $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises, $category: category,
                         $exerciseType: exerciseType)
@@ -18,7 +20,8 @@ rule "Add exercises"
 
 end
 
-rule "Add exercises2"
+rule "Add exercises, fill"
+    agenda-group "planner"
     salience -100
     when
         $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises)
@@ -29,41 +32,6 @@ rule "Add exercises2"
             action (count += 1;),
             result (count)
         )
-//        $ne: Exercise(this != $e) from $exercises
-//        $m: Integer(intValue > 0) from accumulate(
-//            $c: Integer(intValue < $n) from accumulate (
-//                Exercise(this == $ne) from $exercises,
-//                init (int count = 0;),
-//                action (count += 1;),
-//                result (count)
-//            ),
-//            init (int min = 1000;),
-//            action (min = Math.min(min, $c);),
-//            result (min)
-//        )
-//
-//        this != $e,
-//                        $c: Integer(intValue < $n ) from accumulate(
-//                            Exercise(this != $ne) from $exercises,
-//                            init (int count = 0;),
-//                            action (count += 1;),
-//                            result (count)
-//                        ),
-//        $m: Integer() from accumulate(
-//            $e : Exercise(this == $e),
-//            init (int count = 0;),
-//            action (count += 1;),
-//            result (count)
-//            $p : UserPlanner(
-//            $category == category,
-//            $exerciseType == exerciseType,
-//            $nof: numOfExercise),
-//            init (int max = 0;),
-//            action (max = Math.max(max, $nof);),
-//            result (max)
-//        )
     then
-        System.out.println($n);
-//        System.out.println($m);
         modify($p){addExercise($e);}
 end

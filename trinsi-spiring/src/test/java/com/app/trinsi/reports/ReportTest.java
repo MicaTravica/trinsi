@@ -7,6 +7,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ReportTest {
@@ -15,7 +16,8 @@ public class ReportTest {
     public void testAlarmBreatheDeeply() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("ksession-reports");
+        KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("reports").setFocus();
         kieSession.insert(CATEGORY.BEGINNER);
         kieSession.insert(CATEGORY.MIDDLE);
         kieSession.insert(CATEGORY.ADVANCED);
@@ -29,10 +31,10 @@ public class ReportTest {
         kieSession.insert(new Exercise(1L, "ime", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.ADVANCED));
         kieSession.insert(new UserPlanner(1L, CATEGORY.BEGINNER, 0,
                             null, null, 10, 0,
-                            EXERCISE_TYPE.CARDIO, 0, null));
+                            EXERCISE_TYPE.CARDIO, 0, new ArrayList<>()));
         kieSession.insert(new UserPlanner(1L, CATEGORY.BEGINNER, 0,
                 null, null, 10, 0,
-                EXERCISE_TYPE.WEIGHT_LOSS, 0, null));
+                EXERCISE_TYPE.WEIGHT_LOSS, 0, new ArrayList<>()));
         int ruleCount = kieSession.fireAllRules();
         System.out.println(ruleCount);
 

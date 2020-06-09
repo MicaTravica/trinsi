@@ -37,7 +37,8 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public UserPlanner getUserPlanner(UserPlanner userPlanner, UserHealth userHealth) {
-        KieSession kieSession = kieContainer.newKieSession("ksession-planner");
+        KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("planner").setFocus();
         kieSession.insert(userPlanner);
         kieSession.insert(userHealth);
         Collection<Exercise> exercises = exerciseService.findAll();
@@ -87,9 +88,9 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public Collection<MissingExercises> reports(HashSet<CATEGORY> categories, HashSet<EXERCISE_TYPE> exerciseTypes) {
-        System.out.println("cao");
-        KieSession kieSession = kieContainer.newKieSession("ksession-reports");
-        System.out.println("cao");
+        KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("reports").setFocus();
+
         if (categories.size() == 0) {
             kieSession.insert(CATEGORY.BEGINNER);
             kieSession.insert(CATEGORY.MIDDLE);
@@ -100,8 +101,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
                 kieSession.insert(category);
             }
         }
-        System.out.println("cao");
-        System.out.println("");
+
         if (exerciseTypes.size() == 0) {
             kieSession.insert(EXERCISE_TYPE.STRETCHES);
             kieSession.insert(EXERCISE_TYPE.STRENGTHS);
@@ -113,21 +113,21 @@ public class UserPlannerServiceImpl implements UserPlannerService {
                 kieSession.insert(exerciseType);
             }
         }
-        System.out.println("cao");
+
         Collection<Exercise> exercises = exerciseService.findAll();
         for (Exercise exercise: exercises) {
             kieSession.insert(exercise);
         }
-        System.out.println("cao");
+
         Collection<UserPlanner> userPlanners = findAll();
         for (UserPlanner userPlanner: userPlanners) {
             kieSession.insert(userPlanner);
         }
-        System.out.println("cao");
+
         kieSession.fireAllRules();
         Collection<MissingExercises> missingExercises =
                 (Collection<MissingExercises>) kieSession.getObjects(new ClassObjectFilter(MissingExercises.class));
-        System.out.println("cao");
+
         return  missingExercises;
     }
 

@@ -5,19 +5,32 @@ import com.app.trinsi.model.CATEGORY;
 import com.app.trinsi.model.UserHealth;
 import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
+global CATEGORY gCategory;
+
+rule "Initialize"
+    agenda-group "planner"
+    lock-on-active
+    salience 100
+    when
+        $p: UserPlanner($category: category)
+    then
+        kcontext.getKieRuntime().setGlobal("gCategory", $category);
+end
 
 rule "Category beginner"
-
+    agenda-group "planner"
+    salience 5
     when
        $u: UserHealth(hoursOfExercise <= 1)
        $p: UserPlanner()
     then
-         modify($p){setCategory(CATEGORY.BEGINNER);}
+        modify($p){setCategory(CATEGORY.BEGINNER);}
 
 end
 
 rule "Category middle 1"
-
+    agenda-group "planner"
+    salience 5
     when
        $u: UserHealth(hoursOfExercise > 1, hoursOfExercise <= 3)
        $p: UserPlanner(category == null || category == CATEGORY.ADVANCED)
@@ -27,7 +40,8 @@ rule "Category middle 1"
 end
 
 rule "Category middle 2"
-
+    agenda-group "planner"
+    salience 5
     when
        $u: UserHealth(hoursOfExercise > 1)
        $p: UserPlanner(category == CATEGORY.BEGINNER, numCategory > 7)
@@ -39,11 +53,34 @@ end
 
 
 rule "Category advanced"
-
+    agenda-group "planner"
+    salience 5
     when
        $u: UserHealth(hoursOfExercise > 3)
-       $p: UserPlanner(category == null || (category == CATEGORY.ADVANCED && numCategory > 14))
+       $p: UserPlanner(category == null || (category == CATEGORY.MIDDLE && numCategory > 14))
     then
         modify($p){setCategory(CATEGORY.ADVANCED);}
+
+end
+
+rule "Category, inc num"
+    agenda-group "planner"
+    lock-on-active
+    salience 10
+    when
+        $p: UserPlanner($numCategory: numCategory)
+    then
+        modify($p){setNumCategory($numCategory + 1);}
+
+end
+
+rule "Category changed, restart num"
+    agenda-group "planner"
+    lock-on-active
+    salience 1
+    when
+        $p: UserPlanner($category: category != gCategory)
+    then
+        modify($p){setNumCategory(1);}
 
 end

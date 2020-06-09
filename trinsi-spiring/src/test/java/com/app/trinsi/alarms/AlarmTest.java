@@ -4,11 +4,17 @@ import com.app.trinsi.model.Alarm;
 import com.app.trinsi.model.HEALTH_CONDITION;
 import com.app.trinsi.model.HeartBeatTracking;
 import org.drools.core.ClassObjectFilter;
+import org.drools.core.ClockType;
 import org.drools.core.time.SessionPseudoClock;
 import org.junit.jupiter.api.Test;
+import org.kie.api.KieBase;
+import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
+import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.KieSessionConfiguration;
+import org.kie.api.runtime.conf.ClockTypeOption;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,8 +27,13 @@ public class AlarmTest {
     @Test
     public void testAlarmBreatheDeeply() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("alarmPseudoClock");
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+        kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+        KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
+        KieSessionConfiguration kieSessionConfiguration = kieServices.newKieSessionConfiguration();
+        kieSessionConfiguration.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession kieSession = kieBase.newKieSession(kieSessionConfiguration, null);
         SessionPseudoClock clock = kieSession.getSessionClock();
 
         Collection<Alarm> alarms = new ArrayList<>();
@@ -60,8 +71,13 @@ public class AlarmTest {
     @Test
     public void testAlarmBreak2Minutes() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("alarmPseudoClock");
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+        kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+        KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
+        KieSessionConfiguration kieSessionConfiguration = kieServices.newKieSessionConfiguration();
+        kieSessionConfiguration.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession kieSession = kieBase.newKieSession(kieSessionConfiguration, null);
         SessionPseudoClock clock = kieSession.getSessionClock();
 
         Collection<Alarm> alarms = new ArrayList<>();
@@ -98,8 +114,13 @@ public class AlarmTest {
     @Test
     public void testAlarmBreak5Minutes() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("alarmPseudoClock");
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+        kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+        KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
+        KieSessionConfiguration kieSessionConfiguration = kieServices.newKieSessionConfiguration();
+        kieSessionConfiguration.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession kieSession = kieBase.newKieSession(kieSessionConfiguration, null);
         SessionPseudoClock clock = kieSession.getSessionClock();
 
         Collection<Alarm> alarms = new ArrayList<>();
@@ -137,8 +158,13 @@ public class AlarmTest {
     @Test
     public void testAlarmStopExercising() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("alarmPseudoClock");
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+        kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+        KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
+        KieSessionConfiguration kieSessionConfiguration = kieServices.newKieSessionConfiguration();
+        kieSessionConfiguration.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession kieSession = kieBase.newKieSession(kieSessionConfiguration, null);
         SessionPseudoClock clock = kieSession.getSessionClock();
 
         Collection<Alarm> alarms = new ArrayList<>();
@@ -168,8 +194,13 @@ public class AlarmTest {
     @Test
     public void testAlarmSpeedUp() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession("alarmPseudoClock");
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieBaseConfiguration kieBaseConfiguration = kieServices.newKieBaseConfiguration();
+        kieBaseConfiguration.setOption(EventProcessingOption.STREAM);
+        KieBase kieBase = kieContainer.newKieBase(kieBaseConfiguration);
+        KieSessionConfiguration kieSessionConfiguration = kieServices.newKieSessionConfiguration();
+        kieSessionConfiguration.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession kieSession = kieBase.newKieSession(kieSessionConfiguration, null);
         SessionPseudoClock clock = kieSession.getSessionClock();
 
         Collection<Alarm> alarms = new ArrayList<>();
