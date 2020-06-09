@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/reports/ReportTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/reports/ReportTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +89,7 @@
       <workItem from="1590585226861" duration="52710000" />
       <workItem from="1591542261912" duration="21110000" />
       <workItem from="1591702800941" duration="1624000" />
+      <workItem from="1591714988038" duration="630000" />
     </task>
     <servers />
   </component>
