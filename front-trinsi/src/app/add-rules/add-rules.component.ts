@@ -8,23 +8,20 @@ import { RulesService } from '../services/rules-service/rules.service';
 })
 export class AddRulesComponent implements OnInit {
 
+  rule = '';
+
   constructor(
     private rulesService: RulesService
   ) { }
 
   ngOnInit() {
-    this.rulesService.add('package com.app.trinsi.planner ' +
-    'rule "Cao" ' +
-    'agenda-group "planner" ' +
-    'salience 100 ' +
-    'when ' +
-    'then ' +
-    ' System.out.println("CAO"); ' +
-    'end').subscribe(
+  }
+
+  add() {
+    this.rulesService.add(this.rule).subscribe(
       d => {
         console.log(d);
       }
     );
   }
-
 }
