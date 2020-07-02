@@ -93,41 +93,5 @@ public class PlannerTest {
         kieSession.insert(new Exercise(15L, "ime15", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
         kieSession.insert(new Exercise(16L, "ime16", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.MIDDLE));
     }
-
-    @Test
-    public void add() {
-        KieServices kieServices = KieServices.Factory.get();
-        System.out.println(kieServices.getResources());
-        System.out.println(kieServices.getRepository());
-        String drl = "package com.app.trinsi.planner rule \"Cao\" salience 100 when then  System.out.println(\"CAO\"); end";
-        KieHelper kieHelper = new KieHelper();
-        kieHelper.addContent(drl, ResourceType.DRL);
-
-        Results results = kieHelper.verify();
-
-        if (results.hasMessages(Message.Level.WARNING, Message.Level.ERROR)){
-            List<Message> messages = results.getMessages(Message.Level.WARNING, Message.Level.ERROR);
-            for (Message message : messages) {
-                System.out.println("Error: " + message.getText());
-            }
-
-            throw new IllegalStateException("Compilation errors were found. Check the logs.");
-        }
-
-        KieFileSystem kfs = kieServices.newKieFileSystem();
-        kfs.write( "src/main/resources/simple.drl",
-                kieServices.getResources().newReaderResource( new StringReader(drl) ) );
-        KieBuilder kieBuilder = kieServices.newKieBuilder( kfs ).buildAll();
-        KieContainer kContainer = kieServices.newKieContainer(kieBuilder.getKieModule().getReleaseId());
-        KieSession kieSession = kContainer.newKieSession();
-        kieSession.fireAllRules();
-
-//        PrintWriter printWriter = null;
-//        try {
-//            printWriter = new PrintWriter("src/main/resources/s.drl");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        printWriter.println(drl);
-    }
+    
 }

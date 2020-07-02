@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RulesService } from '../services/rules-service/rules.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-rules',
@@ -9,18 +10,25 @@ import { RulesService } from '../services/rules-service/rules.service';
 export class AddRulesComponent implements OnInit {
 
   rule = '';
+  wait = false;
 
   constructor(
-    private rulesService: RulesService
+    private rulesService: RulesService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
   }
 
   add() {
+    this.wait = true;
     this.rulesService.add(this.rule).subscribe(
-      d => {
-        console.log(d);
+      () => {
+        this.wait = false;
+        this.toastr.success('Successfully added!');
+      },
+      () => {
+        this.wait = false;
       }
     );
   }

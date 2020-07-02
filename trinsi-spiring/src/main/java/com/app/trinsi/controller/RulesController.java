@@ -4,6 +4,7 @@ import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.service.RulesService;
+import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,9 +26,8 @@ public class RulesController extends BaseController {
     }
 
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addRules(@RequestBody String drl) throws IOException {
-        System.out.println(drl);
+    public ResponseEntity addRules(@RequestBody String drl) throws IOException, MavenInvocationException {
         rulesService.add(drl);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 }

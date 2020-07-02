@@ -34,7 +34,7 @@ public abstract class BaseController {
 
 	@ExceptionHandler({ ResourceExistsException.class, WrongPasswordException.class,
 			org.springframework.dao.DataIntegrityViolationException.class, ResourceCantUpdateException.class,
-			MustUpdateHealthException.class})
+			MustUpdateHealthException.class, IllegalStateException.class})
 	public ResponseEntity<String> badRequest(Exception e) {
 		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}

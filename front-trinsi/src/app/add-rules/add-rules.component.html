@@ -1,4 +1,4 @@
-<div mat-dialog-content>
+<div>
     <form #addRules="ngForm" (ngSubmit)="add()" novalidate>
         <h1>Add rules:</h1>
         <mat-form-field>
@@ -9,4 +9,13 @@
         
         <button mat-raised-button color="primary" type="submit" [disabled]="addRules.form.invalid">Add rules</button>
     </form>
+</div>
+
+<div class="overlay" *ngIf="wait">
+    <div class="center">
+        <mat-progress-spinner diameter=50 
+                              mode="indeterminate" 
+                              color="accent">
+        </mat-progress-spinner> 
+    </div>
 </div>
