@@ -7,23 +7,23 @@ import com.app.trinsi.model.Alarm;
 //declare any global variables here
 
 rule "Breathe deeply, health condition bad"
-    salience 1
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 5), $tp < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
         not (Alarm(userId == $id))
     then
         insert(new Alarm($id, "Breathe deeply"));
 end
 
 rule "Breathe deeply, health condition not bad"
-    salience 1
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 5 < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 5), $tp < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $id,
-            targetPulse + 5 >= currentPulse,
+            $tp >= currentPulse,
             this before[0m, 10m] $hb1),
             count($hb2)
         )
@@ -33,23 +33,23 @@ rule "Breathe deeply, health condition not bad"
 end
 
 rule "Take a break of 2 minutes, walk, health condition bad"
-    salience 10
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 10), $tp < currentPulse, healthCondition == HEALTH_CONDITION.BAD )
         not (Alarm(userId == $id))
     then
         insert(new Alarm($id, "Take a break of 2 minutes, walk"));
 end
 
 rule "Take a break of 2 minutes, walk, health condition not bad"
-    salience 10
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 10 < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 10), $tp < currentPulse, healthCondition != HEALTH_CONDITION.BAD )
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $id,
-            targetPulse + 10 >= currentPulse,
+            $tp >= currentPulse,
             this before[0m, 5m] $hb1),
             count($hb2)
         )
@@ -59,9 +59,9 @@ rule "Take a break of 2 minutes, walk, health condition not bad"
 end
 
 rule "Take a break of 5 minutes, walk, health condition bad or middle"
-    salience 100
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse,
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 20), $tp < currentPulse,
                             healthCondition == HEALTH_CONDITION.BAD || healthCondition == HEALTH_CONDITION.MIDDLE)
         not (Alarm(userId == $id))
     then
@@ -69,14 +69,14 @@ rule "Take a break of 5 minutes, walk, health condition bad or middle"
 end
 
 rule "Take a break of 5 minutes, walk, health condition good"
-    salience 100
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 20 < currentPulse, healthCondition == HEALTH_CONDITION.GOOD)
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 20), $tp < currentPulse, healthCondition == HEALTH_CONDITION.GOOD)
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $id,
-            targetPulse + 20 >= currentPulse,
+            $tp >= currentPulse,
             this before[0m, 1m] $hb1),
             count($hb2)
         )
@@ -86,23 +86,23 @@ rule "Take a break of 5 minutes, walk, health condition good"
 end
 
 rule "Stop exercising"
-    salience 1000
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse + 30 < currentPulse )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse + 30), $tp < currentPulse )
         not (Alarm(userId == $id))
     then
         insert(new Alarm($id, "Stop exercising"));
 end
 
 rule "Speed up"
-    salience -10
+    salience $tp
     when
-        $hb1: HeartBeatTracking( $id: userId, targetPulse - 30 > currentPulse )
+        $hb1: HeartBeatTracking( $id: userId, $tp: (targetPulse - 30), $tp > currentPulse)
         $n: Number(intValue == 0) from accumulate(
         $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $id,
-            targetPulse - 30 <= currentPulse,
+            $tp <= currentPulse,
             this before[0m, 10m] $hb1),
             count($hb2)
         )

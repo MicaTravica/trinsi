@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class KieContainerConfig {
 
     @Bean
-    public KieServices kieServices() {
-        return KieServices.Factory.get();
-    }
+    public KieServices kieServices() { return KieServices.Factory.get(); }
 
     @Bean
     public KieContainer kieContainer(KieServices kieServices) {

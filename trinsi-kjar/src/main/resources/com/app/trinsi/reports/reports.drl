@@ -15,24 +15,68 @@ rule "Report missing exercises"
         $category: CATEGORY()
         $exerciseType: EXERCISE_TYPE()
         not (MissingExercises($exerciseType == exerciseType, $category == category))
-        $n: Integer() from accumulate(
+        accumulate(
             $e : Exercise(
             $category == exerciseWeight,
             $exerciseType == exerciseType),
-            init (int count = 0;),
-            action (count += 1;),
-            result (count)
+            $exercises: collectList($e)
+        )
+        accumulate(
+            $p : UserPlanner(
+            $category == category,
+            $exerciseType == exerciseType),
+            $userPlanners: collectList($p)
+        )
+        eval($userPlanners.size() == 0)
+    then
+        insert(new MissingExercises($exerciseType, $category, 0));
+end
+
+rule "Report missing exercises 2"
+    agenda-group "reports"
+    when
+        $category: CATEGORY()
+        $exerciseType: EXERCISE_TYPE()
+        not (MissingExercises($exerciseType == exerciseType, $category == category))
+        accumulate(
+            $e : Exercise(
+            $category == exerciseWeight,
+            $exerciseType == exerciseType),
+            $exercises: collectList($e)
         )
         $m: Integer() from accumulate(
             $p : UserPlanner(
             $category == category,
             $exerciseType == exerciseType,
             $nof: numOfExercise),
-            init (int max = 0;),
-            action (max = Math.max(max, $nof);),
-            result (max)
+            max ($nof)
         )
     then
-        insert(new MissingExercises($exerciseType, $category, Math.max(0, $m - $n)));
+        insert(new MissingExercises($exerciseType, $category, Math.max(0, $m - $exercises.size())));
 end
 
+
+//rule "Report missing exercises"
+//    agenda-group "reports"
+//    when
+//        $category: CATEGORY()
+//        $exerciseType: EXERCISE_TYPE()
+//        not (MissingExercises($exerciseType == exerciseType, $category == category))
+//        accumulate(
+//            $e : Exercise(
+//            $category == exerciseWeight,
+//            $exerciseType == exerciseType),
+//            $exercises: collectList($e)
+//        )
+//        $m: Integer() from accumulate(
+//            $p : UserPlanner(
+//            $category == category,
+//            $exerciseType == exerciseType,
+//            $nof: numOfExercise),
+//            init (int max = 0;),
+//            action (max = Math.max(max, $nof);),
+//            result (max)
+//        )
+//    then
+//        insert(new MissingExercises($exerciseType, $category, Math.max(0, $m - $exercises.size())));
+//end

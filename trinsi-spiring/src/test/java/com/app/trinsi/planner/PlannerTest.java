@@ -46,6 +46,9 @@ public class PlannerTest {
         assertEquals(userPlanner.getExerciseType(), EXERCISE_TYPE.CARDIO);
         assertEquals(userPlanner.getTargetPulse(), 154);
         assertEquals(userPlanner.getExercises().size(), userPlanner.getNumOfExercise());
+        for (Exercise e: userPlanner.getExercises()) {
+            System.out.println(e.getId());
+        }
     }
 
     @Test
@@ -70,7 +73,6 @@ public class PlannerTest {
         assertEquals(userPlanner.getExerciseType(), EXERCISE_TYPE.CARDIO);
         assertEquals(userPlanner.getTargetPulse(), 140);
         assertEquals(userPlanner.getExercises().size(), userPlanner.getNumOfExercise());
-
     }
 
     private void insertData(KieSession kieSession) {
@@ -86,6 +88,10 @@ public class PlannerTest {
         kieSession.insert(new Exercise(10L, "ime10", "opis", EXERCISE_TYPE.WEIGHT_LOSS, CATEGORY.BEGINNER));
         kieSession.insert(new Exercise(11L, "ime11", "opis", EXERCISE_TYPE.WEIGHT_LOSS, CATEGORY.MIDDLE));
         kieSession.insert(new Exercise(12L, "ime12", "opis", EXERCISE_TYPE.WEIGHT_LOSS, CATEGORY.ADVANCED));
+        kieSession.insert(new Exercise(13L, "ime13", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
+        kieSession.insert(new Exercise(14L, "ime14", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.MIDDLE));
+        kieSession.insert(new Exercise(15L, "ime15", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
+        kieSession.insert(new Exercise(16L, "ime16", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.MIDDLE));
     }
 
     @Test
@@ -102,7 +108,7 @@ public class PlannerTest {
         if (results.hasMessages(Message.Level.WARNING, Message.Level.ERROR)){
             List<Message> messages = results.getMessages(Message.Level.WARNING, Message.Level.ERROR);
             for (Message message : messages) {
-                System.out.println("Error: "+message.getText());
+                System.out.println("Error: " + message.getText());
             }
 
             throw new IllegalStateException("Compilation errors were found. Check the logs.");
@@ -118,7 +124,7 @@ public class PlannerTest {
 
 //        PrintWriter printWriter = null;
 //        try {
-//            printWriter = new PrintWriter("src/main/resources/jbg.drl");
+//            printWriter = new PrintWriter("src/main/resources/s.drl");
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
 //        }

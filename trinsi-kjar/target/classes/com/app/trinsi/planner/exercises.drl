@@ -10,9 +10,9 @@ import com.app.trinsi.model.UserPlanner;
 
 rule "Add exercises"
     agenda-group "planner"
-    salience -10
+    salience (($num + $exercises.size())  * -1)
     when
-        $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises, $category: category,
+        $p: UserPlanner($num: numOfExercise, exercises.size() < numOfExercise, $exercises: exercises, $category: category,
                         $exerciseType: exerciseType)
         $e: Exercise(!(this memberOf $exercises), exerciseWeight == $category, exerciseType == $exerciseType)
     then
@@ -22,16 +22,10 @@ end
 
 rule "Add exercises, fill"
     agenda-group "planner"
-    salience -100
+    salience (($num + $exercises.size())  * -1)
     when
-        $p: UserPlanner(exercises.size() < numOfExercise, $exercises: exercises)
+        $p: UserPlanner($num: numOfExercise, exercises.size() < numOfExercise, $exercises: exercises)
         $e: Exercise() from $exercises
-        $n: Integer() from accumulate(
-            Exercise(this == $e) from $exercises,
-            init (int count = 0;),
-            action (count += 1;),
-            result (count)
-        )
     then
         modify($p){addExercise($e);}
 end
