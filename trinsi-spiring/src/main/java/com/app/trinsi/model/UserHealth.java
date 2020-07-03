@@ -29,6 +29,7 @@ public class UserHealth {
     private int lowerBloodPressure;
     private int pulse;
     private double hoursOfExercise;
+    private double hoursOfExerciseThisWeek;
     private Date lastChanged;
     private boolean plannerTaken;
 
@@ -42,5 +43,7 @@ public class UserHealth {
         this.pulse = updateHealth.getPulse();
         this.lastChanged = new Date();
         this.plannerTaken = false;
+        this.hoursOfExercise = this.hoursOfExerciseThisWeek;
+        this.hoursOfExerciseThisWeek = 0.0;
     }
 }

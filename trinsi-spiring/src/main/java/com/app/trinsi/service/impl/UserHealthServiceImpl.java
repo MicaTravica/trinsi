@@ -33,6 +33,7 @@ public class UserHealthServiceImpl implements UserHealthService {
         health.setId(null);
         health.setLastChanged(new Date());
         health.setPlannerTaken(false);
+        health.setHoursOfExerciseThisWeek(0.0);
         UserHealth userHealth = userHealthRepository.save(health);
         userService.updateUserHealth(userHealth, username);
         return userHealth;
@@ -50,7 +51,7 @@ public class UserHealthServiceImpl implements UserHealthService {
     public void addTime(Long id, int minutes) throws ResourceNotFoundException, ResourceCantUpdateException {
         UserHealth userHealth = userHealthRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Health"));
         if (userHealth.isPlannerTaken()) {
-            userHealth.setHoursOfExercise(userHealth.getHoursOfExercise() + minutes / 60.0);
+            userHealth.setHoursOfExerciseThisWeek(userHealth.getHoursOfExerciseThisWeek() + minutes / 60.0);
             userHealth.setPlannerTaken(false);
             userHealthRepository.save(userHealth);
         } else {
@@ -58,7 +59,6 @@ public class UserHealthServiceImpl implements UserHealthService {
         }
     }
 
-    // dodati negede da se sati postavljaju na 0 kad kad unese health
     @Override
     public void setPlannerIsTaken(UserHealth userHealth) {
         userHealth.setPlannerTaken(true);

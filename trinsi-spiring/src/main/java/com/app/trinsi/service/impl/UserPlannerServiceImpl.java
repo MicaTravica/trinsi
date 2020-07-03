@@ -57,6 +57,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
             userPlanner = new UserPlanner();
         else
             userPlanner = userPlannerRepository.findById(user.getUserPlanner().getId()).orElse(new UserPlanner());
+        
         UserHealth userHealth = userHealthService.findById(user.getUserHealth().getId());
         if (userHealth.isPlannerTaken()) {
             return userPlanner;

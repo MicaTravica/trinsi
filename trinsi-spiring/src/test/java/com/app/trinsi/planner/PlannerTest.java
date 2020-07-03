@@ -31,7 +31,7 @@ public class PlannerTest {
         kieSession.getAgenda().getAgendaGroup("planner").setFocus();
         insertData(kieSession);
 
-        kieSession.insert(new UserHealth(1L, GENDER.FEMALE, 23, 180, 75, 120, 80, 55, 2, new Date(), false));
+        kieSession.insert(new UserHealth(1L, GENDER.FEMALE, 23, 180, 75, 120, 80, 55, 2, 0, new Date(), false));
         UserPlanner userPlanner = new UserPlanner();
         userPlanner.setExercises(new ArrayList<>());
 
@@ -46,9 +46,6 @@ public class PlannerTest {
         assertEquals(userPlanner.getExerciseType(), EXERCISE_TYPE.CARDIO);
         assertEquals(userPlanner.getTargetPulse(), 154);
         assertEquals(userPlanner.getExercises().size(), userPlanner.getNumOfExercise());
-        for (Exercise e: userPlanner.getExercises()) {
-            System.out.println(e.getId());
-        }
     }
 
     @Test
@@ -59,7 +56,7 @@ public class PlannerTest {
         kieSession.getAgenda().getAgendaGroup("planner").setFocus();
 
         insertData(kieSession);
-        kieSession.insert(new UserHealth(1L, GENDER.FEMALE, 23, 180, 73, 120, 80, 55, 2, new Date(), false));
+        kieSession.insert(new UserHealth(1L, GENDER.FEMALE, 23, 180, 73, 120, 80, 55, 2,0, new Date(), false));
         UserPlanner userPlanner = new UserPlanner(1L, CATEGORY.BEGINNER, 5, PHYSICAL_CHARACTERISTICS.SKINNY,
                 HEALTH_CONDITION.BAD, 3, 13, EXERCISE_TYPE.STRETCHES, 120, new ArrayList<>());
         kieSession.insert(userPlanner);
@@ -93,5 +90,5 @@ public class PlannerTest {
         kieSession.insert(new Exercise(15L, "ime15", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.BEGINNER));
         kieSession.insert(new Exercise(16L, "ime16", "opis", EXERCISE_TYPE.CARDIO, CATEGORY.MIDDLE));
     }
-    
+
 }

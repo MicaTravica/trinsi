@@ -15,6 +15,6 @@ public class UserHealthMapper {
         return new UserHealth(userHealthDTO.getId(), userHealthDTO.getGender(), userHealthDTO.getYears(),
                 userHealthDTO.getHeight(), userHealthDTO.getWeight(), userHealthDTO.getUpperBloodPressure(),
                 userHealthDTO.getLowerBloodPressure(), userHealthDTO.getPulse(), userHealthDTO.getHoursOfExercise(),
-                null,false);
+                0, null,false);
     }
 }
