@@ -41,6 +41,10 @@ export class UserService {
     return user;
   }
 
+  public getUserId() {
+    return this.getUserFromLocalStorage().id;
+  }
+
   public changePassword(changePassword: ChangePassword ) {
     return this.http.put(this.usersUrl + '/user/password', changePassword,
       {headers: authHttpOptions(this.authService.getToken()), responseType: 'text'});

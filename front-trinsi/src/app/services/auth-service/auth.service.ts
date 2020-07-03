@@ -41,4 +41,5 @@ export class AuthService {
     const info = jwt.decodeToken(token);
     return info.role[0].authority;
   }
+
 }

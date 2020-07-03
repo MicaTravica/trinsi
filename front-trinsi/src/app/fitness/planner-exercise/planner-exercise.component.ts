@@ -1,12 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
 import { UserPlanner } from 'src/app/models/user-planner/user-planner.model';
 import { Exercise } from 'src/app/models/exercise/exercise.model';
 import { PlannerService } from 'src/app/services/planner-service/planner.service';
 import { MatDialog } from '@angular/material';
 import { ViewExerciseComponent } from 'src/app/exercise/view-exercise/view-exercise.component';
-import { EXERCISE_TYPE } from 'src/app/models/enums/exercise-type.enum';
-import { CATEGORY } from 'src/app/models/enums/category.enum';
 import { PlannerTimeComponent } from '../planner-time/planner-time.component';
+import { HeartBeatTracking } from 'src/app/models/heart-beat-tracking/heart-beat-tracking.model';
+import { UserService } from 'src/app/services/user-service/user.service';
+import { AlarmService } from 'src/app/services/alarm-service/alarm.service';
+import { ToastrService } from 'ngx-toastr';
+import { HealthService } from 'src/app/services/health-service/health.service';
 
 @Component({
   selector: 'app-planner-exercise',
@@ -19,10 +22,16 @@ export class PlannerExerciseComponent implements OnChanges {
   @Output() refreshHealth = new EventEmitter();
   planner: UserPlanner = null;
   displayedColumns: string[] = ['name', 'type', 'weight', 'details'];
+  sim = false;
+  start: Date;
 
   constructor(
     private plannerService: PlannerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService,
+    private alarmService: AlarmService,
+    private toastr: ToastrService,
+    private healthService: HealthService
   ) { }
 
   ngOnChanges() {
@@ -61,4 +70,34 @@ export class PlannerExerciseComponent implements OnChanges {
     });
   }
 
+  async simulation() {
+    this.sim = true;
+    this.start = new Date();
+    const wait = (ms) => new Promise(res => setTimeout(res, ms));
+    const id = this.userService.getUserId();
+    let num = this.planner.targetPulse;
+    while (this.sim) {
+      const hbt = new HeartBeatTracking(id, num, this.planner.targetPulse, this.planner.healthCondition);
+      this.alarmService.heartBeatTracking(hbt).subscribe(
+        (data: string) => {
+          if (data !== '') {
+            this.toastr.warning(data);
+          }
+        }
+      );
+      num += 10;
+      await wait(5000);
+    }
+  }
+
+  stopSimulation() {
+    this.sim = false;
+    const stop = new Date().getTime() - this.start.getTime();
+    this.healthService.addTime(Math.round(stop / 60000)).subscribe(
+      () => {
+        this.toastr.success('Successfully add time!');
+        this.refreshHealth.emit();
+      }
+    );
+  }
 }

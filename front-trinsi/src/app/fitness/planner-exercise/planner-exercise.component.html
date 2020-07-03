@@ -14,8 +14,14 @@
             <td><h4>Health condition: {{planner.healthCondition}}</h4></td>
         </tr>
     </table>
-    <h2>Enter the time it took you to do the exercises: 
+    <h2 *ngIf="!sim">Enter the time it took you to do the exercises: 
         <button mat-raised-button color="primary" (click)="addTime()">Add time</button>
+    </h2>
+    <h2 *ngIf="!sim">Fitbit simulation: 
+        <button mat-raised-button color="primary" (click)="simulation()">Simulate</button>
+    </h2>
+    <h2 *ngIf="sim">Stop fitbit simulation: 
+        <button mat-raised-button color="primary" (click)="stopSimulation()">Stop</button>
     </h2>
     <table mat-table [dataSource]="planner.exercises" class="mat-elevation-z8">
         <ng-container matColumnDef="name">

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cded2b6d-a9f4-4ed5-ab95-a7252c38410c" name="Default Changelist" comment="">
+    <list default="true" id="dfdcc733-82dd-4eda-9a91-661ad86862dd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/UserHealthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/UserHealthMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserHealth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserHealth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserHealthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieContainerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieContainerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,22 +124,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593613501369" />
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom" timestamp="1593707998516">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1593809631045">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593707998516" />
-    <state width="1323" height="180" key="GridCell.Tab.0.center" timestamp="1593707998515">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593809631045" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1593809631045">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593707998515" />
-    <state width="1323" height="180" key="GridCell.Tab.0.left" timestamp="1593707998515">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593809631045" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1593809631045">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593707998515" />
-    <state width="1323" height="180" key="GridCell.Tab.0.right" timestamp="1593707998515">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593809631045" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1593809631045">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593707998515" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593809631045" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1591639227274">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

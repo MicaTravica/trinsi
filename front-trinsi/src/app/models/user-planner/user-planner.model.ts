@@ -15,18 +15,7 @@ export class UserPlanner {
     public numOfExercise: number;
     public repetition: number;
     public exerciseType: EXERCISE_TYPE;
+    public targetPulse: number;
     public exercises: Exercise[];
-
-    constructor(id: number, category: CATEGORY, numCategory: number, physicalCharacteristics: PHYSICAL_CHARACTERISTICS,
-                healthCondition: HEALTH_CONDITION, numOfExercise: number, repetition: number, exerciseType: EXERCISE_TYPE) {
-        this.id = id;
-        this.category = category;
-        this.numCategory = numCategory;
-        this.physicalCharacteristics = physicalCharacteristics;
-        this.healthCondition = healthCondition;
-        this.numOfExercise = numOfExercise;
-        this.repetition = repetition;
-        this.exerciseType = exerciseType;
-    }
 
 }
