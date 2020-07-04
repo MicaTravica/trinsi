@@ -4,17 +4,11 @@ import com.app.trinsi.model.Alarm;
 import com.app.trinsi.model.HEALTH_CONDITION;
 import com.app.trinsi.model.HeartBeatTracking;
 import org.drools.core.ClassObjectFilter;
-import org.drools.core.ClockType;
 import org.drools.core.time.SessionPseudoClock;
 import org.junit.jupiter.api.Test;
-import org.kie.api.KieBase;
-import org.kie.api.KieBaseConfiguration;
 import org.kie.api.KieServices;
-import org.kie.api.conf.EventProcessingOption;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.KieSessionConfiguration;
-import org.kie.api.runtime.conf.ClockTypeOption;
 
 import java.util.ArrayList;
 import java.util.Collection;

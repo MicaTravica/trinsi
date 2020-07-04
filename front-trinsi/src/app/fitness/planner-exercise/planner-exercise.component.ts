@@ -75,7 +75,7 @@ export class PlannerExerciseComponent implements OnChanges {
     this.start = new Date();
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     const id = this.userService.getUserId();
-    let num = this.planner.targetPulse;
+    let num = this.planner.targetPulse + 35;
     while (this.sim) {
       const hbt = new HeartBeatTracking(id, num, this.planner.targetPulse, this.planner.healthCondition);
       this.alarmService.heartBeatTracking(hbt).subscribe(
@@ -85,8 +85,8 @@ export class PlannerExerciseComponent implements OnChanges {
           }
         }
       );
-      num += 10;
-      await wait(5000);
+      num -= 1;
+      await wait(2000);
     }
   }
 

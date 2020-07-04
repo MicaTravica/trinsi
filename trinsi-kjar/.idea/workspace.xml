@@ -2,36 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfdcc733-82dd-4eda-9a91-661ad86862dd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/kmodule.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/kmodule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/alarm/alarm.drl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/trinsi/alarm/alarm.drl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/TrinsiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/TrinsiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieContainerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieContainerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/AlarmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/AlarmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/ExerciseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/RulesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/RulesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserHealthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserPlannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/controller/UserPlannerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/ExerciseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/ExerciseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserPlannerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/dto/UserPlannerDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/exceptions/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/exceptions/ResourceNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/HeartBeatTrackingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/mapper/HeartBeatTrackingMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserPlanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/model/UserPlanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserPlannerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserPlannerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/ExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/ExerciseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/MailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/AlarmServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/AlarmServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/ExerciseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/service/impl/UserPlannerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/alarms/AlarmTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/alarms/AlarmTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/planner/PlannerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/reports/ReportTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/reports/ReportTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/search/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/search/SearchTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,22 +125,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593613501369" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1593860939815">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1593870398506">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593860939815" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1593860939815">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593870398506" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1593870398505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593860939815" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1593860939815">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593870398505" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1593870398505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593860939815" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1593860939815">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593870398505" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1593870398505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593860939815" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593870398505" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1591639227274">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
