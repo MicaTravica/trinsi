@@ -1,23 +1,13 @@
 package com.app.trinsi.planner;
 
 import com.app.trinsi.model.*;
-import org.drools.modelcompiler.ExecutableModelProject;
 import org.junit.jupiter.api.Test;
 import org.kie.api.KieServices;
-import org.kie.api.builder.*;
-import org.kie.api.internal.utils.KieService;
-import org.kie.api.io.Resource;
-import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.internal.io.ResourceFactory;
-import org.kie.internal.utils.KieHelper;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,8 +16,8 @@ public class PlannerTest {
     @Test
     public void plannerNew() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("planner").setFocus();
         insertData(kieSession);
 
@@ -51,8 +41,8 @@ public class PlannerTest {
     @Test
     public void plannerUpdate() {
         KieServices kieServices = KieServices.Factory.get();
-        KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieContainer kieContainer = kieServices.getKieClasspathContainer();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("planner").setFocus();
 
         insertData(kieSession);

@@ -1,8 +1,6 @@
 package com.app.trinsi.mapper;
 
-import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.dto.HeartBeatTrackingDTO;
-import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.HeartBeatTracking;
 
 public class HeartBeatTrackingMapper {

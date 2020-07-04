@@ -17,7 +17,7 @@ public class SearchTest {
     public void searchEmptyParams() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -32,7 +32,7 @@ public class SearchTest {
     public void searchJustName() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -50,7 +50,7 @@ public class SearchTest {
     public void searchJustExerciseType() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -68,7 +68,7 @@ public class SearchTest {
     public void searchJustExerciseWeight() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -86,7 +86,7 @@ public class SearchTest {
     public void searchNameAndExerciseType() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -105,7 +105,7 @@ public class SearchTest {
     public void searchNameAndExerciseWeight() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -124,7 +124,7 @@ public class SearchTest {
     public void searchExerciseTypeAndExerciseWeight() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);
@@ -143,7 +143,7 @@ public class SearchTest {
     public void searchAllParams() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
 
         insertData(kieSession);

@@ -18,7 +18,7 @@ public class ReportTest {
     public void reportAllParams() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         kieSession.insert(CATEGORY.BEGINNER);
@@ -53,7 +53,7 @@ public class ReportTest {
     public void reportOneCategory() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         kieSession.insert(CATEGORY.BEGINNER);
@@ -84,7 +84,7 @@ public class ReportTest {
     public void reportOneExerciseType() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         kieSession.insert(CATEGORY.BEGINNER);
@@ -114,7 +114,7 @@ public class ReportTest {
     public void reportNoParams() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         insertData(kieSession);
@@ -130,7 +130,7 @@ public class ReportTest {
     public void reportMixedParams() {
         KieServices kieServices = KieServices.Factory.get();
         KieContainer kieContainer = kieServices.newKieClasspathContainer();
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         kieSession.insert(CATEGORY.BEGINNER);

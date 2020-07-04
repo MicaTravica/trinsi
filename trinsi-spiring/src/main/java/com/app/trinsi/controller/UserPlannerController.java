@@ -1,6 +1,5 @@
 package com.app.trinsi.controller;
 
-import com.app.trinsi.dto.ExerciseDTO;
 import com.app.trinsi.dto.ReportDTO;
 import com.app.trinsi.exceptions.MustUpdateHealthException;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
@@ -16,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -36,6 +36,7 @@ public class UserPlannerController extends BaseController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('REGULAR')")
     public ResponseEntity<UserPlannerDTO> getUserPlanner(Principal principal) throws UserNotFoundByUsernameException,
             ResourceNotFoundException, MustUpdateHealthException {
         User user = userService.findOneByUsername(principal.getName());
@@ -46,6 +47,7 @@ public class UserPlannerController extends BaseController {
     }
 
     @PostMapping(value = "/reports", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> reports(@RequestBody ReportDTO params) {
         Collection<MissingExercises> result = userPlannerService.reports(params.getCategories(), params.getExerciseTypes());
         return new ResponseEntity<>(result, HttpStatus.OK);

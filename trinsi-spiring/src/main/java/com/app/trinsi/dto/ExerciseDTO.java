@@ -2,7 +2,6 @@ package com.app.trinsi.dto;
 
 import com.app.trinsi.model.CATEGORY;
 import com.app.trinsi.model.EXERCISE_TYPE;
-import com.app.trinsi.model.Exercise;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

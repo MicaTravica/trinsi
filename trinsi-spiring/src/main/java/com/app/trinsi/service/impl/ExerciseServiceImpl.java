@@ -4,7 +4,6 @@ import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.model.*;
 import com.app.trinsi.repository.ExerciseRepository;
 import com.app.trinsi.service.ExerciseService;
-import com.app.trinsi.service.UserPlannerService;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight) {
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("search").setFocus();
         Collection<Exercise> exercises = findAll();
         for (Exercise exercise: exercises) {

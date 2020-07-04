@@ -4,11 +4,8 @@ import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.model.CATEGORY;
 import com.app.trinsi.model.EXERCISE_TYPE;
 import com.app.trinsi.model.Exercise;
-import com.app.trinsi.model.MissingExercises;
-import org.springframework.data.domain.Page;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 public interface ExerciseService {
 

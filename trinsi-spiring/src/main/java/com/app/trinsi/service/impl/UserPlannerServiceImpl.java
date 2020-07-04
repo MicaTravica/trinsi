@@ -37,7 +37,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public UserPlanner getUserPlanner(UserPlanner userPlanner, UserHealth userHealth) {
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("planner").setFocus();
         kieSession.insert(userPlanner);
         kieSession.insert(userHealth);
@@ -89,7 +89,7 @@ public class UserPlannerServiceImpl implements UserPlannerService {
 
     @Override
     public Collection<MissingExercises> reports(HashSet<CATEGORY> categories, HashSet<EXERCISE_TYPE> exerciseTypes) {
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("cepRealtimeClock");
         kieSession.getAgenda().getAgendaGroup("reports").setFocus();
 
         if (categories.size() == 0) {

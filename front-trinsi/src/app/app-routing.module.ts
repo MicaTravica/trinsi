@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
   { path: 'change-password', component: ChangePasswordComponent, canActivate: [RoleGuard],
    data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
-  { path: 'exercises', component: ListExerciseComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN|ROLE_REGULAR'}},
+  { path: 'exercises', component: ListExerciseComponent},
   { path: 'planner', component: FitnessComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_REGULAR'}},
   { path: 'reports', component: ReportsComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},
   { path: 'rules', component: AddRulesComponent, canActivate: [RoleGuard], data: {expectedRoles: 'ROLE_ADMIN'}},

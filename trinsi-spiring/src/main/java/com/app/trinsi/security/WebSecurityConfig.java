@@ -93,8 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 			.authorizeRequests()
-				.antMatchers(HttpMethod.GET,  "/trinsi/user/verify/**").permitAll()
-				.antMatchers(HttpMethod.POST,   "/trinsi/login", "/trinsi/registration").permitAll()
+				.antMatchers(HttpMethod.GET,  "/trinsi/user/verify/**", "trinsi/exercise/**").permitAll()
+				.antMatchers(HttpMethod.POST,   "/trinsi/login", "/trinsi/registration", "/trinsi/exercise/search").permitAll()
 				.anyRequest().authenticated();
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),

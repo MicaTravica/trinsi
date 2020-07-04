@@ -1,19 +1,16 @@
 package com.app.trinsi.controller;
 
 import com.app.trinsi.dto.ExerciseDTO;
-import com.app.trinsi.dto.ReportDTO;
 import com.app.trinsi.dto.SearchExercise;
 import com.app.trinsi.exceptions.ResourceNotFoundException;
 import com.app.trinsi.mapper.ExerciseMapper;
 import com.app.trinsi.model.Exercise;
-import com.app.trinsi.model.MissingExercises;
 import com.app.trinsi.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -37,12 +34,14 @@ public class ExerciseController extends BaseController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> addExercise(@RequestBody ExerciseDTO exerciseDTO) {
         Exercise exercise = exerciseService.addExercise(ExerciseMapper.toExercise(exerciseDTO));
         return new ResponseEntity<>(exercise.getId(), HttpStatus.OK);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> updateExercise(@RequestBody ExerciseDTO exerciseDTO) throws ResourceNotFoundException {
         Exercise exercise = exerciseService.updateExercise(ExerciseMapper.toExercise(exerciseDTO));
         return new ResponseEntity<>(exercise.getId(), HttpStatus.OK);

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -32,6 +33,7 @@ public class UserHealthController extends BaseController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('REGULAR')")
     public ResponseEntity<UserHealthDTO> getUserHealth(Principal principal) throws UserNotFoundByUsernameException {
         User user = userService.findOneByUsername(principal.getName());
         if (user.getUserHealth() == null)
@@ -41,18 +43,21 @@ public class UserHealthController extends BaseController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('REGULAR')")
     public ResponseEntity<Long> addHealth(@RequestBody UserHealthDTO userHealthDTO, Principal principal) throws ResourceNotFoundException {
         UserHealth userHealth = userHealthService.addHealth(UserHealthMapper.toHealth(userHealthDTO), principal.getName());
         return new ResponseEntity<>(userHealth.getId(), HttpStatus.OK);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('REGULAR')")
     public ResponseEntity<Long> updateHealth(@RequestBody UserHealthDTO userHealthDTO) throws ResourceNotFoundException {
         UserHealth userHealth = userHealthService.updateHealth(UserHealthMapper.toHealth(userHealthDTO));
         return new ResponseEntity<>(userHealth.getId(), HttpStatus.OK);
     }
 
     @PutMapping(path = "/time/{minutes}")
+    @PreAuthorize("hasRole('REGULAR')")
     public ResponseEntity addTime(Principal principal, @PathVariable int minutes) throws ResourceNotFoundException, ResourceCantUpdateException, UserNotFoundByUsernameException {
         User user = userService.findOneByUsername(principal.getName());
         if ( user.getUserHealth() == null && user.getUserPlanner() == null)
