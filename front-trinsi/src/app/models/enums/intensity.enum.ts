@@ -1,0 +1,5 @@
+export enum INTENSITY {
+    LIGHT = 'LIGHT',
+    MODERATE = 'MODERATE',
+    VIGOROUS = 'VIGOROUS'
+}

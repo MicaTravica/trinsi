@@ -1,7 +1,25 @@
 <div mat-dialog-content>
     <h4>Name: {{exercise.name}}</h4>
     <h4>Exercise type: {{exercise.exerciseType}}</h4>
-    <h4>Exercise weight: {{exercise.exerciseWeight}}</h4>
+    <h4 *ngIf="exercise.exerciseType == 'AEROBIC'">Intensity: {{exercise.intensity}}</h4>
+    <h4 *ngIf="exercise.exerciseType != 'AEROBIC'">Muscles group: {{exercise.musclesGroup}}</h4>
+    <mat-grid-list *ngIf="exercise.pictures.length > 0" cols="12" rowHeight="350px">
+        <mat-grid-tile>
+            <button mat-button *ngIf="activeImg != 0" (click)='previous()' color="primary" class="arrow">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan='10' style="background-color: black;">
+            <div>
+                <img mat-card-image src="{{exercise.pictures[activeImg].path}}" alt="Photo is not found">
+            </div>
+        </mat-grid-tile> 
+        <mat-grid-tile>
+            <button mat-button *ngIf="activeImg != exercise.pictures.length - 1" (click)='next()' color="primary"  class="arrow">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
     <p>Description: <br>{{exercise.description}}</p>
     <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
 </div>

@@ -1,9 +1,6 @@
 package com.app.trinsi.dto;
 
-import com.app.trinsi.model.CATEGORY;
-import com.app.trinsi.model.EXERCISE_TYPE;
-import com.app.trinsi.model.HEALTH_CONDITION;
-import com.app.trinsi.model.PHYSICAL_CHARACTERISTICS;
+import com.app.trinsi.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,14 +15,19 @@ import java.util.Collection;
 public class UserPlannerDTO {
 
     private Long id;
-    private CATEGORY category;
-    private int numCategory;
-    private PHYSICAL_CHARACTERISTICS physicalCharacteristics;
-    private HEALTH_CONDITION healthCondition;
-    private int numOfExercise;
-    private int repetition;
-    private EXERCISE_TYPE exerciseType;
-    private int targetPulse;
+    private ACTIVITY_LEVEL activityLevel;
+    private NUTRITION_LEVEL nutritionLevel;
+    private BLOOD_PRESSURE_CLASSIFICATION bloodPressureClassification;
+    private INTENSITY intensity;
+    private int setsMuscular;
+    private int repetitionMuscular;
+    private int numOfMinutesAerobic;
+    private int numOfMinutesAerobicWarmUp;
+    private int numOfSecondsStretching;
+    private int lowerPulseLimit;
+    private int upperPulseLimit;
+    private Collection<ExerciseDTO> exercisesWarmUp;
     private Collection<ExerciseDTO> exercises;
+    private Collection<ExerciseDTO> exercisesStretching;
 
 }

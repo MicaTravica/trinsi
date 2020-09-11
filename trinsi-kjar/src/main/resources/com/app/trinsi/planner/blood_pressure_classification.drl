@@ -1,0 +1,58 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.BLOOD_PRESSURE_CLASSIFICATION;
+//declare any global variables here
+
+
+rule "Hypertension, 2. phase"
+    agenda-group "planner"
+    when
+        $u: UserHealth(upperBloodPressure >= 160  || lowerBloodPressure >= 100 )
+        $p: UserPlanner()
+    then
+        System.out.println("Hypertension, 2. phase");
+        modify($p){setBloodPressureClassification(BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2);}
+
+end
+
+rule "Hypertension, 1. phase"
+    agenda-group "planner"
+    when
+        $u: UserHealth((upperBloodPressure >= 140 && upperBloodPressure < 160 && lowerBloodPressure < 100) ||
+            (lowerBloodPressure >= 90 && lowerBloodPressure < 100 && upperBloodPressure < 160))
+        $p: UserPlanner()
+    then
+        System.out.println("Hypertension, 1. phase");
+        modify($p){setBloodPressureClassification(BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1);}
+
+end
+
+
+rule "Prehypertension"
+    agenda-group "planner"
+    when
+        $u: UserHealth((upperBloodPressure >= 120 && upperBloodPressure < 140 && lowerBloodPressure < 90) ||
+            (lowerBloodPressure >= 80 && lowerBloodPressure < 90 && upperBloodPressure < 140))
+        $p: UserPlanner()
+    then
+        System.out.println("Prehypertension");
+        modify($p){setBloodPressureClassification(BLOOD_PRESSURE_CLASSIFICATION.PREHYPERTENSION);}
+
+end
+
+
+//Normalno
+//Ne pripada ni jednoj od prethodnih grupa
+rule "Normal"
+    agenda-group "planner"
+    when
+        $u: UserHealth(upperBloodPressure < 120, lowerBloodPressure < 80)
+        $p: UserPlanner()
+    then
+        System.out.println("Normal");
+        modify($p){setBloodPressureClassification(BLOOD_PRESSURE_CLASSIFICATION.NORMAL);}
+
+end

@@ -1,0 +1,151 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.QuestionnairePA;
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.ACTIVITY_LEVEL;
+//declare any global variables here
+
+rule "Calculate vigorous"
+    agenda-group "planner"
+    salience 100
+    when
+        $q: QuestionnairePA($vigorousDays: vigorousDays, $vigorousMinutes: vigorousMinutes)
+    then
+        System.out.println("questionnaire vigorous");
+        modify($q){setVigorous(8 * $vigorousMinutes * $vigorousDays);}
+
+end
+
+rule "Calculate moderate"
+    agenda-group "planner"
+    salience 100
+    when
+        $q: QuestionnairePA($moderateDays: moderateDays, $moderateMinutes: moderateMinutes)
+    then
+        System.out.println("questionnaire moderate");
+        modify($q){setModerate(4 * $moderateMinutes * $moderateDays);}
+
+end
+
+rule "Calculate walking"
+    agenda-group "planner"
+    salience 100
+    when
+        $q: QuestionnairePA($walkingDays: walkingDays, $walkingMinutes: walkingMinutes)
+    then
+        System.out.println("questionnaire walking");
+        modify($q){setWalking(3.3 * $walkingMinutes * $walkingDays);}
+
+end
+
+rule "Activity level active 1"
+    agenda-group "planner"
+    salience 20
+    when
+        QuestionnairePA(vigorousDays >= 3, vigorous >= 1500)
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("active");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.ACTIVE);}
+
+end
+
+rule "Activity level active 2"
+    agenda-group "planner"
+    salience 20
+    when
+        QuestionnairePA(vigorousDays == 7, moderateDays == 7, walkingDays == 7, $sum: (vigorous + moderate + walking),
+            $sum >= 3000)
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("active 2");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.ACTIVE);}
+
+end
+
+rule "Activity level minimum active 1"
+    agenda-group "planner"
+    salience 10
+    when
+        QuestionnairePA(vigorousDays >= 3 , vigorousMinutes >= 20)
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("active m 1");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.MINIMUM);}
+
+end
+
+rule "Activity level minimum active 2"
+    agenda-group "planner"
+    salience 10
+    when
+        QuestionnairePA((moderateDays >= 5 && moderateMinutes >= 30)  ||
+            (walkingDays >= 5 && walkingMinutes >= 30))
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("active m 2");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.MINIMUM);}
+
+end
+
+rule "Activity level minimum active 3"
+    agenda-group "planner"
+    salience 10
+    when
+        QuestionnairePA(vigorousDays >= 5 ,moderateDays >= 5, walkingDays >= 5, $sum: (vigorous + moderate + walking),
+            $sum >= 600)
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("active m 3");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.MINIMUM);}
+
+end
+
+rule "Activity level inactive"
+    agenda-group "planner"
+    when
+        QuestionnairePA()
+        $p: UserPlanner(activityLevel == null)
+    then
+        System.out.println("inactive");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.INACTIVE);}
+
+end
+
+rule "Activity level inactive, minutes"
+    agenda-group "planner"
+    when
+        not(QuestionnairePA())
+        UserHealth(minutesOfExercise < 600)
+        $p: UserPlanner()
+    then
+        System.out.println("nema q, inactive");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.INACTIVE);}
+end
+
+rule "Activity level minimum active, minutes"
+    agenda-group "planner"
+    when
+        not(QuestionnairePA())
+        UserHealth(minutesOfExercise >= 600, minutesOfExercise < 1500)
+        $p: UserPlanner()
+    then
+        System.out.println("nema q, active m");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.MINIMUM);}
+
+end
+
+rule "Activity level active, minutes"
+    agenda-group "planner"
+    when
+        not(QuestionnairePA())
+        UserHealth(minutesOfExercise >= 1500)
+        $p: UserPlanner()
+    then
+        System.out.println("nema q, active ");
+        modify($p){setActivityLevel(ACTIVITY_LEVEL.ACTIVE);}
+
+end
+

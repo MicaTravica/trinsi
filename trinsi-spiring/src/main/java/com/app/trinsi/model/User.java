@@ -20,24 +20,19 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank(message = "Name can not be empty string")
+
 	private String name;
-	
-	@NotBlank(message = "Surname can not be empty string")
+
 	private String surname;
-	
-	@Email(message="Email should be valid")
+
 	@Column(unique=true, length=100)
 	private String email;
 	
 	private boolean verified;
-	
-	@NotBlank(message = "Username can not be empty string")
+
 	@Column(unique=true, length=100)
 	private String username;
-	
-	@Size(min = 8, message = "Password must be at least {value}")
+
 	private String password;
 
 	@Enumerated(EnumType.STRING)

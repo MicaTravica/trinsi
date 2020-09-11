@@ -7,6 +7,7 @@ public class HeartBeatTrackingMapper {
 
     public static HeartBeatTracking toHeartBeatTracking(HeartBeatTrackingDTO heartBeatTrackingDTO) {
         return new HeartBeatTracking(heartBeatTrackingDTO.getUserId(), heartBeatTrackingDTO.getCurrentPulse(),
-                heartBeatTrackingDTO.getTargetPulse(), heartBeatTrackingDTO.getHealthCondition());
+                heartBeatTrackingDTO.getLowerPulseLimit(), heartBeatTrackingDTO.getUpperPulseLimit(),
+                heartBeatTrackingDTO.getBloodPressureClassification(), heartBeatTrackingDTO.getNutritionLevel());
     }
 }

@@ -1,0 +1,29 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+//declare any global variables here
+
+rule "Is old adult"
+    agenda-group "planner"
+    salience 1000
+    when
+        UserHealth(years > 64)
+        $p: UserPlanner()
+    then
+        System.out.println("old true");
+        modify($p){ setOld(true);}
+end
+
+rule "Is not old adult"
+    agenda-group "planner"
+    salience 1000
+    when
+        UserHealth(years <= 64)
+        $p: UserPlanner()
+    then
+        System.out.println("old false");
+        modify($p){ setOld(false);}
+end
+

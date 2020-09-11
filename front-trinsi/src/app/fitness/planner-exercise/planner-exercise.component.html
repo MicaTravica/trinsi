@@ -6,12 +6,12 @@
 <div *ngIf='taken && planner!=null && planner.id!=null'>
     <table class="datatable">
         <tr class="data">
-            <td><h4>Category: {{planner.category}}</h4></td>
-            <td><h4>Num of exercises in category: {{planner.numCategory}}</h4></td>
+            <td><h4>Activity level: {{planner.activityLevel}}</h4></td>
+            <td><h4>Nutrition level: {{planner.nutritionLevel}}</h4></td>
         </tr>
         <tr class="data">
-            <td><h4>Physical characteristics: {{planner.physicalCharacteristics}}</h4></td>
-            <td><h4>Health condition: {{planner.healthCondition}}</h4></td>
+            <td><h4>Blood pressure classification: {{planner.bloodPressureClassification}}</h4></td>
+            <td><h4>Intensity: {{planner.intensity}}</h4></td>
         </tr>
     </table>
     <h2 *ngIf="!sim">Enter the time it took you to do the exercises: 
@@ -23,7 +23,7 @@
     <h2 *ngIf="sim">Stop fitbit simulation: 
         <button mat-raised-button color="primary" (click)="stopSimulation()">Stop</button>
     </h2>
-    <table mat-table [dataSource]="planner.exercises" class="mat-elevation-z8">
+    <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -33,10 +33,14 @@
             <th mat-header-cell *matHeaderCellDef> Exercise type </th>
             <td mat-cell *matCellDef="let element"> {{element.exerciseType}} </td>
         </ng-container>
-    
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Repetition </th>
-            <td mat-cell *matCellDef="let element"> {{planner.repetition}} </td>
+        <ng-container matColumnDef="repetitions">
+            <th mat-header-cell *matHeaderCellDef> Repetitions/duration </th>
+            <td mat-cell *matCellDef="let element"> 
+                <p *ngIf="element.exerciseType == 'STRETCHES'" > Seconds: {{planner.numOfSecondsStretching}}</p> 
+                <p *ngIf="element.exerciseType == 'MUSCULAR'" > Sets: {{planner.setsMuscular}}, repetitions: {{planner.repetitionMuscular}}</p> 
+                <p *ngIf="element.exerciseType == 'AEROBIC' && !warmUp(element)" > Minutes: {{planner.numOfMinutesAerobic}} </p> 
+                <p *ngIf="element.exerciseType == 'AEROBIC' && warmUp(element)" > Minutes: {{planner.numOfMinutesAerobicWarmUp}} </p>
+            </td>
         </ng-container>
     
         <ng-container matColumnDef="details">

@@ -2,30 +2,110 @@ package com.app.trinsi.planner
 
 //list any import classes here.
 import com.app.trinsi.model.EXERCISE_TYPE;
-import com.app.trinsi.model.HEALTH_CONDITION;
-import com.app.trinsi.model.PHYSICAL_CHARACTERISTICS;
+import com.app.trinsi.model.INTENSITY;
+import com.app.trinsi.model.MUSCLES_GROUP;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.UserPlanner;
 //declare any global variables here
 
-rule "Add exercises"
-    agenda-group "planner"
-    salience (($num + $exercises.size())  * -1)
+rule "Add exercises aerobic"
+    agenda-group "calculate"
+    salience -100
     when
-        $p: UserPlanner($num: numOfExercise, exercises.size() < numOfExercise, $exercises: exercises, $category: category,
-                        $exerciseType: exerciseType)
-        $e: Exercise(!(this memberOf $exercises), exerciseWeight == $category, exerciseType == $exerciseType)
+        $p: UserPlanner(numOfMinutesAerobic > 0, $intensity: intensity, $exercises: exercises)
+        accumulate (
+            $ex : Exercise(
+            intensity == $intensity,
+            exerciseType == EXERCISE_TYPE.AEROBIC) from $exercises,
+            $exercisesList: collectList($ex)
+        )
+        eval($exercisesList.size() == 0)
+        $e: Exercise(!(this memberOf $exercises), intensity == $intensity, exerciseType == EXERCISE_TYPE.AEROBIC)
     then
-        modify($p){addExercise($e);}
-
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercises().add($e);}
 end
 
-rule "Add exercises, fill"
-    agenda-group "planner"
-    salience (($num + $exercises.size())  * -1)
+rule "Add exercises muscular"
+    agenda-group "calculate"
+    salience -100
     when
-        $p: UserPlanner($num: numOfExercise, exercises.size() < numOfExercise, $exercises: exercises)
-        $e: Exercise() from $exercises
+        $p: UserPlanner($numOfExerciseMuscular: numOfExerciseMuscular, $exercises: exercises, $musclesGroup: musclesGroup)
+        accumulate (
+            $ex : Exercise(
+            musclesGroup == $musclesGroup,
+            exerciseType == EXERCISE_TYPE.MUSCULAR) from $exercises,
+            $exercisesList: collectList($ex)
+        )
+        eval($exercisesList.size() < $numOfExerciseMuscular)
+        $e: Exercise(!(this memberOf $exercises), musclesGroup == $musclesGroup, exerciseType == EXERCISE_TYPE.MUSCULAR)
     then
-        modify($p){addExercise($e);}
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercises().add($e);}
 end
+
+rule "Add exercises stretches"
+    agenda-group "calculate"
+    salience -100
+    when
+        $p: UserPlanner($exercises: exercisesStretching)
+        $e: Exercise(!(this memberOf $exercises), $musclesGroup: musclesGroup, exerciseType == EXERCISE_TYPE.STRETCHES)
+        accumulate (
+            $ex : Exercise(
+            musclesGroup == $musclesGroup,
+            exerciseType == EXERCISE_TYPE.STRETCHES) from $exercises,
+            $exercisesList: collectList($ex)
+        )
+        eval($exercisesList.size() == 0)
+    then
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercisesStretching().add($e);}
+end
+
+rule "Add exercises stretches, muscles group"
+    agenda-group "calculate"
+    salience -100
+    when
+        $p: UserPlanner(numOfExerciseMuscular > 0, $exercises: exercisesStretching, $musclesGroup: musclesGroup)
+        $e: Exercise(!(this memberOf $exercises), musclesGroup == $musclesGroup, exerciseType == EXERCISE_TYPE.STRETCHES)
+    then
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercisesStretching().add($e);}
+end
+
+rule "Add exercises aerobic, warm-up, light intensity 1"
+    agenda-group "calculate"
+    salience -100
+    when
+        $p: UserPlanner(intensity == INTENSITY.LIGHT || intensity == INTENSITY.MODERATE, $exercises: exercisesWarmUp)
+        accumulate (
+            $ex : Exercise(
+            intensity == INTENSITY.LIGHT,
+            exerciseType == EXERCISE_TYPE.AEROBIC) from $exercises,
+            $exercisesList: collectList($ex)
+        )
+        eval($exercisesList.size() == 0)
+        $e: Exercise(intensity == INTENSITY.LIGHT, exerciseType == EXERCISE_TYPE.AEROBIC)
+    then
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercisesWarmUp().add($e);}
+end
+
+rule "Add exercises aerobic, warm-up, moderate intensity"
+    agenda-group "calculate"
+    salience -100
+    when
+        $p: UserPlanner(intensity == INTENSITY.VIGOROUS, $exercises: exercisesWarmUp)
+        accumulate (
+            $ex : Exercise(
+            intensity == INTENSITY.MODERATE,
+            exerciseType == EXERCISE_TYPE.AEROBIC) from $exercises,
+            $exercisesList: collectList($ex)
+        )
+        eval($exercisesList.size() == 0)
+        $e: Exercise(intensity == INTENSITY.MODERATE, exerciseType == EXERCISE_TYPE.AEROBIC)
+    then
+        System.out.println($e.getId() + "***** ");
+        modify($p){getExercisesWarmUp().add($e);}
+end
+

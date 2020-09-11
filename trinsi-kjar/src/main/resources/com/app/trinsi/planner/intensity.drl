@@ -1,0 +1,101 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.ACTIVITY_LEVEL;
+import com.app.trinsi.model.BLOOD_PRESSURE_CLASSIFICATION;
+import com.app.trinsi.model.INTENSITY;
+//declare any global variables here
+
+global INTENSITY gIntensity;
+
+rule "Initialize"
+    agenda-group "planner"
+    lock-on-active
+    salience (Integer.MAX_VALUE)
+    when
+        $p: UserPlanner($intensity: intensity)
+    then
+        System.out.println("init intensity");
+        kcontext.getKieRuntime().setGlobal("gIntensity", $intensity);
+end
+
+rule "Intensity changed, restart num"
+    agenda-group "planner"
+    lock-on-active
+    salience -1
+    when
+        $p: UserPlanner(intensity != gIntensity || intensity == null)
+    then
+        System.out.println("reset intensity");
+        modify($p){setNumIntensity(0);}
+
+end
+
+rule "Intensity inc num"
+    agenda-group "calculate"
+    lock-on-active
+    salience 100
+    when
+        $p: UserPlanner($numIntensity: numIntensity)
+    then
+        System.out.println("inc intensity");
+        modify($p){setNumIntensity($numIntensity + 1);}
+
+end
+
+rule "Light intensity"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.INACTIVE)
+    then
+        System.out.println("Light");
+        modify($p){setIntensity(INTENSITY.LIGHT);}
+
+end
+
+rule "Moderate intensity 1"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.MINIMUM)
+    then
+        System.out.println("Moderate");
+        modify($p){setIntensity(INTENSITY.MODERATE);}
+
+end
+
+rule "Moderate intensity 2"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.ACTIVE &&
+            (bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+            bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2) && old == false)
+    then
+        System.out.println("Moderate 2");
+        modify($p){setIntensity(INTENSITY.MODERATE);}
+
+end
+
+rule "Moderate intensity 3"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.ACTIVE, old == true)
+    then
+        System.out.println("Moderate 3");
+        modify($p){setIntensity(INTENSITY.MODERATE);}
+
+end
+
+rule "Vigorous intensity"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.ACTIVE,
+            bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1,
+            bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2,
+            old == false)
+    then
+        System.out.println("Vigorous");
+        modify($p){setIntensity(INTENSITY.VIGOROUS);}
+
+end

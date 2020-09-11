@@ -1,0 +1,62 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.NUTRITION_LEVEL;
+//declare any global variables here
+
+
+rule "Calculate BMI"
+    agenda-group "planner"
+    salience 100
+    when
+        UserHealth($height: height, $weight: weight)
+        $p: UserPlanner()
+    then
+        System.out.println("bmi");
+        modify($p){setBmi($weight / Math.pow($height/100, 2.0));}
+
+end
+
+
+rule "Nutrition level underweight"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(bmi < 18.5)
+    then
+        System.out.println("Underweight");
+        modify($p){setNutritionLevel(NUTRITION_LEVEL.UNDERWEIGHT);}
+
+end
+
+rule "Nutrition level normal"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(bmi >= 18.5, bmi < 25)
+    then
+        System.out.println("Normal");
+        modify($p){setNutritionLevel(NUTRITION_LEVEL.NORMAL);}
+
+end
+
+rule "Nutrition level overweight"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(bmi >= 25, bmi < 30)
+    then
+        System.out.println("Overweight");
+        modify($p){setNutritionLevel(NUTRITION_LEVEL.OVERWEIGHT);}
+
+end
+
+
+rule "Nutrition level obesity"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(bmi >= 30)
+    then
+        System.out.println("Obesity");
+        modify($p){setNutritionLevel(NUTRITION_LEVEL.OBESITY);}
+
+end

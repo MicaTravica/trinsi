@@ -1,0 +1,46 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.ACTIVITY_LEVEL;
+//declare any global variables here
+
+rule "Aerobic minutes for inactive"
+    agenda-group "calculate"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.INACTIVE)
+    then
+        System.out.println("aer 10");
+        modify($p){setNumOfMinutesAerobic(10);}
+
+end
+
+rule "Aerobic minutes for minimum active"
+    agenda-group "calculate"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.MINIMUM, $ni: numIntensity)
+    then
+        System.out.println("aer 10 +");
+        modify($p){setNumOfMinutesAerobic(Math.min($ni / 2 + 10, 20));}
+
+end
+
+rule "Aerobic minutes for active"
+    agenda-group "calculate"
+    when
+        $p: UserPlanner(activityLevel == ACTIVITY_LEVEL.ACTIVE, $ni: numIntensity)
+    then
+        System.out.println("aer 20 +");
+        modify($p){setNumOfMinutesAerobic(Math.min($ni / 2 + 20, 30));}
+
+end
+
+rule "Aerobic minutes, warm-up"
+    agenda-group "calculate"
+    when
+        $p: UserPlanner()
+    then
+        System.out.println("aer warm up 10");
+        modify($p){setNumOfMinutesAerobicWarmUp(10);}
+
+end

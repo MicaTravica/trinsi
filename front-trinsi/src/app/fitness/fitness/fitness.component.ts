@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { HealthComponent } from '../health/health.component';
 import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
+import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 
 @Component({
   selector: 'app-fitness',
@@ -25,14 +26,19 @@ export class FitnessComponent implements OnInit {
   getHealth() {
     this.healthService.get().subscribe(
       (data: UserHealth) => {
-        this.health = data;
+        if (data.id == null) {
+          this.health = new UserHealth(null, null, null, null, null, null, null, null,
+            new Questionnaire(null, null, null, null, null, null));
+        } else {
+          this.health = data;
+        }
       }
     );
   }
 
   openHealth() {
     const dialogRef = this.dialog.open(HealthComponent, {
-      width: '33%',
+      width: '70%',
       data: this.health
     });
 
@@ -43,11 +49,11 @@ export class FitnessComponent implements OnInit {
     });
   }
 
-  sevenDays() {
+  twentyEightDays() {
     if (this.health != null && this.health.id != null && !this.health.plannerTaken) {
       const today = new Date();
       const seven = new Date(this.health.lastChanged);
-      seven.setDate(seven.getDate() + 7);
+      seven.setDate(seven.getDate() + 28);
       seven.setHours(0);
       seven.setMinutes(0);
       seven.setSeconds(0);

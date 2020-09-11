@@ -1,14 +1,16 @@
 package com.app.trinsi.search
 
 //list any import classes here.
-import com.app.trinsi.model.CATEGORY;
 import com.app.trinsi.model.Exercise;
 import com.app.trinsi.model.EXERCISE_TYPE;
+import com.app.trinsi.model.INTENSITY;
+import com.app.trinsi.model.MUSCLES_GROUP;
 import java.util.ArrayList;
 //declare any global variables here
 global String gName;
 global EXERCISE_TYPE gExerciseType;
-global CATEGORY gExerciseWeight;
+global INTENSITY gIntensity;
+global MUSCLES_GROUP gMusclesGroup;
 global ArrayList exercises;
 
 rule "Search exercises"
@@ -17,7 +19,8 @@ rule "Search exercises"
         $e: Exercise( $id: id )
         exerciseName( $id, gName; )
         exerciseType( $id, gExerciseType; )
-        exerciseWeight( $id, gExerciseWeight; )
+        exerciseIntensity( $id, gIntensity; )
+        exerciseMusclesGroup( $id, gMusclesGroup; )
     then
         exercises.add($e);
 end
@@ -27,11 +30,13 @@ query exerciseName(Long eId, String cName)
 end
 
 query exerciseType(Long eId, EXERCISE_TYPE cExerciseType)
-    Exercise(id == eId && exerciseType == cExerciseType ) or
-    Exercise(id == eId && cExerciseType == null)
+    Exercise(id == eId && (exerciseType == cExerciseType || cExerciseType == null))
 end
 
-query exerciseWeight(Long eId, CATEGORY cExerciseWeight)
-    Exercise(id == eId && exerciseWeight == cExerciseWeight ) or
-    Exercise(id == eId && cExerciseWeight == null)
+query exerciseIntensity(Long eId, INTENSITY cIntensity)
+    Exercise(id == eId && (intensity == cIntensity || cIntensity == null))
+end
+
+query exerciseMusclesGroup(Long eId, MUSCLES_GROUP cMusclesGroup)
+    Exercise(id == eId && (musclesGroup == cMusclesGroup || cMusclesGroup == null))
 end

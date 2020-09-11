@@ -1,0 +1,23 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserPlanner;
+//declare any global variables here
+
+rule "Seconds of exercise stretching"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(old == false)
+    then
+        System.out.println("30s");
+        modify($p){setNumOfSecondsStretching(30);}
+end
+
+rule "Seconds of exercise stretching, old people"
+    agenda-group "planner"
+    when
+        $p: UserPlanner(old == true)
+    then
+        System.out.println("60s");
+        modify($p){setNumOfSecondsStretching(60);}
+end

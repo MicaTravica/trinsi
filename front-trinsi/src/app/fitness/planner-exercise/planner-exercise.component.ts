@@ -21,7 +21,8 @@ export class PlannerExerciseComponent implements OnChanges {
   @Input() taken: boolean;
   @Output() refreshHealth = new EventEmitter();
   planner: UserPlanner = null;
-  displayedColumns: string[] = ['name', 'type', 'weight', 'details'];
+  displayedColumns: string[] = ['name', 'type', 'repetitions', 'details'];
+  exercises = [];
   sim = false;
   start: Date;
 
@@ -47,8 +48,19 @@ export class PlannerExerciseComponent implements OnChanges {
       (data: UserPlanner) => {
         this.refreshHealth.emit();
         this.planner = data;
+        this.exercises = this.planner.exercisesWarmUp.concat(this.planner.exercises, this.planner.exercisesWarmUp,
+          this.planner.exercisesStretching);
       }
     );
+  }
+
+  warmUp(exercise: Exercise) {
+    for (const e of this.planner.exercisesWarmUp) {
+      if (e.id === exercise.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   addTime() {
@@ -65,7 +77,7 @@ export class PlannerExerciseComponent implements OnChanges {
 
   details(exercise: Exercise) {
     const dialogRef = this.dialog.open(ViewExerciseComponent, {
-      width: '33%',
+      width: '70%',
       data: exercise
     });
   }
@@ -75,9 +87,10 @@ export class PlannerExerciseComponent implements OnChanges {
     this.start = new Date();
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     const id = this.userService.getUserId();
-    let num = this.planner.targetPulse + 35;
+    let num = this.planner.upperPulseLimit + 35;
     while (this.sim) {
-      const hbt = new HeartBeatTracking(id, num, this.planner.targetPulse, this.planner.healthCondition);
+      const hbt = new HeartBeatTracking(id, num, this.planner.lowerPulseLimit, this.planner.upperPulseLimit,
+        this.planner.bloodPressureClassification, this.planner.nutritionLevel);
       this.alarmService.heartBeatTracking(hbt).subscribe(
         (data: string) => {
           if (data !== '') {

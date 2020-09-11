@@ -2,8 +2,24 @@ mat-form-field, button, h1, mat-error {
   width: 96%;
   margin-left: 2%;
 }
-
+mat-error, label {
+  font-size: small;
+}
+label {
+  color: #F44336;
+}
 button {
   margin: 1%;
+}
+
+.two {
   width: 48%;
+}
+
+.three {
+  width: 31%;
+}
+
+.four {
+  width: 23%;
 }

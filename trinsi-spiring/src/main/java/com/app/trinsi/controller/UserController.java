@@ -35,6 +35,8 @@ import com.app.trinsi.model.User;
 import com.app.trinsi.security.TokenUtils;
 import com.app.trinsi.service.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("trinsi")
@@ -59,7 +61,7 @@ public class UserController extends BaseController {
 	@PostMapping(value="/login",
 				 consumes = MediaType.APPLICATION_JSON_VALUE,
 				 produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) throws UsernameNotFoundException {
+	public ResponseEntity<String> login(@Valid @RequestBody LoginDTO loginDTO) throws UsernameNotFoundException {
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(),
 				loginDTO.getPassword());
 		authenticationManager.authenticate(token);
@@ -70,7 +72,7 @@ public class UserController extends BaseController {
 	@PostMapping(value="/registration", 
 				 consumes = MediaType.APPLICATION_JSON_VALUE,
 				 produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String>registration(@RequestBody UserDTO userDTO) throws Exception {
+	public ResponseEntity<String>registration(@Valid @RequestBody UserDTO userDTO) throws Exception {
 		userService.registration(UserMapper.toUser(userDTO));
 		return new ResponseEntity<>("You are registered, now you need to verify your email", HttpStatus.OK);
 	}
@@ -85,7 +87,7 @@ public class UserController extends BaseController {
 	@PutMapping(value = "/user", 
 				consumes = MediaType.APPLICATION_JSON_VALUE, 
 				produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> updateUser(@RequestBody UserDTO userDto) throws Exception {
+	public ResponseEntity<String> updateUser(@Valid @RequestBody UserDTO userDto) throws Exception {
 		User changedUser = userService.update(UserMapper.toUser(userDto));
 		Collection<SimpleGrantedAuthority> nowAuthorities =
 				(Collection<SimpleGrantedAuthority>)SecurityContextHolder
@@ -101,7 +103,7 @@ public class UserController extends BaseController {
 	@PutMapping(value= "/user/password", 
 				consumes= MediaType.APPLICATION_JSON_VALUE, 
 				produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> changePassword(@RequestBody PasswordChangeDTO pcDto) throws Exception
+	public ResponseEntity<String> changePassword(@Valid @RequestBody PasswordChangeDTO pcDto) throws Exception
 	{
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		userService.changeUserPassword(pcDto, username);

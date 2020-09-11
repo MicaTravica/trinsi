@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins="*")
 @RequestMapping("trinsi/alarm")
@@ -24,7 +26,7 @@ public class AlarmController extends BaseController {
 
     @PostMapping()
     @PreAuthorize("hasRole('REGULAR')")
-    public ResponseEntity<String> addHBT(@RequestBody HeartBeatTrackingDTO heartBeatTracking) {
+    public ResponseEntity<String> addHBT(@Valid @RequestBody HeartBeatTrackingDTO heartBeatTracking) {
         Alarm alarm = alarmService.heartBeatTracking(HeartBeatTrackingMapper.toHeartBeatTracking(heartBeatTracking));
         if (alarm == null)
             return new ResponseEntity<>(null, HttpStatus.OK);

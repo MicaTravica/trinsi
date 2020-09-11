@@ -18,14 +18,39 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field>
-            <mat-select #weight='ngModel' [(ngModel)]="exercise.exerciseWeight" name="exerciseWeight" placeholder="Choose exercise weight">
-                <mat-option *ngFor="let c of category" [value]="c">
-                {{c}}
+        <mat-form-field *ngIf="exercise.exerciseType=='AEROBIC'">
+            <mat-select #weight='ngModel' [(ngModel)]="exercise.intensity" name="intensity" placeholder="Choose exercise intensity">
+                <mat-option *ngFor="let i of intensity" [value]="i">
+                {{i}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field *ngIf="exercise.exerciseType =='STRETCHES' || exercise.exerciseType == 'MUSCULAR'">
+            <mat-select #weight='ngModel' [(ngModel)]="exercise.musclesGroup" name="musclesGroup" placeholder="Choose exercise muscles group">
+                <mat-option *ngFor="let m of musclesGroup" [value]="m">
+                {{m}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="upload">
+            <div *ngIf="exercise.pictures.length > 0">
+                {{exercise.pictures.length}} files for this exercise:
+                <div *ngFor="let f of exercise.pictures; let i = index" [attr.data-index]="i">
+                    {{f.name}}
+                    <button  mat-raised-button class="btnu" type="button" (click)="remove(i)" color="primary" >Remove</button>
+                </div>
+            </div>
+            <input type="file" accept='image/*,video/*' (change)="upload($event)">
+        </div>
         <button mat-raised-button color="primary" type="submit" [disabled]="addExercise.form.invalid">Save</button>
         <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
     </form>
+</div>
+<div class="overlay" *ngIf="wait">
+    <div class="center">
+        <mat-progress-spinner diameter=50 
+                              mode="indeterminate" 
+                              color="accent">
+        </mat-progress-spinner> 
+    </div>
 </div>

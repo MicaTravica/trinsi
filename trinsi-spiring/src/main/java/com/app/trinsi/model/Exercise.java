@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,27 +19,29 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name can not be empty string")
-    @NotNull(message = "Name can not be null")
     @Column(unique = true)
     private String name;
 
-    @NotBlank(message = "Description can not be empty string")
-    @NotNull(message = "Description can not be null")
+    @Column(length = 3000)
     private String description;
 
-    @NotNull(message = "Exercise type can not be null")
     @Enumerated(EnumType.STRING)
     private EXERCISE_TYPE exerciseType;
 
-    @NotNull(message = "Exercise weight can not be null")
     @Enumerated(EnumType.STRING)
-    private CATEGORY exerciseWeight;
+    private INTENSITY intensity;
+
+    @Enumerated(EnumType.STRING)
+    private MUSCLES_GROUP musclesGroup;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Picture> pictures;
 
     public void update(Exercise updateExercise) {
         this.name = updateExercise.getName();
         this.description = updateExercise.getDescription();
-        this.exerciseType = updateExercise.getExerciseType();
-        this.exerciseWeight = updateExercise.getExerciseWeight();
+        this.intensity = updateExercise.getIntensity();
+        this.musclesGroup = updateExercise.getMusclesGroup();
+        this.pictures = updateExercise.getPictures();
     }
 }

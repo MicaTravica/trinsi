@@ -1,49 +1,126 @@
 <div mat-dialog-content>
-    <form #addHealth="ngForm" (ngSubmit)="onSubmit()" novalidate>
-        <h1>{{action}} health:</h1>
-        <mat-form-field>
-            <mat-select #gender='ngModel' [(ngModel)]="health.gender" name="gender" placeholder="Choose gender">
-                <mat-option *ngFor="let gen of genders" [value]="gen">
-                {{gen}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #years='ngModel'
-            [(ngModel)]="health.years" name="years" placeholder="Years">
-            <mat-error *ngIf="years.invalid && (years.dirty || years.touched)">Years is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #height='ngModel'
-            [(ngModel)]="health.height" name="height" placeholder="Height">
-            <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">Height is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #weight='ngModel'
-            [(ngModel)]="health.weight" name="weight" placeholder="Weight">
-            <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">Weight is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #upperBloodPressure='ngModel'
-            [(ngModel)]="health.upperBloodPressure" name="upperBloodPressure" placeholder="Upper blood pressure">
-            <mat-error *ngIf="upperBloodPressure.invalid && (upperBloodPressure.dirty || upperBloodPressure.touched)">Upper blood pressure is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #lowerBloodPressure='ngModel'
-            [(ngModel)]="health.lowerBloodPressure" name="lowerBloodPressure" placeholder="Lower blood pressure">
-            <mat-error *ngIf="lowerBloodPressure.invalid && (lowerBloodPressure.dirty || lowerBloodPressure.touched)">Lower blood pressure is required</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" required #pulse='ngModel'
-            [(ngModel)]="health.pulse" name="pulse" placeholder="Pulse">
-            <mat-error *ngIf="pulse.invalid && (pulse.dirty || pulse.touched)">Pulse is required</mat-error>
-        </mat-form-field>
-        <mat-form-field *ngIf="health.id==null">
-            <input matInput type="number" required #hoursOfExercise='ngModel'
-            [(ngModel)]="health.hoursOfExercise" name="hoursOfExercise" placeholder="Hours of exercise">
-            <mat-error *ngIf="hoursOfExercise.invalid && (hoursOfExercise.dirty || hoursOfExercise.touched)">Height is required</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="addHealth.form.invalid">Save</button>
-        <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
-    </form>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="addHealth">
+        <ng-template matStepLabel>{{action}} health</ng-template>
+        <form #addHealth="ngForm" novalidate>
+            <mat-form-field>
+                <input matInput type="number" required #years='ngModel'
+                [(ngModel)]="health.years" name="years" placeholder="Years">
+                <mat-error *ngIf="years.invalid && (years.dirty || years.touched)">Years is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" required #height='ngModel'
+                [(ngModel)]="health.height" name="height" placeholder="Height">
+                <mat-error *ngIf="height.invalid && (height.dirty || height.touched)">Height is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" required #weight='ngModel'
+                [(ngModel)]="health.weight" name="weight" placeholder="Weight">
+                <mat-error *ngIf="weight.invalid && (weight.dirty || weight.touched)">Weight is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" required #upperBloodPressure='ngModel'
+                [(ngModel)]="health.upperBloodPressure" name="upperBloodPressure" placeholder="Upper blood pressure">
+                <mat-error *ngIf="upperBloodPressure.invalid && (upperBloodPressure.dirty || upperBloodPressure.touched)">Upper blood pressure is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" required #lowerBloodPressure='ngModel'
+                [(ngModel)]="health.lowerBloodPressure" name="lowerBloodPressure" placeholder="Lower blood pressure">
+                <mat-error *ngIf="lowerBloodPressure.invalid && (lowerBloodPressure.dirty || lowerBloodPressure.touched)">Lower blood pressure is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" required #pulse='ngModel'
+                [(ngModel)]="health.pulse" name="pulse" placeholder="Pulse">
+                <mat-error *ngIf="pulse.invalid && (pulse.dirty || pulse.touched)">Pulse is required</mat-error>
+            </mat-form-field>    
+            <button class="two" mat-raised-button color="primary" type="button" matStepperNext [disabled]="addHealth.form.invalid">Next</button>
+            <button class="two" mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+        </form>
+    </mat-step>
+    <mat-step *ngIf="action == 'Add'" [stepControl]="question1">
+        <form  #question1="ngForm" novalidate>
+            <ng-template matStepLabel>Question 1</ng-template>
+            <p>
+                During the last 7 days, how many days did you participate in vigorous forms of physical activity such as lifting loads,
+                digging, fast cycling or a high-intensity group exercise program?
+            </p>
+            <mat-form-field>
+                <input matInput min="0" max="7" type="number" required #days1='ngModel'
+                [(ngModel)]="health.questionnaire.vigorousDays" name="days1" placeholder="Days">
+                <mat-error *ngIf="days1.invalid && (days1.dirty || days1.touched)">Days is required</mat-error>
+            </mat-form-field>
+            <p *ngIf="health.questionnaire.vigorousDays > 0">
+                How many minutes did you spend participating in vigorous physical activity on one of those days?
+            </p>
+            <mat-form-field *ngIf="health.questionnaire.vigorousDays > 0">
+                <input matInput min="1" type="number" required #minutes1='ngModel'
+                [(ngModel)]="health.questionnaire.vigorousMinutes" name="minutes1" placeholder="Minutes">
+                <mat-error *ngIf="minutes1.invalid && (minutes1.dirty || minutes1.touched)">Minutes is required</mat-error>
+            </mat-form-field>    
+            <button class="three" mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+            <button class="three" mat-raised-button color="primary" type="button" matStepperNext [disabled]="question1.form.invalid || 0 > days1 || days1 > 7">Next</button>
+            <button class="three" mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+        </form>
+    </mat-step>
+    <mat-step *ngIf="action == 'Add'" [stepControl]="question2">
+        <form  #question2="ngForm" novalidate>
+            <ng-template matStepLabel>Question 2</ng-template>
+            <p>
+                During the last 7 days, how many days did you participate in moderate forms of physical activity 
+                such as carrying light loads, moderate cycling or doubles tennis?
+            </p>
+            <mat-form-field>
+                <input matInput min="0" max="7" type="number" required #days2='ngModel'
+                [(ngModel)]="health.questionnaire.moderateDays" name="days2" placeholder="Days">
+                <mat-error *ngIf="days2.invalid && (days2.dirty || days2.touched)">Days is required</mat-error>
+            </mat-form-field>
+            <p *ngIf="health.questionnaire.moderateDays > 0">
+                How many minutes did you spend participating in moderate physical activity on one of those days?
+            </p>
+            <mat-form-field *ngIf="health.questionnaire.moderateDays > 0">
+                <input matInput min="1" type="number" required #minutes2='ngModel'
+                [(ngModel)]="health.questionnaire.moderateMinutes" name="minutes2" placeholder="Minutes">
+                <mat-error *ngIf="minutes2.invalid && (minutes2.dirty || minutes2.touched)">Minutes is required</mat-error>
+            </mat-form-field>    
+            <button class="three" mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+            <button class="three" mat-raised-button color="primary" type="button" matStepperNext [disabled]="question2.form.invalid">Next</button>
+            <button class="three" mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+        </form>
+    </mat-step>
+    <mat-step *ngIf="action == 'Add'" [stepControl]="question3">
+        <form  #question3="ngForm" novalidate>
+            <ng-template matStepLabel>Question 3</ng-template>
+            <p>
+                During the last 7 days, how many days did you walk for at least 10 minutes continuously?
+            </p>
+            <mat-form-field>
+                <input matInput min="0" max="7" type="number" required #days3='ngModel'
+                [(ngModel)]="health.questionnaire.walkingDays" name="days3" placeholder="Days">
+                <mat-error *ngIf="days3.invalid && (days3.dirty || days3.touched)">Days is required</mat-error>
+            </mat-form-field>
+            <p *ngIf="health.questionnaire.walkingDays > 0">
+                How many minutes did you spend walking in one of those days?
+            </p>
+            <mat-form-field *ngIf="health.questionnaire.walkingDays > 0">
+                <input matInput min="10" type="number" required #minutes3='ngModel'
+                [(ngModel)]="health.questionnaire.walkingMinutes" name="minutes3" placeholder="Minutes">
+                <mat-error *ngIf="minutes3.invalid && (minutes3.dirty || minutes3.touched)">Minutes is required</mat-error>
+            </mat-form-field>    
+            <button class="three" mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+            <button class="three" mat-raised-button color="primary" type="button" matStepperNext [disabled]="question3.form.invalid">Next</button>
+            <button class="three" mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+        </form>
+    </mat-step>
+    
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button class="four" mat-raised-button color="primary" mat-button matStepperPrevious>Back</button>
+        <button class="four" mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+        <button class="four" mat-raised-button color="primary" mat-button (click)="stepper.reset()">Reset</button>
+        <button class="four" mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>

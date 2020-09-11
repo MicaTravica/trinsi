@@ -21,20 +21,17 @@ public class UserHealth {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private GENDER gender;
     private int years;
     private double height;
     private double weight;
     private int upperBloodPressure;
     private int lowerBloodPressure;
     private int pulse;
-    private double hoursOfExercise;
-    private double hoursOfExerciseThisWeek;
+    private int minutesOfExercise;
     private Date lastChanged;
     private boolean plannerTaken;
 
     public void update(UserHealth updateHealth) {
-        this.gender = updateHealth.getGender();
         this.years = updateHealth.getYears();
         this.height = updateHealth.getHeight();
         this.weight = updateHealth.getWeight();
@@ -43,7 +40,6 @@ public class UserHealth {
         this.pulse = updateHealth.getPulse();
         this.lastChanged = new Date();
         this.plannerTaken = false;
-        this.hoursOfExercise = this.hoursOfExerciseThisWeek;
-        this.hoursOfExerciseThisWeek = 0.0;
+        this.minutesOfExercise = 0;
     }
 }

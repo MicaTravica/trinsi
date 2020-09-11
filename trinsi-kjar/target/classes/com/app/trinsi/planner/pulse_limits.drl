@@ -1,0 +1,49 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserHealth;
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.INTENSITY;
+//declare any global variables here
+
+rule "Calculate limits, intensity light"
+    agenda-group "planner"
+    salience -1
+    when
+        UserHealth($pulse: pulse, $hrr: (207 - (0.7 * years) - pulse))
+        $p: UserPlanner(intensity == INTENSITY.LIGHT)
+    then
+        System.out.println("limits light");
+        modify($p){
+            setLowerPulseLimit((int) (0.3 * $hrr + $pulse)),
+            setUpperPulseLimit((int) (0.4 * $hrr + $pulse));
+        }
+end
+
+rule "Calculate limits, intensity moderate"
+    agenda-group "planner"
+    salience -1
+    when
+        UserHealth($pulse: pulse, $hrr: (207 - (0.7 * years) - pulse))
+        $p: UserPlanner(intensity == INTENSITY.MODERATE)
+    then
+        System.out.println("limits moderate");
+        modify($p){
+            setLowerPulseLimit((int) (0.4 * $hrr + $pulse)),
+            setUpperPulseLimit((int) (0.6 * $hrr + $pulse));
+        }
+end
+
+rule "Calculate limits, intensity vigorous"
+    agenda-group "planner"
+    salience -1
+    when
+        UserHealth($pulse: pulse, $hrr: (207 - (0.7 * years) - pulse))
+        $p: UserPlanner(intensity == INTENSITY.VIGOROUS)
+    then
+        System.out.println("limits vigorous");
+        modify($p){
+            setLowerPulseLimit((int) (0.6 * $hrr + $pulse)),
+            setUpperPulseLimit((int) (0.9 * $hrr + $pulse));
+        }
+end

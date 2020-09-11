@@ -1,27 +1,30 @@
 package com.app.trinsi.alarm
 
 //list any import classes here.
-import com.app.trinsi.model.HEALTH_CONDITION;
+import com.app.trinsi.model.BLOOD_PRESSURE_CLASSIFICATION;
+import com.app.trinsi.model.NUTRITION_LEVEL;
 import com.app.trinsi.model.HeartBeatTracking;
 import com.app.trinsi.model.Alarm;
 //declare any global variables here
 
-rule "Breathe deeply, health condition bad"
-    salience $tp
+rule "Breathe deeply, hypertension"
+    salience 10
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 5), $tp < currentPulse, 
-        healthCondition == HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.05 * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+         bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ))
         not (Alarm(userId == $userId))
     then
         insert(new Alarm($userId, "Breathe deeply"));
         delete($hb1);
 end
 
-rule "Breathe deeply, health condition not bad"
-    salience $tp
+rule "Breathe deeply, no hypertension"
+    salience 10
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 5), $tp < currentPulse, 
-        healthCondition != HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.05  * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
@@ -36,22 +39,24 @@ rule "Breathe deeply, health condition not bad"
         delete($hb1);
 end
 
-rule "Take a break of 2 minutes, walk, health condition bad"
-    salience $tp
+rule "Take a break of 2 minutes, walk, hypertension"
+    salience 25
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 10), $tp < currentPulse, 
-        healthCondition == HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.1 * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ) )
         not (Alarm(userId == $userId))
     then
         insert(new Alarm($userId, "Take a break of 2 minutes, walk"));
         delete($hb1);
 end
 
-rule "Take a break of 2 minutes, walk, health condition not bad"
-    salience $tp
+rule "Take a break of 2 minutes, walk, no hypertension"
+    salience 25
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 10), $tp < currentPulse, 
-        healthCondition != HEALTH_CONDITION.BAD )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.1 * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
@@ -66,22 +71,26 @@ rule "Take a break of 2 minutes, walk, health condition not bad"
         delete($hb1);
 end
 
-rule "Take a break of 5 minutes, walk, health condition bad or middle"
-    salience $tp
+rule "Take a break of 5 minutes, walk, hypertension or obesity"
+    salience 50
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 20), $tp < currentPulse,
-                            healthCondition == HEALTH_CONDITION.BAD || healthCondition == HEALTH_CONDITION.MIDDLE)
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.2 * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2  ||
+        nutritionLevel == NUTRITION_LEVEL.OBESITY))
         not (Alarm(userId == $userId))
     then
         insert(new Alarm($userId, "Take a break of 5 minutes, walk"));
         delete($hb1);
 end
 
-rule "Take a break of 5 minutes, walk, health condition good"
-    salience $tp
+rule "Take a break of 5 minutes, walk, no hypertensy or obesity"
+    salience 50
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 20), $tp < currentPulse, 
-        healthCondition == HEALTH_CONDITION.GOOD )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.2 * upperPulseLimit), $tp < currentPulse,
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2  ||
+        nutritionLevel != NUTRITION_LEVEL.OBESITY))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
             this != $hb1,
@@ -97,9 +106,9 @@ rule "Take a break of 5 minutes, walk, health condition good"
 end
 
 rule "Stop exercising"
-    salience $tp
+    salience 100
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse + 30), $tp < currentPulse )
+        $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.3 * upperPulseLimit), $tp < currentPulse )
         not (Alarm(userId == $userId))
     then
         insert(new Alarm($userId, "Stop exercising"));
@@ -107,14 +116,13 @@ rule "Stop exercising"
 end
 
 rule "Speed up"
-    salience $tp
     when
-        $hb1: HeartBeatTracking( $userId: userId, $tp: (targetPulse - 30), $tp > currentPulse)
+        $hb1: HeartBeatTracking( $userId: userId, lowerPulseLimit > currentPulse)
         $n: Number(intValue == 0) from accumulate(
         $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $userId,
-            $tp <= currentPulse,
+            lowerPulseLimit <= currentPulse,
             this before[0m, 10m] $hb1),
             count($hb2)
         )

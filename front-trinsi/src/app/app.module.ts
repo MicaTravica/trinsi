@@ -29,8 +29,10 @@ import { FitnessComponent } from './fitness/fitness/fitness.component';
 import { HealthComponent } from './fitness/health/health.component';
 import { PlannerExerciseComponent } from './fitness/planner-exercise/planner-exercise.component';
 import { PlannerTimeComponent } from './fitness/planner-time/planner-time.component';
-import { ReportsComponent } from './reports/reports.component';
 import { AddRulesComponent } from './add-rules/add-rules.component';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,6 @@ import { AddRulesComponent } from './add-rules/add-rules.component';
     FitnessComponent,
     PlannerExerciseComponent,
     PlannerTimeComponent,
-    ReportsComponent,
     AddRulesComponent
   ],
   imports: [
@@ -64,7 +65,14 @@ import { AddRulesComponent } from './add-rules/add-rules.component';
       preventDuplicates: true,
     }),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyDtIoOeV4_p5Sjit61aep67jj6P_21UqW4',
+      authDomain: 'trinsi-a497c.firebaseapp.com',
+      projectId: 'trinsi-a497c',
+      storageBucket: 'trinsi-a497c.appspot.com',
+    }),
+    AngularFireStorageModule
   ],
   entryComponents: [
     ViewExerciseComponent,

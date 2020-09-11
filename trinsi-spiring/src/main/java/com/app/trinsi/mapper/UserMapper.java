@@ -11,6 +11,8 @@ public class UserMapper {
 	}
 	
 	public static User toUser(UserDTO userDto) {
-		return new User(userDto.getId(), userDto.getName(), userDto.getSurname(), userDto.getEmail(), false, userDto.getUsername(), userDto.getPassword(), userDto.getUserRole(), null, null);
+		return new User(userDto.getId(), userDto.getName(), userDto.getSurname(), userDto.getEmail(),
+				false, userDto.getUsername(), userDto.getPassword(), userDto.getUserRole(), null,
+				null);
 	}
 }

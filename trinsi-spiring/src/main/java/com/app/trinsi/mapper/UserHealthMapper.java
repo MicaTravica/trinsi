@@ -6,15 +6,16 @@ import com.app.trinsi.model.UserHealth;
 public class UserHealthMapper {
 
     public static UserHealthDTO toDTO(UserHealth userHealth) {
-        return new UserHealthDTO(userHealth.getId(), userHealth.getGender(), userHealth.getYears(), userHealth.getHeight(),
+        return new UserHealthDTO(userHealth.getId(), userHealth.getYears(), userHealth.getHeight(),
                 userHealth.getWeight(), userHealth.getUpperBloodPressure(), userHealth.getLowerBloodPressure(),
-                userHealth.getPulse(), userHealth.getHoursOfExercise(), userHealth.getLastChanged(), userHealth.isPlannerTaken());
+                userHealth.getPulse(), userHealth.getLastChanged(),
+                userHealth.isPlannerTaken(), null);
     }
 
     public static UserHealth toHealth(UserHealthDTO userHealthDTO) {
-        return new UserHealth(userHealthDTO.getId(), userHealthDTO.getGender(), userHealthDTO.getYears(),
+        return new UserHealth(userHealthDTO.getId(), userHealthDTO.getYears(),
                 userHealthDTO.getHeight(), userHealthDTO.getWeight(), userHealthDTO.getUpperBloodPressure(),
-                userHealthDTO.getLowerBloodPressure(), userHealthDTO.getPulse(), userHealthDTO.getHoursOfExercise(),
-                0, null,false);
+                userHealthDTO.getLowerBloodPressure(), userHealthDTO.getPulse(), 0,
+                null,false);
     }
 }

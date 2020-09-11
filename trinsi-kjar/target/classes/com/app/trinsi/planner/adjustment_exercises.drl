@@ -1,0 +1,60 @@
+package com.app.trinsi.planner
+
+//list any import classes here.
+import com.app.trinsi.model.UserPlanner;
+import com.app.trinsi.model.BLOOD_PRESSURE_CLASSIFICATION;
+import com.app.trinsi.model.NUTRITION_LEVEL;
+//declare any global variables here
+
+
+rule "Remove muscular exercise"
+    agenda-group "calculate"
+    salience -10
+    when
+        $p: UserPlanner(bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ||
+            nutritionLevel == NUTRITION_LEVEL.OBESITY)
+    then
+        System.out.println("0 mu");
+        modify($p){setNumOfExerciseMuscular(0);}
+end
+
+//Određivanje više kardio vežbi od vežbi snage (ispunjava 1 od uslova):
+//⦁	Ima hipertenziju, 1. faza
+//⦁	Prekomerna telesna masa
+//
+
+rule "More aerobic then muscular"
+    agenda-group "calculate"
+    salience -10
+    no-loop
+    when
+        $p: UserPlanner((bloodPressureClassification == BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+            nutritionLevel == NUTRITION_LEVEL.OVERWEIGHT) &&
+            bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 &&
+            nutritionLevel != NUTRITION_LEVEL.OBESITY, $m: numOfExerciseMuscular, $a: numOfMinutesAerobic)
+    then
+        System.out.println("aer more mus");
+        modify($p){
+            setNumOfExerciseMuscular((int) ($m * 0.5)),
+            setNumOfMinutesAerobic((int) ($a * 1.5));
+        }
+end
+
+//Određivanje više vežbi snage od kardio vežbi:
+//⦁	Pothranjena osoba i nema hipertenziju
+rule "More muscular then aerobic"
+    agenda-group "calculate"
+    salience -10
+    no-loop
+    when
+        $p: UserPlanner(bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1,
+            bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2,
+            nutritionLevel == NUTRITION_LEVEL.UNDERWEIGHT, $m: numOfExerciseMuscular, $a: numOfMinutesAerobic)
+    then
+        System.out.println("mus more aer");
+        modify($p){
+            setNumOfExerciseMuscular((int) ($m * 1.5)),
+            setNumOfMinutesAerobic((int) ($a * 0.5));
+        }
+end
+

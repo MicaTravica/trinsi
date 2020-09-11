@@ -1,6 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ExerciseService } from 'src/app/services/exercise-service/exercise.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Inject } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise/exercise.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -11,10 +9,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ViewExerciseComponent {
 
-  exercise = new Exercise(null, null, null, null, null);
+  exercise = new Exercise(null, null, null, null, null, null, []);
+  activeImg = 0;
 
   constructor(
-    private exerciseService: ExerciseService,
     private dialogRef: MatDialogRef<ViewExerciseComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Exercise
   ) {
@@ -23,6 +21,14 @@ export class ViewExerciseComponent {
 
    onClose() {
     this.dialogRef.close();
+  }
+
+  previous() {
+    this.activeImg -= 1;
+  }
+
+  next() {
+    this.activeImg += 1;
   }
 
 }

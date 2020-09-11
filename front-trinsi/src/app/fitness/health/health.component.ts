@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
-import { GENDER } from 'src/app/models/enums/gender.enum';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
@@ -13,7 +12,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class HealthComponent {
 
   health: UserHealth;
-  genders = [ GENDER.MALE, GENDER.FEMALE ];
   action = 'Add';
 
   constructor(
@@ -30,6 +28,7 @@ export class HealthComponent {
 
   onSubmit() {
     if (this.health.id == null) {
+      this.addQuestionnaire();
       this.add();
     } else {
       this.update();
@@ -37,6 +36,7 @@ export class HealthComponent {
   }
 
   add() {
+    this.addQuestionnaire();
     this.healthService.add(this.health).subscribe(
       (data: number) => {
         this.toastr.success('Successful add!');
@@ -56,5 +56,18 @@ export class HealthComponent {
 
   onClose() {
     this.dialogRef.close();
+  }
+
+  addQuestionnaire() {
+    const q = this.health.questionnaire;
+    if (q.vigorousDays === 0) {
+      q.vigorousMinutes = 0;
+    }
+    if (q.moderateDays === 0) {
+      q.moderateMinutes = 0;
+    }
+    if (q.walkingDays === 0) {
+      q.walkingMinutes = 0;
+    }
   }
 }

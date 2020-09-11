@@ -1,9 +1,7 @@
 package com.app.trinsi.service;
 
 import com.app.trinsi.exceptions.ResourceNotFoundException;
-import com.app.trinsi.model.CATEGORY;
-import com.app.trinsi.model.EXERCISE_TYPE;
-import com.app.trinsi.model.Exercise;
+import com.app.trinsi.model.*;
 
 import java.util.Collection;
 
@@ -15,7 +13,7 @@ public interface ExerciseService {
 
     Exercise updateExercise(Exercise updateExercise) throws ResourceNotFoundException;
 
-    Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, CATEGORY exerciseWeight);
+    Collection<Exercise> search(String name, EXERCISE_TYPE exerciseType, INTENSITY intensity, MUSCLES_GROUP musclesGroup);
 
     Collection<Exercise> findAll();
 

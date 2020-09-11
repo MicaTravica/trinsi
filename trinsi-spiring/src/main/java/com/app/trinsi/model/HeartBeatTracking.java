@@ -17,7 +17,9 @@ public class HeartBeatTracking {
 
     private Long userId;
     private int currentPulse;
-    private int targetPulse;
-    private HEALTH_CONDITION healthCondition;
+    private int lowerPulseLimit;
+    private int upperPulseLimit;
+    private BLOOD_PRESSURE_CLASSIFICATION bloodPressureClassification;
+    private NUTRITION_LEVEL nutritionLevel;
 
 }

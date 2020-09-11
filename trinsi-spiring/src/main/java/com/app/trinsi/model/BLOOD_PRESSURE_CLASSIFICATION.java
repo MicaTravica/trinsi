@@ -1,0 +1,6 @@
+package com.app.trinsi.model;
+
+public enum BLOOD_PRESSURE_CLASSIFICATION {
+
+    NORMAL, PREHYPERTENSION, HYPERTENSION1, HYPERTENSION2
+}

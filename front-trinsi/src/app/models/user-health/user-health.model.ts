@@ -1,30 +1,28 @@
-import { GENDER } from '../enums/gender.enum';
+import { Questionnaire } from '../questionnaire/questionnaire.model';
 
 export class UserHealth {
 
     public id: number;
-    public gender: GENDER;
     public years: number;
     public height: number;
     public weight: number;
     public upperBloodPressure: number;
     public lowerBloodPressure: number;
     public pulse: number;
-    public hoursOfExercise: number;
     public lastChanged: Date;
     public plannerTaken: boolean;
+    public questionnaire: Questionnaire;
 
-    constructor(id: number, gender: GENDER, years: number, height: number, weight: number, upperBloodPressure: number,
-                lowerBloodPressure: number, pulse: number, hoursOfExercise: number, lastChanged: Date) {
+    constructor(id: number, years: number, height: number, weight: number, upperBloodPressure: number,
+                lowerBloodPressure: number, pulse: number, lastChanged: Date, questionnaire: Questionnaire) {
         this.id = id;
-        this.gender = gender;
         this.years = years;
         this.height = height;
         this.weight = weight;
         this.upperBloodPressure = upperBloodPressure;
         this.lowerBloodPressure = lowerBloodPressure;
         this.pulse = pulse;
-        this.hoursOfExercise = hoursOfExercise;
         this.lastChanged = lastChanged;
+        this. questionnaire = questionnaire;
     }
 }
