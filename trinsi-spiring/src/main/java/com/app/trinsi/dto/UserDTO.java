@@ -1,7 +1,6 @@
 package com.app.trinsi.dto;
 
-import com.app.trinsi.model.UserPlanner;
-import com.app.trinsi.model.UserRole;
+import com.app.trinsi.model.USER_ROLE;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,6 +34,6 @@ public class UserDTO {
 	@Size(min = 8, message = "Password must be at least {value}")
 	private String password;
 
-	private UserRole userRole;
+	private USER_ROLE userRole;
 	
 }

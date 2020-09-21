@@ -1,9 +1,6 @@
 package com.app.trinsi.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +33,7 @@ public class User {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	private UserRole userRole;
+	private USER_ROLE userRole;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_health_id", referencedColumnName = "id")
@@ -53,7 +50,7 @@ public class User {
 	}
 
 	public void registration() {
-		this.userRole = UserRole.ROLE_REGULAR;
+		this.userRole = USER_ROLE.ROLE_REGULAR;
 		this.verified = false;
 	}
 	

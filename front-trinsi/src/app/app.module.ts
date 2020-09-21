@@ -29,43 +29,32 @@ import { FitnessComponent } from './fitness/fitness/fitness.component';
 import { HealthComponent } from './fitness/health/health.component';
 import { PlannerExerciseComponent } from './fitness/planner-exercise/planner-exercise.component';
 import { PlannerTimeComponent } from './fitness/planner-time/planner-time.component';
-import { AddRulesComponent } from './add-rules/add-rules.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { FitnessModule } from './fitness/fitness.module';
+import { CoreModule } from './core/core.module';
+import { ExerciseModule } from './exercise/exercise.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    MenuComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-    PageNotFoundComponent,
-    ChangePasswordComponent,
-    AddExerciseComponent,
-    ListExerciseComponent,
-    ViewExerciseComponent,
-    HealthComponent,
-    FitnessComponent,
-    PlannerExerciseComponent,
-    PlannerTimeComponent,
-    AddRulesComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    CoreModule,
+    ExerciseModule,
+    FitnessModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    ReactiveFormsModule,
-    FormsModule,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyDtIoOeV4_p5Sjit61aep67jj6P_21UqW4',
       authDomain: 'trinsi-a497c.firebaseapp.com',
@@ -73,12 +62,6 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
       storageBucket: 'trinsi-a497c.appspot.com',
     }),
     AngularFireStorageModule
-  ],
-  entryComponents: [
-    ViewExerciseComponent,
-    AddExerciseComponent,
-    HealthComponent,
-    PlannerTimeComponent
   ],
   providers: [
     UserService,

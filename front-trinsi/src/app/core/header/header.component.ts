@@ -28,15 +28,15 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/user/login']);
   }
 
   profile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/user/profile']);
   }
 
   password() {
-    this.router.navigate(['/change-password']);
+    this.router.navigate(['/user/change-password']);
   }
 
 }

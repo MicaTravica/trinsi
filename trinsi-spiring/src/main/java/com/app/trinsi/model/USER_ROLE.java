@@ -1,11 +1,11 @@
 package com.app.trinsi.model;
 
-public enum UserRole {
+public enum USER_ROLE {
 	ROLE_ADMIN ("ROLE_ADMIN"), ROLE_REGULAR("ROLE_REGULAR");
 
     private final String name;       
 
-    private UserRole(String s) {
+    private USER_ROLE(String s) {
         name = s;
     }
 

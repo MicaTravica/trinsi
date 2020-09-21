@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { UserPlanner } from 'src/app/models/user-planner/user-planner.model';
 import { Exercise } from 'src/app/models/exercise/exercise.model';
 import { PlannerService } from 'src/app/services/planner-service/planner.service';

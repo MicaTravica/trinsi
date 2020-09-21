@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { HealthComponent } from '../health/health.component';
 import { HealthService } from 'src/app/services/health-service/health.service';
 import { UserHealth } from 'src/app/models/user-health/user-health.model';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
+import { HealthComponent } from '../health/health.component';
 
 @Component({
   selector: 'app-fitness',
