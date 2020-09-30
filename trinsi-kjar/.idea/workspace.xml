@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfdcc733-82dd-4eda-9a91-661ad86862dd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../trinsi_diagram.oom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +96,7 @@
       <workItem from="1598646753255" duration="17739000" />
       <workItem from="1598971952981" duration="12886000" />
       <workItem from="1599127900390" duration="35432000" />
-      <workItem from="1600082594115" duration="10751000" />
+      <workItem from="1600082594115" duration="11801000" />
     </task>
     <servers />
   </component>
@@ -103,6 +104,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601465025919">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1601465025919" />
     <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1600082621280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
