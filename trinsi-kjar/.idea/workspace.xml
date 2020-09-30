@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfdcc733-82dd-4eda-9a91-661ad86862dd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/fitness/planner-exercise/planner-exercise.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-trinsi/src/app/guards/role.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../front-trinsi/src/app/guards/role.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/app/trinsi/alarm/alarm.drl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/app/trinsi/alarm/alarm.drl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/app/trinsi/alarm/alarm.drl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/trinsi-kjar-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieContainerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/config/KieConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserHealthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/main/java/com/app/trinsi/repository/UserHealthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/alarms/AlarmTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../trinsi-spiring/src/test/java/com/app/trinsi/alarms/AlarmTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trinsi_diagram.oom" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +95,7 @@
       <workItem from="1598646753255" duration="17739000" />
       <workItem from="1598971952981" duration="12886000" />
       <workItem from="1599127900390" duration="35432000" />
-      <workItem from="1600082594115" duration="10595000" />
+      <workItem from="1600082594115" duration="10751000" />
     </task>
     <servers />
   </component>
