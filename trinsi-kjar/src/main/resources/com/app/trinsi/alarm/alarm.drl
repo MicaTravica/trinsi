@@ -23,7 +23,7 @@ rule "Breathe deeply, no hypertension"
     salience 10
     when
         $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.05  * upperPulseLimit), $tp < currentPulse,
-        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 &&
         bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
@@ -55,7 +55,7 @@ rule "Take a break of 2 minutes, walk, no hypertension"
     salience 25
     when
         $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.1 * upperPulseLimit), $tp < currentPulse,
-        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 &&
         bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2 ))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
@@ -88,8 +88,8 @@ rule "Take a break of 5 minutes, walk, no hypertensy or obesity"
     salience 50
     when
         $hb1: HeartBeatTracking( $userId: userId, $tp: (upperPulseLimit + 0.2 * upperPulseLimit), $tp < currentPulse,
-        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 ||
-        bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2  ||
+        (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 &&
+        bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2  &&
         nutritionLevel != NUTRITION_LEVEL.OBESITY))
         $n: Number(intValue == 0) from accumulate(
             $hb2 : HeartBeatTracking(
@@ -117,13 +117,15 @@ end
 
 rule "Speed up"
     when
-        $hb1: HeartBeatTracking( $userId: userId, lowerPulseLimit > currentPulse)
+        $hb1: HeartBeatTracking( $userId: userId, lowerPulseLimit > currentPulse,
+            (bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION1 &&
+            bloodPressureClassification != BLOOD_PRESSURE_CLASSIFICATION.HYPERTENSION2))
         $n: Number(intValue == 0) from accumulate(
         $hb2 : HeartBeatTracking(
             this != $hb1,
             userId == $userId,
             lowerPulseLimit <= currentPulse,
-            this before[0m, 10m] $hb1),
+            this before[0m, 1m] $hb1),
             count($hb2)
         )
         not (Alarm(userId == $userId))

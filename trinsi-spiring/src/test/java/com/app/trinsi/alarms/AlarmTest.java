@@ -180,7 +180,7 @@ public class AlarmTest {
             alarms.addAll((Collection<? extends Alarm>) kieSession.getObjects(new ClassObjectFilter(Alarm.class)));
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             kieSession.insert(new HeartBeatTracking(1L, 89, 90, 120, BLOOD_PRESSURE_CLASSIFICATION.NORMAL, NUTRITION_LEVEL.NORMAL));
             clock.advanceTime(1, TimeUnit.MINUTES);
             int ruleCount = kieSession.fireAllRules();

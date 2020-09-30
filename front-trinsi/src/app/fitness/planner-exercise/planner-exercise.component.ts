@@ -87,7 +87,7 @@ export class PlannerExerciseComponent implements OnChanges {
     this.start = new Date();
     const wait = (ms) => new Promise(res => setTimeout(res, ms));
     const id = this.userService.getUserId();
-    let num = this.planner.upperPulseLimit + 35;
+    let num = this.planner.upperPulseLimit + 50;
     while (this.sim) {
       const hbt = new HeartBeatTracking(id, num, this.planner.lowerPulseLimit, this.planner.upperPulseLimit,
         this.planner.bloodPressureClassification, this.planner.nutritionLevel);

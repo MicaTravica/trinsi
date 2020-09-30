@@ -8,6 +8,4 @@ import java.util.Optional;
 
 public interface UserHealthRepository extends JpaRepository<UserHealth, Long> {
 
-    @Query("select uh from UserHealth uh join User u where u.id = ?1")
-    Optional<UserHealth> findByUsername(Long id);
 }
